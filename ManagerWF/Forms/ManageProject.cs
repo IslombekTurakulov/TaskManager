@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using ManagerWF.Forms;
 
-namespace ManagerWF
+namespace ManagerWF.Forms
 {
     public partial class ManageProject : Form
     {

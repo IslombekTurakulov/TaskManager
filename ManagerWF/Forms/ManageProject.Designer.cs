@@ -1,5 +1,5 @@
 ﻿
-namespace ManagerWF
+namespace ManagerWF.Forms
 {
     partial class ManageProject
     {

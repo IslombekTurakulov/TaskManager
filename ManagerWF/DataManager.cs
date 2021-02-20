@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using ManagerLib.Entities;
 
-namespace ManagerLib.Repositories
+namespace ManagerWF
 {
     public abstract class MainFormRepository<T> where T : BaseEntity
     {
@@ -25,17 +26,9 @@ namespace ManagerLib.Repositories
 
                 return entities;
             }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             return null;
         }
@@ -56,17 +49,9 @@ namespace ManagerLib.Repositories
                     }
                 }
             }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
             return null;
@@ -93,17 +78,9 @@ namespace ManagerLib.Repositories
                 id++;
                 return id;
             }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             return 0;
         }
@@ -117,17 +94,9 @@ namespace ManagerLib.Repositories
                 using StreamWriter sw = new StreamWriter(fs);
                 SaveEntity(item, sw);
             }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -155,7 +124,7 @@ namespace ManagerLib.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -184,17 +153,9 @@ namespace ManagerLib.Repositories
                 File.Delete(FilePath);
                 File.Move(tempFile, FilePath);
             }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
