@@ -72,7 +72,6 @@ namespace ManagerWF.Forms
                 letter > 'A' - 1 && letter < 'Z' + 1
                 || letter > 'a' - 1 && letter < 'z' + 1
                 || char.IsWhiteSpace(letter)
-                || char.IsDigit(letter)
             );
         }
 
@@ -83,18 +82,19 @@ namespace ManagerWF.Forms
 
         private void CreateTaskButton_Click(object sender, EventArgs e)
         {
-            userDataGrid.Rows.Add(ID++, NameUser, DateTime.Now + " ");
+            userDataGrid.Rows.Add(ID++, NameUser, DateTime.Now);
             User user = new User()
             {
                 Username = NameUser,
                 CreateDate = DateTime.Now
             };
+
             list.Add(user);
             Stream fs = new FileStream("UserData.txt", FileMode.Open, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             foreach (var item in list)
             {
-                sw.Write(item.Username + " " + item.CreateDate + '\n');
+                sw.WriteLine(item.Username + " " + item.CreateDate);
             }
 
             sw.Close();

@@ -101,7 +101,7 @@ namespace ManagerWF.Forms
 
         private void manageTasks_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new SubTaskForm(), sender);
+            OpenChildForm(new ManageSubTasksForm(), sender);
         }
     }
 }

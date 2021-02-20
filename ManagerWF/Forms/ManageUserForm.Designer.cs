@@ -42,7 +42,7 @@ namespace ManagerWF.Forms
             this.panelUserInput = new System.Windows.Forms.Panel();
             this.CreateTaskButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.userLabel = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.manageUserPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -143,7 +143,7 @@ namespace ManagerWF.Forms
             this.panelUserInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(188)))));
             this.panelUserInput.Controls.Add(this.CreateTaskButton);
             this.panelUserInput.Controls.Add(this.nameTextBox);
-            this.panelUserInput.Controls.Add(this.label1);
+            this.panelUserInput.Controls.Add(this.userLabel);
             this.panelUserInput.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelUserInput.Location = new System.Drawing.Point(0, 355);
             this.panelUserInput.Name = "panelUserInput";
@@ -170,21 +170,21 @@ namespace ManagerWF.Forms
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(153, 39);
+            this.nameTextBox.Location = new System.Drawing.Point(171, 39);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(119, 23);
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
-            // label1
+            // userLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(40, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "TitleSubTask:";
+            this.userLabel.AutoSize = true;
+            this.userLabel.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.userLabel.Location = new System.Drawing.Point(40, 35);
+            this.userLabel.Name = "userLabel";
+            this.userLabel.Size = new System.Drawing.Size(112, 28);
+            this.userLabel.TabIndex = 0;
+            this.userLabel.Text = "Name User:";
             // 
             // ManageUserForm
             // 
@@ -217,7 +217,7 @@ namespace ManagerWF.Forms
         private System.Windows.Forms.DataGridView userDataGrid;
         private System.Windows.Forms.Panel panelUserInput;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn creationDate;

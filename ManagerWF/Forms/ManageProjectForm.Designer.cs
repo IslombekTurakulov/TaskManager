@@ -61,7 +61,7 @@ namespace ManagerWF.Forms
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(134, 450);
+            this.panelMenu.Size = new System.Drawing.Size(134, 380);
             this.panelMenu.TabIndex = 4;
             // 
             // projectsButton
@@ -100,7 +100,7 @@ namespace ManagerWF.Forms
             this.dataGridView1.Location = new System.Drawing.Point(134, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(666, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(657, 380);
             this.dataGridView1.TabIndex = 5;
             // 
             // IDColumn
@@ -146,9 +146,9 @@ namespace ManagerWF.Forms
             this.panel2.Controls.Add(this.nameTxtBox);
             this.panel2.Controls.Add(this.CreateTaskButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(134, 333);
+            this.panel2.Location = new System.Drawing.Point(134, 263);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(666, 117);
+            this.panel2.Size = new System.Drawing.Size(657, 117);
             this.panel2.TabIndex = 6;
             // 
             // priorityLabel
@@ -156,7 +156,7 @@ namespace ManagerWF.Forms
             this.priorityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.priorityLabel.AutoSize = true;
             this.priorityLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.priorityLabel.Location = new System.Drawing.Point(270, 25);
+            this.priorityLabel.Location = new System.Drawing.Point(265, 25);
             this.priorityLabel.Name = "priorityLabel";
             this.priorityLabel.Size = new System.Drawing.Size(71, 21);
             this.priorityLabel.TabIndex = 16;
@@ -174,7 +174,7 @@ namespace ManagerWF.Forms
             "InProgress",
             "Closed",
             "Opened"});
-            this.comboBox2.Location = new System.Drawing.Point(347, 25);
+            this.comboBox2.Location = new System.Drawing.Point(342, 25);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(109, 23);
             this.comboBox2.TabIndex = 15;
@@ -184,7 +184,7 @@ namespace ManagerWF.Forms
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(254, 62);
+            this.label1.Location = new System.Drawing.Point(249, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 21);
             this.label1.TabIndex = 14;
@@ -202,7 +202,7 @@ namespace ManagerWF.Forms
             "InProgress",
             "Closed",
             "Opened"});
-            this.comboBox1.Location = new System.Drawing.Point(379, 62);
+            this.comboBox1.Location = new System.Drawing.Point(374, 62);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(109, 23);
             this.comboBox1.TabIndex = 13;
@@ -212,7 +212,7 @@ namespace ManagerWF.Forms
             this.StatusLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLabel.Location = new System.Drawing.Point(7, 23);
+            this.StatusLabel.Location = new System.Drawing.Point(2, 23);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(119, 21);
             this.StatusLabel.TabIndex = 12;
@@ -223,7 +223,7 @@ namespace ManagerWF.Forms
             this.titleLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.titleLabel.Location = new System.Drawing.Point(65, 60);
+            this.titleLabel.Location = new System.Drawing.Point(60, 60);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(48, 21);
             this.titleLabel.TabIndex = 11;
@@ -241,7 +241,7 @@ namespace ManagerWF.Forms
             "InProgress",
             "Closed",
             "Opened"});
-            this.statusCombo.Location = new System.Drawing.Point(132, 25);
+            this.statusCombo.Location = new System.Drawing.Point(127, 25);
             this.statusCombo.Name = "statusCombo";
             this.statusCombo.Size = new System.Drawing.Size(109, 23);
             this.statusCombo.TabIndex = 10;
@@ -250,7 +250,7 @@ namespace ManagerWF.Forms
             // nameTxtBox
             // 
             this.nameTxtBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nameTxtBox.Location = new System.Drawing.Point(132, 62);
+            this.nameTxtBox.Location = new System.Drawing.Point(127, 62);
             this.nameTxtBox.Name = "nameTxtBox";
             this.nameTxtBox.Size = new System.Drawing.Size(100, 23);
             this.nameTxtBox.TabIndex = 9;
@@ -265,7 +265,7 @@ namespace ManagerWF.Forms
             this.CreateTaskButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CreateTaskButton.Image = ((System.Drawing.Image)(resources.GetObject("CreateTaskButton.Image")));
             this.CreateTaskButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateTaskButton.Location = new System.Drawing.Point(554, 0);
+            this.CreateTaskButton.Location = new System.Drawing.Point(545, 0);
             this.CreateTaskButton.Name = "CreateTaskButton";
             this.CreateTaskButton.Size = new System.Drawing.Size(112, 117);
             this.CreateTaskButton.TabIndex = 8;
@@ -278,7 +278,7 @@ namespace ManagerWF.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(791, 380);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelMenu);

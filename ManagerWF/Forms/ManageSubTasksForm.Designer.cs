@@ -39,6 +39,8 @@ namespace ManagerWF.Forms
             this.Priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.responsibleLabel = new System.Windows.Forms.Label();
+            this.responsibleComboBox = new System.Windows.Forms.ComboBox();
             this.CreateTaskButton = new System.Windows.Forms.Button();
             this.priorityTask = new System.Windows.Forms.Label();
             this.MaxTasksLabel = new System.Windows.Forms.Label();
@@ -48,11 +50,14 @@ namespace ManagerWF.Forms
             this.NameLabel = new System.Windows.Forms.Label();
             this.statusCombo = new System.Windows.Forms.ComboBox();
             this.nameTxtBox = new System.Windows.Forms.TextBox();
-            this.responsibleLabel = new System.Windows.Forms.Label();
-            this.responsibleComboBox = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.projectsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.subTaskDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // subTaskDataGrid
@@ -71,7 +76,7 @@ namespace ManagerWF.Forms
             this.subTaskDataGrid.Location = new System.Drawing.Point(0, 0);
             this.subTaskDataGrid.Name = "subTaskDataGrid";
             this.subTaskDataGrid.RowTemplate.Height = 25;
-            this.subTaskDataGrid.Size = new System.Drawing.Size(800, 450);
+            this.subTaskDataGrid.Size = new System.Drawing.Size(642, 393);
             this.subTaskDataGrid.TabIndex = 2;
             // 
             // IDColumn
@@ -106,11 +111,13 @@ namespace ManagerWF.Forms
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.subTaskDataGrid);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panelMenu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(782, 393);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -128,10 +135,29 @@ namespace ManagerWF.Forms
             this.panel2.Controls.Add(this.statusCombo);
             this.panel2.Controls.Add(this.nameTxtBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 332);
+            this.panel2.Location = new System.Drawing.Point(140, 275);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 118);
+            this.panel2.Size = new System.Drawing.Size(642, 118);
             this.panel2.TabIndex = 4;
+            // 
+            // responsibleLabel
+            // 
+            this.responsibleLabel.AutoSize = true;
+            this.responsibleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.responsibleLabel.Location = new System.Drawing.Point(436, 37);
+            this.responsibleLabel.Name = "responsibleLabel";
+            this.responsibleLabel.Size = new System.Drawing.Size(106, 21);
+            this.responsibleLabel.TabIndex = 10;
+            this.responsibleLabel.Text = "Responsible:";
+            // 
+            // responsibleComboBox
+            // 
+            this.responsibleComboBox.FormattingEnabled = true;
+            this.responsibleComboBox.Location = new System.Drawing.Point(449, 68);
+            this.responsibleComboBox.Name = "responsibleComboBox";
+            this.responsibleComboBox.Size = new System.Drawing.Size(87, 23);
+            this.responsibleComboBox.TabIndex = 9;
+            this.responsibleComboBox.SelectedIndexChanged += new System.EventHandler(this.responsibleComboBox_SelectedIndexChanged);
             // 
             // CreateTaskButton
             // 
@@ -142,9 +168,9 @@ namespace ManagerWF.Forms
             this.CreateTaskButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CreateTaskButton.Image = ((System.Drawing.Image)(resources.GetObject("CreateTaskButton.Image")));
             this.CreateTaskButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateTaskButton.Location = new System.Drawing.Point(688, 0);
+            this.CreateTaskButton.Location = new System.Drawing.Point(543, 0);
             this.CreateTaskButton.Name = "CreateTaskButton";
-            this.CreateTaskButton.Size = new System.Drawing.Size(112, 118);
+            this.CreateTaskButton.Size = new System.Drawing.Size(99, 118);
             this.CreateTaskButton.TabIndex = 8;
             this.CreateTaskButton.Text = "Create Task";
             this.CreateTaskButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -155,7 +181,7 @@ namespace ManagerWF.Forms
             // 
             this.priorityTask.AutoSize = true;
             this.priorityTask.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.priorityTask.Location = new System.Drawing.Point(289, 25);
+            this.priorityTask.Location = new System.Drawing.Point(248, 23);
             this.priorityTask.Name = "priorityTask";
             this.priorityTask.Size = new System.Drawing.Size(71, 21);
             this.priorityTask.TabIndex = 7;
@@ -165,7 +191,7 @@ namespace ManagerWF.Forms
             // 
             this.MaxTasksLabel.AutoSize = true;
             this.MaxTasksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MaxTasksLabel.Location = new System.Drawing.Point(271, 74);
+            this.MaxTasksLabel.Location = new System.Drawing.Point(230, 70);
             this.MaxTasksLabel.Name = "MaxTasksLabel";
             this.MaxTasksLabel.Size = new System.Drawing.Size(89, 21);
             this.MaxTasksLabel.TabIndex = 6;
@@ -179,7 +205,7 @@ namespace ManagerWF.Forms
             "Bug",
             "Task",
             "Story"});
-            this.priorityCombo.Location = new System.Drawing.Point(376, 22);
+            this.priorityCombo.Location = new System.Drawing.Point(325, 23);
             this.priorityCombo.Name = "priorityCombo";
             this.priorityCombo.Size = new System.Drawing.Size(100, 23);
             this.priorityCombo.TabIndex = 5;
@@ -187,7 +213,7 @@ namespace ManagerWF.Forms
             // 
             // maxTasksTxtbox
             // 
-            this.maxTasksTxtbox.Location = new System.Drawing.Point(376, 72);
+            this.maxTasksTxtbox.Location = new System.Drawing.Point(325, 70);
             this.maxTasksTxtbox.Name = "maxTasksTxtbox";
             this.maxTasksTxtbox.Size = new System.Drawing.Size(100, 23);
             this.maxTasksTxtbox.TabIndex = 4;
@@ -197,7 +223,7 @@ namespace ManagerWF.Forms
             // 
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLabel.Location = new System.Drawing.Point(32, 25);
+            this.StatusLabel.Location = new System.Drawing.Point(3, 23);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(124, 21);
             this.StatusLabel.TabIndex = 3;
@@ -207,7 +233,7 @@ namespace ManagerWF.Forms
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(32, 72);
+            this.NameLabel.Location = new System.Drawing.Point(3, 70);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(94, 21);
             this.NameLabel.TabIndex = 2;
@@ -220,7 +246,7 @@ namespace ManagerWF.Forms
             "InProgress",
             "Finished",
             "Opened"});
-            this.statusCombo.Location = new System.Drawing.Point(171, 22);
+            this.statusCombo.Location = new System.Drawing.Point(142, 20);
             this.statusCombo.Name = "statusCombo";
             this.statusCombo.Size = new System.Drawing.Size(100, 23);
             this.statusCombo.TabIndex = 1;
@@ -228,42 +254,55 @@ namespace ManagerWF.Forms
             // 
             // nameTxtBox
             // 
-            this.nameTxtBox.Location = new System.Drawing.Point(147, 72);
+            this.nameTxtBox.Location = new System.Drawing.Point(118, 70);
             this.nameTxtBox.Name = "nameTxtBox";
             this.nameTxtBox.Size = new System.Drawing.Size(100, 23);
             this.nameTxtBox.TabIndex = 0;
             this.nameTxtBox.TextChanged += new System.EventHandler(this.nameTxtBox_TextChanged);
             // 
-            // responsibleLabel
+            // panel3
             // 
-            this.responsibleLabel.AutoSize = true;
-            this.responsibleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.responsibleLabel.Location = new System.Drawing.Point(511, 20);
-            this.responsibleLabel.Name = "responsibleLabel";
-            this.responsibleLabel.Size = new System.Drawing.Size(106, 21);
-            this.responsibleLabel.TabIndex = 10;
-            this.responsibleLabel.Text = "Responsible:";
+            this.panel3.Controls.Add(this.subTaskDataGrid);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(140, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(642, 393);
+            this.panel3.TabIndex = 6;
             // 
-            // responsibleComboBox
+            // panelMenu
             // 
-            this.responsibleComboBox.FormattingEnabled = true;
-            this.responsibleComboBox.Items.AddRange(new object[] {
-            "Epic",
-            "Bug",
-            "Task",
-            "Story"});
-            this.responsibleComboBox.Location = new System.Drawing.Point(511, 51);
-            this.responsibleComboBox.Name = "responsibleComboBox";
-            this.responsibleComboBox.Size = new System.Drawing.Size(100, 23);
-            this.responsibleComboBox.TabIndex = 9;
-            this.responsibleComboBox.SelectedIndexChanged += new System.EventHandler(this.responsibleComboBox_SelectedIndexChanged);
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.projectsButton);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(140, 393);
+            this.panelMenu.TabIndex = 5;
+            // 
+            // projectsButton
+            // 
+            this.projectsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.projectsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.projectsButton.FlatAppearance.BorderSize = 0;
+            this.projectsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.projectsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.projectsButton.ForeColor = System.Drawing.Color.White;
+            this.projectsButton.Image = ((System.Drawing.Image)(resources.GetObject("projectsButton.Image")));
+            this.projectsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.projectsButton.Location = new System.Drawing.Point(0, 0);
+            this.projectsButton.Name = "projectsButton";
+            this.projectsButton.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.projectsButton.Size = new System.Drawing.Size(140, 60);
+            this.projectsButton.TabIndex = 2;
+            this.projectsButton.Text = "  Sub-Tasks";
+            this.projectsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.projectsButton.UseVisualStyleBackColor = true;
             // 
             // ManageSubTasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(782, 393);
             this.Controls.Add(this.panel1);
             this.Name = "ManageSubTasksForm";
             this.Text = "ManageSubTasks";
@@ -272,6 +311,8 @@ namespace ManagerWF.Forms
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panelMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -298,5 +339,8 @@ namespace ManagerWF.Forms
         private System.Windows.Forms.TextBox nameTxtBox;
         private System.Windows.Forms.Label responsibleLabel;
         private System.Windows.Forms.ComboBox responsibleComboBox;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelMenu;
+        private System.Windows.Forms.Button projectsButton;
     }
 }
