@@ -10,31 +10,18 @@ namespace ManagerWF.Forms
 {
     public partial class AddSubTask : Form
     {
-        private TaskStatusEnum _priority;
-        private SubTaskStatus _statusSubTaskTask;
         private string _nameTask;
-        private int _maxTasks;
 
         public Task Task;
 
         public int ID { get; set; }
 
-        public int MaxTasks
-        {
-            get => _maxTasks;
-            set => _maxTasks = value;
-        }
+        public int MaxTasks { get; set; }
 
-        public TaskStatusEnum Priority
-        {
-            get => _priority;
-            set => _priority = value;
-        }
-        public SubTaskStatus StatusSubTask
-        {
-            get => _statusSubTaskTask;
-            set => _statusSubTaskTask = value;
-        }
+        public TaskStatusEnum Priority { get; set; }
+
+        public SubTaskStatus StatusSubTask { get; set; }
+
         public string NameTask
         {
             get => _nameTask;
@@ -67,7 +54,6 @@ namespace ManagerWF.Forms
             };
 
             var json = JsonConvert.SerializeObject(subTask, Newtonsoft.Json.Formatting.Indented);
-            DataManager<SubTask>.SaveData();
         }
 
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)

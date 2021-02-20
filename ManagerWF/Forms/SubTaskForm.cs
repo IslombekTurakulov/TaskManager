@@ -75,14 +75,10 @@ namespace ManagerWF.Forms
             childForm.Show();
         }
 
-        private void manageTasks_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new AddSubTask(), sender);
-        }
-
         private void projectsButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ManageSubTasks(), sender);
+            OpenChildForm(new ManageSubTasksForm(), sender);
         }
+
     }
 }

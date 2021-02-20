@@ -58,14 +58,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
-  <data name="manageTasks.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAB0SURBVFhH7Y5RCsAwCEN7/0tvX5URYtWJg0Ee5EeS9q0/
-        c0E+BT8dkdiPekFY55k0bMyCsA5LCCvhI53OkdPwTRDvbkTDahDvbkTDahDvbkTDahDvboSFJhKQgAQk
-        IAEJSEACEki9Py0Qsi2nkoaNOyGsdQPqefkHRao+0QAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="projectsButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

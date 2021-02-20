@@ -46,7 +46,7 @@ namespace ManagerWF.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 67);
+            this.panel1.Size = new System.Drawing.Size(859, 67);
             this.panel1.TabIndex = 0;
             // 
             // labelAbout
@@ -56,7 +56,7 @@ namespace ManagerWF.Forms
             this.labelAbout.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelAbout.ForeColor = System.Drawing.SystemColors.Control;
             this.labelAbout.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.labelAbout.Location = new System.Drawing.Point(328, 21);
+            this.labelAbout.Location = new System.Drawing.Point(357, 21);
             this.labelAbout.Name = "labelAbout";
             this.labelAbout.Size = new System.Drawing.Size(145, 28);
             this.labelAbout.TabIndex = 2;
@@ -69,24 +69,26 @@ namespace ManagerWF.Forms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 67);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 383);
+            this.panel3.Size = new System.Drawing.Size(859, 495);
             this.panel3.TabIndex = 3;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(800, 383);
-            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.Size = new System.Drawing.Size(859, 495);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(859, 562);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "About";
@@ -95,6 +97,7 @@ namespace ManagerWF.Forms
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

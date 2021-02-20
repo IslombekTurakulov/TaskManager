@@ -168,7 +168,7 @@ namespace ManagerWF
             // 
             // panelTitleBar
             // 
-            this.panelTitleBar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.panelTitleBar.Controls.Add(this.closeChildForm);
             this.panelTitleBar.Controls.Add(this.labelTitle);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -197,8 +197,8 @@ namespace ManagerWF
             this.labelTitle.AutoSize = true;
             this.labelTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelTitle.ForeColor = System.Drawing.Color.Black;
-            this.labelTitle.Location = new System.Drawing.Point(330, 14);
+            this.labelTitle.ForeColor = System.Drawing.Color.White;
+            this.labelTitle.Location = new System.Drawing.Point(301, 11);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(73, 30);
             this.labelTitle.TabIndex = 0;
@@ -217,7 +217,7 @@ namespace ManagerWF
             // 
             this.logoPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoPicture.Image = ((System.Drawing.Image)(resources.GetObject("logoPicture.Image")));
-            this.logoPicture.Location = new System.Drawing.Point(0, 0);
+            this.logoPicture.Location = new System.Drawing.Point(-9, 0);
             this.logoPicture.Name = "logoPicture";
             this.logoPicture.Size = new System.Drawing.Size(700, 400);
             this.logoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

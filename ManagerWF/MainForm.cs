@@ -101,12 +101,12 @@ namespace ManagerWF
 
         private void projectsButton_Click(object sender, EventArgs e)
         {
-           OpenChildForm(new Project(), sender);
+           OpenChildForm(new MainManagerInfo(), sender);
         }
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new AddUser(), sender);
+            OpenChildForm(new ManageUserForm(), sender);
         }
 
         private void aboutButton_Click(object sender, EventArgs e)

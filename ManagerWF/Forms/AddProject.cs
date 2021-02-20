@@ -9,18 +9,12 @@ namespace ManagerWF.Forms
 {
     public partial class AddProject : Form
     {
-
-        private StatusEnum _priority;
         private string _nameTask;
         
         public int ID { get; set; }
 
-        public StatusEnum Priority
-        {
-            get => _priority;
-            set => _priority = value;
-        }
-     
+        public StatusEnum PriorityStatus { get; set; }
+
         public string NameTask
         {
             get => _nameTask;
@@ -48,7 +42,7 @@ namespace ManagerWF.Forms
                 Title = NameTask,
                 LastEditDate = DateTime.Now,
                 ResponsibleId = "Podbelskiy",
-                Status = Priority
+                Status = PriorityStatus
             };
 
             var json = JsonConvert.SerializeObject(subTask, Formatting.Indented);
@@ -57,7 +51,7 @@ namespace ManagerWF.Forms
 
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Priority = (StatusEnum)Enum.Parse(typeof(StatusEnum), statusCombo.Text);
+            PriorityStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), statusCombo.Text);
         }
 
         private void nameTxtBox_TextChanged(object sender, EventArgs e)
@@ -74,5 +68,6 @@ namespace ManagerWF.Forms
                 || char.IsDigit(letter)
             );
         }
+
     }
 }
