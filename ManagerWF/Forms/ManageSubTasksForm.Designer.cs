@@ -199,6 +199,13 @@ namespace ManagerWF.Forms
             // 
             // priorityCombo
             // 
+            this.priorityCombo.AutoCompleteCustomSource.AddRange(new string[] {
+            "Epic",
+            "Bug",
+            "Task",
+            "Story"});
+            this.priorityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.priorityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.priorityCombo.FormattingEnabled = true;
             this.priorityCombo.Items.AddRange(new object[] {
             "Epic",
@@ -215,6 +222,7 @@ namespace ManagerWF.Forms
             // 
             this.maxTasksTxtbox.Location = new System.Drawing.Point(325, 70);
             this.maxTasksTxtbox.Name = "maxTasksTxtbox";
+            this.maxTasksTxtbox.PlaceholderText = "For example: 2";
             this.maxTasksTxtbox.Size = new System.Drawing.Size(100, 23);
             this.maxTasksTxtbox.TabIndex = 4;
             this.maxTasksTxtbox.TextChanged += new System.EventHandler(this.maxTasksTxtbox_TextChanged);
@@ -256,6 +264,7 @@ namespace ManagerWF.Forms
             // 
             this.nameTxtBox.Location = new System.Drawing.Point(118, 70);
             this.nameTxtBox.Name = "nameTxtBox";
+            this.nameTxtBox.PlaceholderText = "Type your task";
             this.nameTxtBox.Size = new System.Drawing.Size(100, 23);
             this.nameTxtBox.TabIndex = 0;
             this.nameTxtBox.TextChanged += new System.EventHandler(this.nameTxtBox_TextChanged);

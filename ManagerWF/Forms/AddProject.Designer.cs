@@ -226,6 +226,7 @@ namespace ManagerWF.Forms
             this.nameTxtBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nameTxtBox.Location = new System.Drawing.Point(229, 68);
             this.nameTxtBox.Name = "nameTxtBox";
+            this.nameTxtBox.PlaceholderText = "Type your Title";
             this.nameTxtBox.Size = new System.Drawing.Size(100, 23);
             this.nameTxtBox.TabIndex = 9;
             this.nameTxtBox.TextChanged += new System.EventHandler(this.nameTxtBox_TextChanged);

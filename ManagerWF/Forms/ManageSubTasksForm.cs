@@ -14,17 +14,13 @@ namespace ManagerWF.Forms
     {
         private List<SubTask> subTasksList = new List<SubTask>();
         public int ID { get; set; }
-        private int _maxTasks;
-        public int MaxTasks 
-        { 
-            get => _maxTasks;
-            set
-            {
-               
-            }
-        }
+       
         public TaskStatusEnum _priorityStatus;
+
         public SubTaskStatus _subTaskStatus;
+
+        private int _maxTasks;
+        public int MaxTasks { get; set; }
 
         public TaskStatusEnum PriorityStatus
         {
@@ -186,7 +182,7 @@ namespace ManagerWF.Forms
                 LastEditDate = DateTime.Now,
                 Status = SubTaskStatus,
                 ResponsibleId = Responsible,
-                TaskStatus = PriorityStatus
+                TaskStatus = PriorityStatus,
             };
 
             subTasksList.Add(user);

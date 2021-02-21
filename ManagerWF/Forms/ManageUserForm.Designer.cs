@@ -130,7 +130,7 @@ namespace ManagerWF.Forms
             // 
             // nameColumn
             // 
-            this.nameColumn.HeaderText = "TitleSubTask";
+            this.nameColumn.HeaderText = "NameProject";
             this.nameColumn.Name = "nameColumn";
             // 
             // creationDate
@@ -172,6 +172,7 @@ namespace ManagerWF.Forms
             // 
             this.nameTextBox.Location = new System.Drawing.Point(171, 39);
             this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.PlaceholderText = "Type here";
             this.nameTextBox.Size = new System.Drawing.Size(119, 23);
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);

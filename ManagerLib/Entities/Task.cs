@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ManagerLib.Entities
 {
@@ -7,6 +8,8 @@ namespace ManagerLib.Entities
         public string Title { get; set; }
 
         public string Description { get; set; }
+
+        public string SubTasks { get; set; }
 
         public int WorkingHours { get; set; }
 
