@@ -4,7 +4,6 @@ using ManagerLib.Entities;
 using ManagerLib.Repositories;
 using ManagerLib.User;
 
-#pragma warning disable
 
 namespace ManagerLib.Managements
 {
@@ -15,7 +14,8 @@ namespace ManagerLib.Managements
 
         public void Show()
         {
-            while (true)
+            bool isExit = true;
+            while (isExit)
             {
                 AdminMenu choice = RenderMenu();
 
@@ -38,6 +38,7 @@ namespace ManagerLib.Managements
                         Delete();
                         break;
                     case AdminMenu.Back:
+                        isExit = false;
                         break;
                     case AdminMenu.Exit:
                         return;
@@ -119,6 +120,7 @@ namespace ManagerLib.Managements
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -182,6 +184,7 @@ namespace ManagerLib.Managements
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -224,6 +227,7 @@ namespace ManagerLib.Managements
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
 

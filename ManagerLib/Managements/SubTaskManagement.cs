@@ -4,8 +4,6 @@ using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
 
-#pragma warning disable
-
 namespace ManagerLib.Managements
 {
     public class SubTaskManagement
@@ -109,7 +107,7 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌  Status: {comment.Status}");
                 }
                 Console.Write("\t\t\t▌  Which sub-task id do you want to edit?: ");
-                int inputId = int.Parse(Console.ReadLine());
+                int inputId = int.Parse(Console.ReadLine() ?? string.Empty);
                 List<SubTask> comments = newRepository.GetAll(inputId);
                 foreach (var task in comments)
                 {
@@ -128,7 +126,7 @@ namespace ManagerLib.Managements
                     {
                         Console.Write(user.Username + " ");
                     }
-                    Console.Write("\n\t\t\t▌  Type here:");
+                    Console.WriteLine("\n\t\t\t▌  Type here:");
                     string userInput = Console.ReadLine();
                     foreach (var user in users.Where(user => userInput != null && userInput.Contains(user.Username)))
                     {
@@ -172,6 +170,7 @@ namespace ManagerLib.Managements
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -204,8 +203,8 @@ namespace ManagerLib.Managements
                         Description = Task.Description,
                         WorkingHours = Task.WorkingHours,
                     };
-
-                    Console.WriteLine($"\t\t\t▌   {i} Task");
+                    int temp = i;
+                    Console.WriteLine($"\t\t\t▌   {++temp} Task");
                     Console.Write("\t\t\t▌  Title: ");
                     subTask.Title = Console.ReadLine();
                     Console.Write("\t\t\t▌  Description: ");
@@ -218,7 +217,7 @@ namespace ManagerLib.Managements
                     {
                         Console.Write(user.Username + " ");
                     }
-                    Console.Write("\n\t\t\t▌  Type here: ");
+                    Console.WriteLine("\n\t\t\t▌  Type here: ");
                     subTask.CreatorId = Console.ReadLine();
                     Console.Write("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
@@ -270,6 +269,7 @@ namespace ManagerLib.Managements
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
             }
         }
     }

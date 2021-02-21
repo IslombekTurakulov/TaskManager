@@ -73,16 +73,10 @@ namespace ManagerLib.Managements
                 Console.WriteLine("\t\t\t▌  Project created!");
                 Console.Write("\t\t\t▌  Do you want to add sub-tasks? [Y]es or [N]o: ");
                 string choiceInput = Console.ReadLine()?.ToLower();
-                if (choiceInput == null || !choiceInput.Equals("y")) 
-                    return task;
-                switch (choiceInput.Equals("n"))
+                if (choiceInput != null && choiceInput.Contains('y'))
                 {
-                    case false:
-                    {
-                        SubTaskManagement sb = new SubTaskManagement(task);
-                        sb.Show();
-                        break;
-                    }
+                    SubTaskManagement sb = new SubTaskManagement(task);
+                    sb.Show();
                 }
                 return task;
             }
