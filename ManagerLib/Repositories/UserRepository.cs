@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using ManagerLib.Entities;
-using Newtonsoft.Json;
 
 namespace ManagerLib.Repositories
 {

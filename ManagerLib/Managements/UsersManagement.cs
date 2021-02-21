@@ -1,5 +1,6 @@
 ﻿using System;
 using ManagerLib.Repositories;
+
 #pragma warning disable
 
 namespace ManagerLib.Managements

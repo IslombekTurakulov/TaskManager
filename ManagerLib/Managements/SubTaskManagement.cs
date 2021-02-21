@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
-using ManagerLib.User;
+
 #pragma warning disable
 
 namespace ManagerLib.Managements
@@ -121,7 +120,7 @@ namespace ManagerLib.Managements
                     Console.Write("\t\t\t▌  New Description: ");
                     task.Description = Console.ReadLine();
                     Console.WriteLine($"\t\t\t▌  Responsible: {task.ResponsibleId}");
-                    Console.WriteLine($"\t\t\t▌  New Responsible:");
+                    Console.WriteLine("\t\t\t▌  New Responsible:");
                     UserRepository userRepository = new UserRepository();
                     List<Entities.User> users = userRepository.GetAll();
                     Console.Write("\t\t\t▌  ");
@@ -165,7 +164,7 @@ namespace ManagerLib.Managements
                             break;
                     }
 
-                    Console.WriteLine($"\t\t\t▌  Sub-task changed!");
+                    Console.WriteLine("\t\t\t▌  Sub-task changed!");
                     Console.ReadKey();
                     newRepository.Add(task);
                 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
 using ManagerLib.User;
-using Newtonsoft.Json;
 
 namespace ManagerLib.Managements
 {
@@ -110,7 +108,7 @@ namespace ManagerLib.Managements
                 Console.WriteLine($"\t\t\t▌  Created Date: {task.CreateDate}");
                 Console.WriteLine($"\t\t\t▌  Last Edit Date: {task.LastEditDate}");
                 Console.WriteLine($"\t\t\t▌  Status: {task.Status}");
-                Console.WriteLine($"\t\t\t▌  Sub-Tasks:");
+                Console.WriteLine("\t\t\t▌  Sub-Tasks:");
                 SubTaskRepository subTaskRepository = new SubTaskRepository();
                 List<SubTask> subTasks = subTaskRepository.GetAll(task.Id);
                 if (subTasks.Count > 0)
@@ -128,7 +126,7 @@ namespace ManagerLib.Managements
                     }
                 }
 
-                Console.WriteLine($"\t\t\t▌  Comments:");
+                Console.WriteLine("\t\t\t▌  Comments:");
                 CommentRepository commentRepo = new CommentRepository();
                 List<Comment> comments = commentRepo.GetAll(task.Id);
                 if (comments.Count > 0)

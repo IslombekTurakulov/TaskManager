@@ -42,7 +42,13 @@ namespace ManagerWF.Forms
             {
                 string[] s = sr.ReadLine()?.Split(" ");
                 userDataGrid.Rows.Add(count, s?[0], s?[1] + " " +  s?[2]);
+                User user = new User
+                {
+                    Username = s[0],
+                    CreateDate = DateTime.Parse(s?[1] + " " +  s?[2])
+                };
                 count++;
+                list.Add(user);
             }
 
             fs.Close();
@@ -83,7 +89,7 @@ namespace ManagerWF.Forms
         private void CreateTaskButton_Click(object sender, EventArgs e)
         {
             userDataGrid.Rows.Add(ID++, NameUser, DateTime.Now);
-            User user = new User()
+            User user = new User
             {
                 Username = NameUser,
                 CreateDate = DateTime.Now

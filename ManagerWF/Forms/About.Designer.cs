@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF.Forms
 {
     partial class About
@@ -6,7 +9,7 @@ namespace ManagerWF.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -105,9 +108,9 @@ namespace ManagerWF.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labelAbout;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Panel panel1;
+        private Label labelAbout;
+        private Panel panel3;
+        private PictureBox pictureBox1;
     }
 }

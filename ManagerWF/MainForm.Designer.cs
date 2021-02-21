@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF
 {
     partial class MainForm
@@ -6,7 +9,7 @@ namespace ManagerWF
         /// <summary>
         ///  Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -249,18 +252,18 @@ namespace ManagerWF
 
         #endregion
 
-        private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Panel panelLogo;
-        private System.Windows.Forms.Button aboutButton;
-        private System.Windows.Forms.Button addUserButton;
-        private System.Windows.Forms.Button projectsButton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panelTitleBar;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Panel panelDesktop;
-        private System.Windows.Forms.PictureBox logoPicture;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button closeChildForm;
+        private Panel panelMenu;
+        private Panel panelLogo;
+        private Button aboutButton;
+        private Button addUserButton;
+        private Button projectsButton;
+        private Label label1;
+        private Panel panelTitleBar;
+        private Label labelTitle;
+        private Panel panelDesktop;
+        private PictureBox logoPicture;
+        private Button button1;
+        private Button closeChildForm;
     }
 }
 

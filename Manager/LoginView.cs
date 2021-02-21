@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
-using ManagerLib.Entities;
 using ManagerLib.User;
-using Newtonsoft.Json;
 
 namespace Manager
 {

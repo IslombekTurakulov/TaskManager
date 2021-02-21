@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF.Forms
 {
     partial class AddSubTask
@@ -6,7 +9,7 @@ namespace ManagerWF.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -205,17 +208,17 @@ namespace ManagerWF.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox nameTxtBox;
-        private System.Windows.Forms.Label priorityTask;
-        private System.Windows.Forms.Label MaxTasksLabel;
-        private System.Windows.Forms.ComboBox priorityCombo;
-        private System.Windows.Forms.TextBox maxTasksTxtbox;
-        private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.ComboBox statusCombo;
-        private System.Windows.Forms.Button CreateTaskButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Panel panel1;
+        private Panel panel2;
+        private TextBox nameTxtBox;
+        private Label priorityTask;
+        private Label MaxTasksLabel;
+        private ComboBox priorityCombo;
+        private TextBox maxTasksTxtbox;
+        private Label StatusLabel;
+        private Label NameLabel;
+        private ComboBox statusCombo;
+        private Button CreateTaskButton;
+        private PictureBox pictureBox1;
     }
 }

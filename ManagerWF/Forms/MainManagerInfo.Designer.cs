@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF.Forms
 {
     partial class MainManagerInfo
@@ -6,7 +9,7 @@ namespace ManagerWF.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -131,10 +134,10 @@ namespace ManagerWF.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button manageTasks;
-        private System.Windows.Forms.Button projectsButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel managePanel;
+        private Panel panelMenu;
+        private Button manageTasks;
+        private Button projectsButton;
+        private Button button1;
+        private Panel managePanel;
     }
 }

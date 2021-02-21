@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 using ManagerLib.Entities;
 using Newtonsoft.Json;
 
@@ -53,7 +51,7 @@ namespace ManagerWF.Forms
                 TaskStatus = Priority
             };
 
-            var json = JsonConvert.SerializeObject(subTask, Newtonsoft.Json.Formatting.Indented);
+            var json = JsonConvert.SerializeObject(subTask, Formatting.Indented);
         }
 
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)

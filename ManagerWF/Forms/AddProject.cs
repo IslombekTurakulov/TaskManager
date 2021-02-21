@@ -36,7 +36,7 @@ namespace ManagerWF.Forms
 
         private void CreateTaskButton_Click(object sender, EventArgs e)
         {
-            var subTask = new Task()
+            var subTask = new Task
             {
                 Id = ID++,
                 Title = NameTask,

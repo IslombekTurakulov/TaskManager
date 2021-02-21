@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ManagerLib.User
+﻿namespace ManagerLib.User
 {
     interface IAssingable
     {

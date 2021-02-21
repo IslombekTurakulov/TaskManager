@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF.Forms
 {
     partial class ManageUserForm
@@ -6,7 +9,7 @@ namespace ManagerWF.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -210,18 +213,18 @@ namespace ManagerWF.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button projectsButton;
-        private System.Windows.Forms.Panel manageUserPanel;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView userDataGrid;
-        private System.Windows.Forms.Panel panelUserInput;
-        private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label userLabel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn creationDate;
-        private System.Windows.Forms.Button CreateTaskButton;
+        private Panel panelMenu;
+        private Button projectsButton;
+        private Panel manageUserPanel;
+        private Panel panel1;
+        private Panel panel3;
+        private DataGridView userDataGrid;
+        private Panel panelUserInput;
+        private TextBox nameTextBox;
+        private Label userLabel;
+        private DataGridViewTextBoxColumn IDColumn;
+        private DataGridViewTextBoxColumn nameColumn;
+        private DataGridViewTextBoxColumn creationDate;
+        private Button CreateTaskButton;
     }
 }

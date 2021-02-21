@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ManagerLib.Entities;
-using Newtonsoft.Json;
 
 namespace ManagerWF.Forms
 {
@@ -176,7 +174,7 @@ namespace ManagerWF.Forms
         private void CreateTaskButton_Click(object sender, EventArgs e)
         {
             subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible, PriorityStatus);
-            SubTask user = new SubTask()
+            SubTask user = new SubTask
             {
                 Title = TitleSubTask,
                 LastEditDate = DateTime.Now,

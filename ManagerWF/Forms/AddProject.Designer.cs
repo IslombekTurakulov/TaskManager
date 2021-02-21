@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel;
+using System.Windows.Forms;
+
 namespace ManagerWF.Forms
 {
     partial class AddProject
@@ -6,7 +9,7 @@ namespace ManagerWF.Forms
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -267,23 +270,23 @@ namespace ManagerWF.Forms
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TitleColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StatusColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ResponsibleColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Priority;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label priorityLabel;
-        private System.Windows.Forms.ComboBox priorityComboBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox responsibleComboBox;
-        private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.ComboBox statusCombo;
-        private System.Windows.Forms.TextBox nameTxtBox;
-        private System.Windows.Forms.Button CreateTaskButton;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn IDColumn;
+        private DataGridViewTextBoxColumn TitleColumn;
+        private DataGridViewTextBoxColumn CreationDateColumn;
+        private DataGridViewTextBoxColumn StatusColumn;
+        private DataGridViewTextBoxColumn ResponsibleColumn;
+        private DataGridViewTextBoxColumn Priority;
+        private Panel panel1;
+        private Panel panel2;
+        private Label priorityLabel;
+        private ComboBox priorityComboBox;
+        private Label label1;
+        private ComboBox responsibleComboBox;
+        private Label StatusLabel;
+        private Label titleLabel;
+        private ComboBox statusCombo;
+        private TextBox nameTxtBox;
+        private Button CreateTaskButton;
     }
 }

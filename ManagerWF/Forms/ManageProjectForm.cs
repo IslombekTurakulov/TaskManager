@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using ManagerLib.Entities;
-using Newtonsoft.Json;
 
 namespace ManagerWF.Forms
 {
@@ -16,44 +14,32 @@ namespace ManagerWF.Forms
         private string ChosenSubTask;
         private Button _currentButton;
         public int ID { get; set; }
-        public StatusEnum _projectStatus;
+        public StatusEnum _projectStatusTask;
 
         public StatusEnum ProjectStatus
         {
-            get => _projectStatus;
+            get => _projectStatusTask;
             set
             {
                 switch (value)
                 {
                     case StatusEnum.InProgress:
-                        _projectStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "InProgress");
+                        _projectStatusTask = (StatusEnum)Enum.Parse(typeof(StatusEnum), "InProgress");
                         break;
                     case StatusEnum.Finished:
-                        _projectStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Finished");
+                        _projectStatusTask = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Finished");
                         break;
                     case StatusEnum.Opened:
-                        _projectStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Opened");
+                        _projectStatusTask = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Opened");
                         break;
                     default:
-                        _projectStatus = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Opened");
+                        _projectStatusTask = (StatusEnum)Enum.Parse(typeof(StatusEnum), "Opened");
                         break;
                 }
             }
         }
 
-        private string _responsible;
-
-        public string Responsible
-        {
-            get => _responsible;
-            set
-            {
-                if (!NameValidator(value))
-                    MessageBox.Show(@"The name must contain only Latin letters, digits and spaces!");
-                else
-                    _responsible = value;
-            }
-        }
+        public string Responsible { get; set; }
 
         private string _nameProject;
 
@@ -102,7 +88,7 @@ namespace ManagerWF.Forms
                     _currentButton = (Button)btnSender;
                     _currentButton.BackColor = color;
                     _currentButton.ForeColor = Color.White;
-                    _currentButton.Font = new Font("Microsoft Sans Serif", 12.5F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    _currentButton.Font = new Font("Microsoft Sans Serif", 12.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
                     ThemeColor.PrimaryColor = color;
                     ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                 }
@@ -119,7 +105,7 @@ namespace ManagerWF.Forms
                 {
                     previousBtn.BackColor = Color.FromArgb(51, 51, 76);
                     previousBtn.ForeColor = Color.Gainsboro;
-                    previousBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
                 }
             }
         }
@@ -140,42 +126,38 @@ namespace ManagerWF.Forms
 
         private void CreateTaskButton_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-            projectDataGrid.Rows.Add(ID, NameProject, DateTime.Now, ProjectStatus, Responsible, ChosenSubTask);
-            var task = new Task()
+            try
             {
-                Id = ID,
-                Title = NameProject,
-                LastEditDate = DateTime.Now,
-                Status = ProjectStatus,
-                ResponsibleId = Responsible,
-                SubTasks = ChosenSubTask
-            };
-
-            tasksList.Add(task);
-            Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (var item in tasksList)
-            {
-                sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.SubTasks);
-            }
-
-            sw.Close();
-            fs.Close();
-
-            Stream tasksListStream = new FileStream("TasksList.txt", FileMode.Open, FileAccess.Write);
-            StreamWriter writerListTasks = new StreamWriter(tasksListStream);
-
-            foreach (var item in tasksList)
-            {
-                foreach (var subTask in item.SubTasks)
+                ActivateButton(sender);
+                projectDataGrid.Rows.Add(ID++, NameProject, DateTime.Now, ProjectStatus, Responsible, ChosenSubTask);
+                var task = new Task
                 {
-                    writerListTasks.Write(" " + subTask);
+                    Title = NameProject,
+                    LastEditDate = DateTime.Now,
+                    Status = ProjectStatus,
+                    ResponsibleId = Responsible,
+                    SubTasks = ChosenSubTask
+                };
+
+                tasksList.Add(task);
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in tasksList)
+                {
+                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
+                                 " " + item.SubTasks);
                 }
+
+                sw.Close();
+                fs.Close();
+
+                MessageBox.Show(@"Project successfully created!");
+                DisableButton();
             }
-            tasksListStream.Close();
-            MessageBox.Show(@"Project successfully created!");
-            DisableButton();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void projectsButton_Click(object sender, EventArgs e)
@@ -201,43 +183,61 @@ namespace ManagerWF.Forms
 
         private void ManageProject_Load(object sender, EventArgs e)
         {
-            LoadTheme();
-            Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-            int count = 1;
-
-            while (sr.Peek() != -1)
+            try
             {
-                string[] projectTaskArr = sr.ReadLine()?.Split(" ");
-                projectDataGrid.Rows.Add(count, projectTaskArr?[0], projectTaskArr?[1] + " " + projectTaskArr?[2],
+                LoadTheme();
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Read);
+                StreamReader sr = new StreamReader(fs);
+                int count = 1;
+
+                while (sr.Peek() != -1)
+                {
+                    string[] projectTaskArr = sr.ReadLine()?.Split(" ");
+                    projectDataGrid.Rows.Add(count, projectTaskArr?[0], projectTaskArr?[1] + " " + projectTaskArr?[2],
                         projectTaskArr?[3], projectTaskArr?[4], projectTaskArr?[5]);
+                    var task = new Task
+                    {
+                        Title = projectTaskArr?[0],
+                        LastEditDate = DateTime.Parse(projectTaskArr?[1] + " " + projectTaskArr?[2]),
+                        Status = (StatusEnum)Enum.Parse(typeof(StatusEnum), projectTaskArr?[3] ?? string.Empty),
+                        ResponsibleId = projectTaskArr?[4],
+                        SubTasks = projectTaskArr?[5]
+                    };
 
-                count++;
+                    tasksList.Add(task);
+                    count++;
+                }
+
+                Stream subTaskStream = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Read);
+                StreamReader subTaskReader = new StreamReader(subTaskStream);
+
+                while (subTaskReader.Peek() != -1)
+                {
+                    string[] s = subTaskReader.ReadLine()?.Split(" ");
+                    addSubTaskCombo.Items.Add(s?[0] ?? string.Empty);
+                }
+
+                Stream userFileStream = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
+                StreamReader userStreamReader = new StreamReader(userFileStream);
+
+                while (userStreamReader.Peek() != -1)
+                {
+                    string[] s = userStreamReader.ReadLine()?.Split(" ");
+                    responsibleComboBox.Items.Add(s?[0] ?? string.Empty);
+                }
+
+                ID = count;
+                fs.Close();
+                sr.Close();
+                subTaskStream.Close();
+                subTaskReader.Close();
+                userFileStream.Close();
+                userStreamReader.Close();
             }
-            Stream subTaskStream = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Read);
-            StreamReader subTaskReader = new StreamReader(subTaskStream);
-
-            while (subTaskReader.Peek() != -1)
+            catch (Exception ex)
             {
-                string[] s = subTaskReader.ReadLine()?.Split(" ");
-                addSubTaskCombo.Items.Add(s?[0] ?? string.Empty);
+                MessageBox.Show(ex.Message);
             }
-
-            Stream userFileStream = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
-            StreamReader userStreamReader = new StreamReader(userFileStream);
-
-            while (userStreamReader.Peek() != -1)
-            {
-                string[] s = userStreamReader.ReadLine()?.Split(" ");
-                responsibleComboBox.Items.Add(s?[0]);
-            }
-
-            fs.Close();
-            sr.Close();
-            subTaskStream.Close();
-            subTaskReader.Close();
-            userFileStream.Close();
-            userStreamReader.Close();
         }
     }
 }

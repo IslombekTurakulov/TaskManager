@@ -60,7 +60,7 @@ namespace ManagerWF.Forms
                     _currentButton = (Button)btnSender;
                     _currentButton.BackColor = color;
                     _currentButton.ForeColor = Color.White;
-                    _currentButton.Font = new Font("Microsoft Sans Serif", 12.5F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    _currentButton.Font = new Font("Microsoft Sans Serif", 12.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
                     ThemeColor.PrimaryColor = color;
                     ThemeColor.SecondaryColor= ThemeColor.ChangeColorBrightness(color, -0.3);
                 }
@@ -75,7 +75,7 @@ namespace ManagerWF.Forms
                 {
                     previousBtn.BackColor = Color.FromArgb(51, 51, 76);
                     previousBtn.ForeColor = Color.Gainsboro;
-                    previousBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
                 }
             }
         }

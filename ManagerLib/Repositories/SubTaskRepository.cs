@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using ManagerLib.Entities;
-using ManagerLib.User;
-using Newtonsoft.Json;
+
 #pragma warning disable
 
 namespace ManagerLib.Repositories
