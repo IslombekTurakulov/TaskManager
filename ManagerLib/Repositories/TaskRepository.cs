@@ -26,7 +26,7 @@ namespace ManagerLib.Repositories
                     Title = sr.ReadLine(),
                     Description = sr.ReadLine(),
                     WorkingHours = int.Parse(sr.ReadLine() ?? string.Empty),
-                    CreatorId = sr.ReadLine() ?? string.Empty,
+                    CreatorId = int.Parse(sr.ReadLine() ?? string.Empty),
                     ResponsibleId = sr.ReadLine() ?? string.Empty,
                     CreateDate = DateTime.Parse(sr.ReadLine() ?? string.Empty),
                     LastEditDate = DateTime.Parse(sr.ReadLine() ?? string.Empty),
@@ -65,7 +65,7 @@ namespace ManagerLib.Repositories
             {
                 Task task = GetEntity(sr);
 
-                if (task.Id.Equals(LoginValidation.LoggedUser.Id))
+                if (task.CreatorId.Equals(LoginValidation.LoggedUser.Id))
                 {
                     tasks.Add(task);
                 }

@@ -22,6 +22,7 @@ namespace ManagerLib.Managements
                 {
                     case AdminMenu.List:
                         List();
+                        Console.ReadKey();
                         break;
                     case AdminMenu.View:
                         View();
@@ -36,9 +37,20 @@ namespace ManagerLib.Managements
                         Delete();
                         break;
                     case AdminMenu.Back:
-                        AdminView adminView = new AdminView();
-                        adminView.Show();
-                        adminView.Choice();
+                        AdminView admin = new AdminView();
+                        admin.Show();
+                        string newChoice = admin.Choice();
+
+                        if (newChoice is "U")
+                        {
+                            UsersManagement usersView = new UsersManagement();
+                            usersView.Show();
+                        }
+                        else if (newChoice is "T")
+                        {
+                            TasksManagement tasks = new TasksManagement();
+                            tasks.Show();
+                        }
                         break;
                     case AdminMenu.Exit:
                         return;

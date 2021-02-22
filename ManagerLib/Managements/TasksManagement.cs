@@ -40,8 +40,8 @@ namespace ManagerLib.Managements
                 task.Description = Console.ReadLine();
                 Console.Write("\t\t\t▌  Working Hours: ");
                 task.WorkingHours = IntegerValidation();
-                task.CreatorId = LoginValidation.LoggedUser.Id + "";
-                Console.Write("\t\t\t▌  Choose Responsible Name: ");
+                task.CreatorId = LoginValidation.LoggedUser.Id;
+                Console.WriteLine("\t\t\t▌  Choose Responsible Name: ");
                 List<Entities.User> users = userRepository.GetAll();
                 Console.Write("\t\t\t▌  ");
                 foreach (var user in users)
@@ -131,9 +131,18 @@ namespace ManagerLib.Managements
                         Console.WriteLine($"\t\t\t▌  Created Date: {comment.CreateDate}");
                     }
                 }
-
+                Console.WriteLine("\t\t\t▌  Records:");
+                RecordRepository recordRepo = new RecordRepository();
+                List<Record> records = recordRepo.GetAll(task.Id);
+                if (comments.Count > 0)
+                {
+                    foreach (Record record in records)
+                    {
+                        Console.WriteLine($"\t\t\t▌  Working Hours: {record.WorkingHours}");
+                        Console.WriteLine($"\t\t\t▌  Created Date: {record.CreateDate}");
+                    }
+                }
                 Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -176,8 +185,6 @@ namespace ManagerLib.Managements
                     break;
             }
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-            Console.WriteLine("\t\t\t Successfully edited!");
-            Console.ReadKey();
             return task;
         }
 

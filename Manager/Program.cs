@@ -15,7 +15,7 @@ namespace Manager
                 AdminView admin = new AdminView();
                 admin.Show();
                 string choice = admin.Choice();
-
+                
                 switch (choice)
                 {
                     case "U":

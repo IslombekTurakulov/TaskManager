@@ -108,22 +108,5 @@ namespace ManagerWF.Forms
 
             sw.Close();
         }
-
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            if (userDataGrid.RowCount > 0)
-            {
-                foreach (DataGridViewRow row in userDataGrid.SelectedRows)
-                {
-                    userDataGrid.Rows.Remove(row);
-                }
-                Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Write);
-                StreamWriter sw = new StreamWriter(fs);
-                foreach (var item in userDataGrid.SelectedRows)
-                {
-                   list.Add();
-                }
-            }
-        }
     }
 }

@@ -14,7 +14,7 @@ namespace ManagerLib.Repositories
         {
             try
             {
-                Comment comment = new Comment
+                var comment = new Comment
                 {
                     Id = int.Parse(sr.ReadLine() ?? string.Empty),
                     TaskId = int.Parse(sr.ReadLine() ?? string.Empty),
@@ -22,6 +22,7 @@ namespace ManagerLib.Repositories
                     Text = sr.ReadLine(),
                     CreateDate = DateTime.Parse(sr.ReadLine() ?? string.Empty)
                 };
+
                 return comment;
             }
             catch (Exception ex)

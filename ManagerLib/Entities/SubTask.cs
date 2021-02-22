@@ -16,6 +16,8 @@ namespace ManagerLib.Entities
 
         public string ResponsibleId { get; set; }
 
+        public string IDCreator { get; set; }
+
         public DateTime LastEditDate { get; set; }
 
         public SubTaskStatus Status { get; set; }

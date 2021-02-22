@@ -84,7 +84,6 @@ namespace ManagerWF.Forms
             this.deleteButton.Text = "  Delete User";
             this.deleteButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // projectsButton
             // 
@@ -221,8 +220,6 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panelMenu);
             this.Name = "ManageUserForm";
             this.Text = "AddUser";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageUserForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageUserForm_FormClosed);
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.panelMenu.ResumeLayout(false);
             this.manageUserPanel.ResumeLayout(false);

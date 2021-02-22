@@ -11,12 +11,13 @@ namespace ManagerLib.Repositories
         {
             try
             {
-                Entities.User user = new Entities.User
+                var user = new Entities.User
                 {
                     Id = int.Parse(sr.ReadLine() ?? string.Empty),
                     Username = sr.ReadLine(),
                     IsAdmin = Convert.ToBoolean(sr.ReadLine())
                 };
+
                 return user;
             }
             catch (Exception ex)

@@ -1,4 +1,7 @@
-﻿using ManagerLib.Repositories;
+﻿using System;
+using System.IO;
+using ManagerLib.Managements;
+using ManagerLib.Repositories;
 
 namespace ManagerLib.User
 {
@@ -13,6 +16,4 @@ namespace ManagerLib.User
             LoggedUser = userRepo.GetByUsername(username);
         }
     }
-
-
 }
