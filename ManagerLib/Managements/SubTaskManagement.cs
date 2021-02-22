@@ -106,8 +106,8 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌  Last Edit Date: {comment.LastEditDate}");
                     Console.WriteLine($"\t\t\t▌  Status: {comment.Status}");
                 }
-                Console.Write("\t\t\t▌  Which sub-task id do you want to edit?: ");
-                int inputId = int.Parse(Console.ReadLine() ?? string.Empty);
+                Console.WriteLine("\t\t\t▌  Which sub-task id do you want to edit?: ");
+                int inputId = IntegerValidation();
                 List<SubTask> comments = newRepository.GetAll(inputId);
                 foreach (var task in comments)
                 {
@@ -133,17 +133,17 @@ namespace ManagerLib.Managements
                         task.ResponsibleId = user.Username;
                     }
 
-                    Console.Write($"\t\t\t▌  Working Hours: {task.WorkingHours}");
-                    Console.Write("\t\t\t▌  New Working Hours: ");
+                    Console.WriteLine($"\t\t\t▌  Working Hours: {task.WorkingHours}");
+                    Console.WriteLine("\t\t\t▌  New Working Hours: ");
                     task.WorkingHours = IntegerValidation();
                     task.LastEditDate = DateTime.Now;
-                    Console.Write($"\t\t\t▌  Current Priority: {task.TaskStatus}");
-                    Console.Write("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
+                    Console.WriteLine($"\t\t\t▌  Current Priority: {task.TaskStatus}");
+                    Console.WriteLine("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
                     string statusTask = Console.ReadLine() ?? string.Empty;
                    
 
-                    Console.Write($"\t\t\t▌  Current Status: {task.Status}");
-                    Console.Write("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
+                    Console.WriteLine($"\t\t\t▌  Current Status: {task.Status}");
+                    Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
                     string input = Console.ReadLine() ?? string.Empty;
                     switch (input)
                     {
@@ -179,6 +179,7 @@ namespace ManagerLib.Managements
             int entityId;
             do
             {
+                Console.Write("\t\t\t▌  Type here:"); 
             } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId <= 0);
 
             return entityId;
@@ -192,7 +193,7 @@ namespace ManagerLib.Managements
             {
                 SubTaskRepository newRepository = new SubTaskRepository();
                 List<SubTask> newSubTasks = newRepository.GetAll(Task.Id);
-                Console.Write("\t\t\t▌  How many sub-tasks do you want to create: ");
+                Console.WriteLine("\t\t\t▌  How many sub-tasks do you want to create: ");
                 Task.CountTask = IntegerValidation();
                 for (int i = 0; i < Task.CountTask; i++)
                 {
@@ -222,7 +223,7 @@ namespace ManagerLib.Managements
                     Console.Write("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
                     subTask.LastEditDate = DateTime.Now;
-                    Console.Write("\t\t\t▌  Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
+                    Console.WriteLine("\t\t\t▌  Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
                     int statusTask = IntegerValidation();
                     switch (statusTask)
                     {
@@ -244,7 +245,7 @@ namespace ManagerLib.Managements
                             break;
                     }
 
-                    Console.Write("\t\t\t▌  Status Project = InProgress - [1] or Finished - [2] or Opened [3]: ");
+                    Console.WriteLine("\t\t\t▌  Status Project = InProgress - [1] or Finished - [2] or Opened [3]: ");
                     int input = IntegerValidation();
                     switch (input)
                     {
