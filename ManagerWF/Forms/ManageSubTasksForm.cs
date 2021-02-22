@@ -12,7 +12,8 @@ namespace ManagerWF.Forms
     {
         private List<SubTask> subTasksList = new List<SubTask>();
         public int ID { get; set; }
-       
+        
+        // Enums.
         public TaskStatusEnum _priorityStatus;
 
         public SubTaskStatus _subTaskStatus;
@@ -20,29 +21,21 @@ namespace ManagerWF.Forms
         private int _maxTasks;
         public int MaxTasks { get; set; }
 
+        // Enum
         public TaskStatusEnum PriorityStatus
         {
             get => _priorityStatus;
             set
             {
-                switch (value)
+                // Checking the field.
+                _priorityStatus = value switch
                 {
-                    case TaskStatusEnum.Epic:
-                        _priorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Epic");
-                        break;
-                    case TaskStatusEnum.Task:
-                        _priorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task");
-                        break;
-                    case TaskStatusEnum.Bug:
-                        _priorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Bug");
-                        break;
-                    case TaskStatusEnum.Story:
-                        _priorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Story");
-                        break;
-                    default:
-                        _priorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task");
-                        break;
-                }
+                    TaskStatusEnum.Epic => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Epic"),
+                    TaskStatusEnum.Task => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Task"),
+                    TaskStatusEnum.Bug => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Bug"),
+                    TaskStatusEnum.Story => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Story"),
+                    _ => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Task")
+                };
             }
         }
 
@@ -51,21 +44,14 @@ namespace ManagerWF.Forms
             get => _subTaskStatus;
             set
             {
-                switch (value)
+                // Checking the field.
+                _subTaskStatus = value switch
                 {
-                    case SubTaskStatus.InProgress:
-                        _subTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "InProgress");
-                        break;
-                    case SubTaskStatus.Finished:
-                        _subTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Finished");
-                        break;
-                    case SubTaskStatus.Opened:
-                        _subTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened");
-                        break;
-                    default:
-                        _subTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened");
-                        break;
-                }
+                    SubTaskStatus.InProgress => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "InProgress"),
+                    SubTaskStatus.Finished => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Finished"),
+                    SubTaskStatus.Opened => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened"),
+                    _ => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened")
+                };
             }
         }
         private string _responsible;
@@ -102,173 +88,238 @@ namespace ManagerWF.Forms
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Loading themes <see href="https://rjcodeadvance.com/iu-moderno-temas-multicolor-aleatorio-resaltar-boton-form-activo-winform-c/">Copy from</see>.
+        /// </summary>
         private void LoadTheme()
         {
-            foreach (Control btns in Controls)
+            try
             {
-                if (btns.GetType() == typeof(Button))
+
+                foreach (Control btns in Controls)
                 {
-                    Button btn = (Button)btns;
-                    btn.BackColor = ThemeColor.PrimaryColor;
-                    btn.ForeColor = Color.White;
-                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                    if (btns.GetType() == typeof(Button))
+                    {
+                        // Initializing button to current colors.
+                        Button btn = (Button) btns;
+                        btn.BackColor = ThemeColor.PrimaryColor;
+                        btn.ForeColor = Color.White;
+                        btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                    }
                 }
             }
-
-            //label4.ForeColor = ThemeColor.SecondaryColor;
-            //label5.ForeColor = ThemeColor.PrimaryColor;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>
+        /// Validating names.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static bool NameValidator(string name)
         {
-            return name.All(letter =>
-                letter > 'A' - 1 && letter < 'Z' + 1
-                || letter > 'a' - 1 && letter < 'z' + 1
-                || char.IsWhiteSpace(letter)
-                || char.IsDigit(letter)
-            );
+            try
+            {
+                return name.All(letter =>
+                    letter > 'A' - 1 && letter < 'Z' + 1
+                    || letter > 'a' - 1 && letter < 'z' + 1
+                    || char.IsWhiteSpace(letter)
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// While opening form , loading this event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManageSubTasks_Load(object sender, EventArgs e)
         {
             try
             {
+                // Loading themes.
                 LoadTheme();
+                // Creating Stream to read from file.
                 Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader sr = new StreamReader(fs);
                 int count = 1;
 
                 while (sr.Peek() != -1)
                 {
-                    string[] s = sr.ReadLine()?.Split(" ");
-                    if (s != null) subTaskDataGrid.Rows.Add(count, s?[0], s?[1] + " " + s?[2], s?[3], s?[4], s?[5]);
+                    // Initializing to array and adding to data grid
+                    string[] arrayData = sr.ReadLine()?.Split(" ");
+                    subTaskDataGrid.Rows.Add(count, arrayData?[0], arrayData?[1] + " " + arrayData?[2], arrayData?[3], arrayData?[4], arrayData?[5]);
+                    // It helps to count the current tasks.
                     count++;
                 }
+
                 fs.Close();
+
+                // Creating Stream to read from file.
                 Stream userFileStream = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader userStreamReader = new StreamReader(userFileStream);
 
                 while (userStreamReader.Peek() != -1)
                 {
-                    string[] s = userStreamReader.ReadLine()?.Split(" ");
-                    responsibleComboBox.Items.Add(s?[0] ?? string.Empty);
+                    // Initializing to array and adding to data grid.
+                    string[] arrayData = userStreamReader.ReadLine()?.Split(" ");
+                    responsibleComboBox.Items.Add(arrayData?[0] ?? string.Empty);
                 }
-
+                // Count is ID variable
                 ID = count;
                 userFileStream.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void nameTxtBox_TextChanged(object sender, EventArgs e)
-        {
-            TitleSubTask = nameTxtBox.Text;
-        }
+        /// <summary>
+        /// Write Title for Sub-Task.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nameTxtBox_TextChanged(object sender, EventArgs e) => TitleSubTask = nameTxtBox.Text;
 
+        /// <summary>
+        /// Creates task button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateTaskButton_Click(object sender, EventArgs e)
-        {
-            subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible, PriorityStatus);
-            SubTask user = new SubTask
-            {
-                Title = TitleSubTask,
-                LastEditDate = DateTime.Now,
-                Status = SubTaskStatus,
-                ResponsibleId = Responsible,
-                TaskStatus = PriorityStatus,
-            };
-
-            subTasksList.Add(user);
-            Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (var item in subTasksList)
-            {
-                sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
-            }
-
-            fs.Close();
-        }
-
-        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SubTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), statusCombo.Text);
-        }
-
-        private void priorityCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            PriorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), priorityCombo.Text);
-            if (PriorityStatus == TaskStatusEnum.Epic)
-            {
-                responsibleLabel.Visible = false;
-                responsibleComboBox.Visible = false;
-            }
-            else
-            {
-                responsibleLabel.Visible = true;
-                responsibleComboBox.Visible = true;
-            }
-        }
-
-        private void maxTasksTxtbox_TextChanged(object sender, EventArgs e)
-        {
-            if (!int.TryParse(maxTasksTxtbox.Text, out _maxTasks) || _maxTasks <= 0 || _maxTasks >= Int32.MaxValue)
-            {
-                MessageBox.Show(@"Incorrect input");
-            }
-            else
-            {
-                MaxTasks = _maxTasks;
-            }
-        }
-
-        private void responsibleComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Responsible = responsibleComboBox.Text;
-        }
-
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            if (subTaskDataGrid.RowCount > 0)
-            {
-                foreach (DataGridViewRow row in subTaskDataGrid.SelectedRows)
-                {
-                    subTaskDataGrid.Rows.Remove(row);
-                }
-            }
-        }
-
-        private void ManageSubTasksForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (var item in subTasksList)
-            {
-                sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
-            }
-
-            sw.Close();
-        }
-
-        private void ManageSubTasksForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             try
             {
-                Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                // Adding data to grid.
+                if (PriorityStatus == TaskStatusEnum.Epic)
+                {
+                    Responsible = "None";
+                    subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible,
+                        PriorityStatus);
+                }
+
+                subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible,
+                    PriorityStatus);
+                // Creating new object Sub-Task.
+                SubTask user = new SubTask
+                {
+                    Title = TitleSubTask,
+                    LastEditDate = DateTime.Now,
+                    Status = SubTaskStatus,
+                    ResponsibleId = Responsible,
+                    TaskStatus = PriorityStatus,
+                };
+
+                subTasksList.Add(user);
+
+                // Creating Stream function to write data
+                Stream fs = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Write);
                 StreamWriter sw = new StreamWriter(fs);
                 foreach (var item in subTasksList)
                 {
-                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
-                                 " " + item.TaskStatus);
+                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
                 }
 
-                fs.Close();
+                sw.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            Invalidate();
+        }
+
+        /// <summary>
+        /// Choose Sub-Task status.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void statusCombo_SelectedIndexChanged(object sender, EventArgs e) =>
+            SubTaskStatus = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), statusCombo.Text);
+
+        /// <summary>
+        /// Choose Priority Status.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void priorityCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                PriorityStatus = (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), priorityCombo.Text);
+                if (PriorityStatus == TaskStatusEnum.Epic)
+                {
+                    responsibleLabel.Visible = false;
+                    responsibleComboBox.Visible = false;
+                }
+                else
+                {
+                    responsibleLabel.Visible = true;
+                    responsibleComboBox.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Write Max Tasks. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void maxTasksTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!int.TryParse(maxTasksTxtbox.Text, out _maxTasks) || _maxTasks <= 0 || _maxTasks >= Int32.MaxValue)
+                    MessageBox.Show(@"Incorrect input");
+                else
+                    MaxTasks = _maxTasks;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        /// <summary>
+        /// Choose responsible user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void responsibleComboBox_SelectedIndexChanged(object sender, EventArgs e) => Responsible = responsibleComboBox.Text;
+
+        /// <summary>
+        /// Delete Data from Grid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (subTaskDataGrid.RowCount > 0)
+                {
+                    foreach (DataGridViewRow row in subTaskDataGrid.SelectedRows)
+                    {
+                        subTaskDataGrid.Rows.Remove(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

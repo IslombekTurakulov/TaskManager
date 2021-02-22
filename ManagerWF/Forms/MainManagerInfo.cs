@@ -33,10 +33,13 @@ namespace ManagerWF.Forms
                     btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                 }
             }
-            //label4.ForeColor = ThemeColor.SecondaryColor;
-            //label5.ForeColor = ThemeColor.PrimaryColor;
+         
         }
 
+        /// <summary>
+        /// Selects theme color.
+        /// </summary>
+        /// <returns></returns>
         private Color SelectThemeColor()
         {
             int index = 2;
@@ -49,6 +52,10 @@ namespace ManagerWF.Forms
             return ColorTranslator.FromHtml(color);
         }
 
+        /// <summary>
+        /// Activates button.
+        /// </summary>
+        /// <param name="btnSender"></param>
         private void ActivateButton(object btnSender)
         {
             if (btnSender != null)
@@ -67,6 +74,9 @@ namespace ManagerWF.Forms
             }
         }
 
+        /// <summary>
+        /// Disables button.
+        /// </summary>
         private void DisableButton()
         {
             foreach (Control previousBtn in panelMenu.Controls)
@@ -80,6 +90,11 @@ namespace ManagerWF.Forms
             }
         }
 
+        /// <summary>
+        /// Open child form in panel <see href="https://rjcodeadvance.com/iu-moderno-temas-multicolor-aleatorio-resaltar-boton-form-activo-winform-c/">Copy from</see>.
+        /// </summary>
+        /// <param name="childForm"></param>
+        /// <param name="btnSender"></param>
         private void OpenChildForm(Form childForm, object btnSender)
         {
             _activeForm?.Close();
@@ -94,14 +109,18 @@ namespace ManagerWF.Forms
             childForm.Show();
         }
 
-        private void projectsButton_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new ManageProject(), sender);
-        }
+        /// <summary>
+        /// Opens child form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void projectsButton_Click(object sender, EventArgs e) => OpenChildForm(new ManageProject(), sender);
 
-        private void manageTasks_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new ManageSubTasksForm(), sender);
-        }
+        /// <summary>
+        /// Opens child form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void manageTasks_Click(object sender, EventArgs e) => OpenChildForm(new ManageSubTasksForm(), sender);
     }
 }

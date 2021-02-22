@@ -107,7 +107,6 @@ namespace ManagerWF.Forms
             this.projectsButton.Text = "  Info Project";
             this.projectsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.projectsButton.UseVisualStyleBackColor = true;
-            this.projectsButton.Click += new System.EventHandler(this.projectsButton_Click);
             // 
             // projectDataGrid
             // 
@@ -190,6 +189,7 @@ namespace ManagerWF.Forms
             // responsibleComboBox
             // 
             this.responsibleComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.responsibleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.responsibleComboBox.FormattingEnabled = true;
             this.responsibleComboBox.Location = new System.Drawing.Point(470, 22);
             this.responsibleComboBox.Name = "responsibleComboBox";
@@ -211,6 +211,7 @@ namespace ManagerWF.Forms
             // addSubTaskCombo
             // 
             this.addSubTaskCombo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addSubTaskCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.addSubTaskCombo.FormattingEnabled = true;
             this.addSubTaskCombo.Location = new System.Drawing.Point(452, 62);
             this.addSubTaskCombo.Name = "addSubTaskCombo";
@@ -249,6 +250,7 @@ namespace ManagerWF.Forms
             "Opened"});
             this.statusCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.statusCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.statusCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusCombo.FormattingEnabled = true;
             this.statusCombo.Items.AddRange(new object[] {
             "InProgress",
@@ -298,8 +300,6 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panelMenu);
             this.Name = "ManageProject";
             this.Text = "ManageProject";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageProject_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageProject_FormClosed);
             this.Load += new System.EventHandler(this.ManageProject_Load);
             this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectDataGrid)).EndInit();

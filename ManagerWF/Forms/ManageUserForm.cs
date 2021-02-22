@@ -10,7 +10,7 @@ namespace ManagerWF.Forms
 {
     public partial class ManageUserForm : Form
     {
-        private List<User> list = new List<User>();
+        private List<User> userList = new List<User>();
         public int ID { get; set; }
         private string _nameUser;
 
@@ -31,82 +31,137 @@ namespace ManagerWF.Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes when form load.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUser_Load(object sender, EventArgs e)
         {
-            LoadTheme();
-            if (!File.Exists("UserData.txt"))
-                File.Create("UserData.txt");
-
-            Stream fs = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-            int count = 1;
-
-            while (sr.Peek() != -1)
+            try
             {
-                string[] s = sr.ReadLine()?.Split(" ");
-                userDataGrid.Rows.Add(count, s?[0], s?[1] + " " + s?[2]);
-                User user = new User
-                {
-                    Username = s[0],
-                    CreateDate = DateTime.Parse(s?[1] + " " + s?[2])
-                };
-                count++;
-                list.Add(user);
-            }
+                // Initializing themes.
+                LoadTheme();
+                // Creating stream.
+                Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Read);
+                StreamReader sr = new StreamReader(fs);
+                int count = 1;
 
-            fs.Close();
-            sr.Close();
+                while (sr.Peek() != -1)
+                {
+                    // Taking from data stream and write.
+                    string[] arrayData = sr.ReadLine()?.Split(" ");
+                    // Adding to grid.
+                    userDataGrid.Rows.Add(count, arrayData?[0], arrayData?[1] + " " + arrayData?[2]);
+                   // Creating User object.
+                    User user = new User
+                    {
+                        Username = arrayData?[0],
+                        CreateDate = DateTime.Parse(arrayData?[1] + " " + arrayData?[2])
+                    };
+                    count++;
+                    userList.Add(user);
+                }
+
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>
+        /// Loading themes.
+        /// </summary>
         private void LoadTheme()
         {
-            foreach (Control btns in Controls)
+            try
             {
-                if (btns.GetType() == typeof(Button))
+                foreach (Control btns in Controls)
                 {
-                    Button btn = (Button)btns;
-                    btn.BackColor = ThemeColor.PrimaryColor;
-                    btn.ForeColor = Color.White;
-                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                    if (btns.GetType() == typeof(Button))
+                    {
+                        Button btn = (Button) btns;
+                        btn.BackColor = ThemeColor.PrimaryColor;
+                        btn.ForeColor = Color.White;
+                        btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                    }
                 }
             }
-
-            //label4.ForeColor = ThemeColor.SecondaryColor;
-            //label5.ForeColor = ThemeColor.PrimaryColor;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
+        /// <summary>
+        /// Validating name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static bool NameValidator(string name)
         {
-            return name.All(letter =>
-                letter > 'A' - 1 && letter < 'Z' + 1
-                || letter > 'a' - 1 && letter < 'z' + 1
-                || char.IsWhiteSpace(letter)
-            );
-        }
-
-        private void nameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            NameUser = nameTextBox.Text;
-        }
-
-        private void CreateTaskButton_Click(object sender, EventArgs e)
-        {
-            userDataGrid.Rows.Add(ID++, NameUser, DateTime.Now);
-            User user = new User
+            try
             {
-                Username = NameUser,
-                CreateDate = DateTime.Now
-            };
-
-            list.Add(user);
-            Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (var item in list)
+                return name.All(letter =>
+                    letter > 'A' - 1 && letter < 'Z' + 1
+                    || letter > 'a' - 1 && letter < 'z' + 1
+                    || char.IsWhiteSpace(letter)
+                );
+            }
+            catch (Exception ex)
             {
-                sw.WriteLine(item.Username + " " + item.CreateDate);
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            sw.Close();
+            return false;
+        }
+        /// <summary>
+        /// Initializing username.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nameTextBox_TextChanged(object sender, EventArgs e) => NameUser = nameTextBox.Text;
+
+        /// <summary>
+        /// Create user button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CreateTaskButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Adding data to grid.
+                userDataGrid.Rows.Add(ID++, NameUser, DateTime.Now);
+                // Creating new User object.
+                User user = new User
+                {
+                    Username = NameUser,
+                    CreateDate = DateTime.Now
+                };
+
+                userList.Add(user);
+                // Initializing Stream.
+                Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in userList)
+                {
+                    // Writing data.
+                    sw.WriteLine(item.Username + " " + item.CreateDate);
+                }
+
+                sw.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ooops... Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void projectsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

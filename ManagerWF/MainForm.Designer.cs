@@ -41,6 +41,10 @@ namespace ManagerWF
             this.panelLogo = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.closeChildForm = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
             this.panelDesktop = new System.Windows.Forms.Panel();
@@ -48,6 +52,7 @@ namespace ManagerWF
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +69,7 @@ namespace ManagerWF
             this.panelMenu.ForeColor = System.Drawing.Color.White;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(165, 450);
+            this.panelMenu.Size = new System.Drawing.Size(165, 662);
             this.panelMenu.TabIndex = 0;
             // 
             // button1
@@ -77,7 +82,7 @@ namespace ManagerWF
             this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 377);
+            this.button1.Location = new System.Drawing.Point(0, 589);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(165, 73);
@@ -85,7 +90,7 @@ namespace ManagerWF
             this.button1.Text = "  Exit";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.closeApp_Click);
             // 
             // aboutButton
             // 
@@ -169,19 +174,70 @@ namespace ManagerWF
             this.label1.Size = new System.Drawing.Size(147, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manager Peergrade";
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.homeLabel_MouseDown);
             // 
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelTitleBar.Controls.Add(this.panel1);
             this.panelTitleBar.Controls.Add(this.closeChildForm);
             this.panelTitleBar.Controls.Add(this.labelTitle);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(165, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1050, 60);
+            this.panelTitleBar.Size = new System.Drawing.Size(1097, 60);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1009, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(88, 60);
+            this.panel1.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(15, 11);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(18, 18);
+            this.button4.TabIndex = 4;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.minimizeWindowBtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(63, 11);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(18, 18);
+            this.button2.TabIndex = 2;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(39, 11);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(18, 18);
+            this.button3.TabIndex = 3;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.maximizeWindowBtn_Click);
             // 
             // closeChildForm
             // 
@@ -203,7 +259,7 @@ namespace ManagerWF
             this.labelTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelTitle.ForeColor = System.Drawing.Color.White;
-            this.labelTitle.Location = new System.Drawing.Point(509, 11);
+            this.labelTitle.Location = new System.Drawing.Point(532, 11);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(73, 30);
             this.labelTitle.TabIndex = 0;
@@ -216,14 +272,14 @@ namespace ManagerWF
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(165, 60);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1050, 390);
+            this.panelDesktop.Size = new System.Drawing.Size(1097, 602);
             this.panelDesktop.TabIndex = 2;
             // 
             // logoPicture
             // 
             this.logoPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoPicture.Image = ((System.Drawing.Image)(resources.GetObject("logoPicture.Image")));
-            this.logoPicture.Location = new System.Drawing.Point(199, 0);
+            this.logoPicture.Location = new System.Drawing.Point(224, 106);
             this.logoPicture.Name = "logoPicture";
             this.logoPicture.Size = new System.Drawing.Size(700, 400);
             this.logoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -234,18 +290,20 @@ namespace ManagerWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1215, 450);
+            this.ClientSize = new System.Drawing.Size(1262, 662);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
-            this.MinimumSize = new System.Drawing.Size(816, 488);
+            this.MinimumSize = new System.Drawing.Size(1278, 700);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicture)).EndInit();
@@ -267,6 +325,10 @@ namespace ManagerWF
         private PictureBox logoPicture;
         private Button button1;
         private Button closeChildForm;
+        private Button button4;
+        private Button button3;
+        private Button button2;
+        private Panel panel1;
     }
 }
 

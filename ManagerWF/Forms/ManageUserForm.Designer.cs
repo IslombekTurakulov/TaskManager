@@ -102,6 +102,7 @@ namespace ManagerWF.Forms
             this.projectsButton.Text = "  Manage Users";
             this.projectsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.projectsButton.UseVisualStyleBackColor = true;
+            this.projectsButton.Click += new System.EventHandler(this.projectsButton_Click);
             // 
             // manageUserPanel
             // 

@@ -156,6 +156,7 @@ namespace ManagerWF.Forms
             // 
             // responsibleComboBox
             // 
+            this.responsibleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.responsibleComboBox.FormattingEnabled = true;
             this.responsibleComboBox.Location = new System.Drawing.Point(553, 70);
             this.responsibleComboBox.Name = "responsibleComboBox";
@@ -210,6 +211,7 @@ namespace ManagerWF.Forms
             "Story"});
             this.priorityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.priorityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.priorityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityCombo.FormattingEnabled = true;
             this.priorityCombo.Items.AddRange(new object[] {
             "Epic",
@@ -227,6 +229,7 @@ namespace ManagerWF.Forms
             this.maxTasksTxtbox.Location = new System.Drawing.Point(404, 72);
             this.maxTasksTxtbox.Name = "maxTasksTxtbox";
             this.maxTasksTxtbox.PlaceholderText = "For example: 2";
+            this.maxTasksTxtbox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.maxTasksTxtbox.Size = new System.Drawing.Size(100, 23);
             this.maxTasksTxtbox.TabIndex = 4;
             this.maxTasksTxtbox.TextChanged += new System.EventHandler(this.maxTasksTxtbox_TextChanged);
@@ -253,6 +256,7 @@ namespace ManagerWF.Forms
             // 
             // statusCombo
             // 
+            this.statusCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusCombo.FormattingEnabled = true;
             this.statusCombo.Items.AddRange(new object[] {
             "InProgress",
@@ -340,8 +344,6 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panel1);
             this.Name = "ManageSubTasksForm";
             this.Text = "ManageSubTasks";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageSubTasksForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageSubTasksForm_FormClosed);
             this.Load += new System.EventHandler(this.ManageSubTasks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subTaskDataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
