@@ -89,20 +89,13 @@ namespace ManagerLib.Managements
                 // End of adding.
                 Console.WriteLine("\t\t\t▌  Project created!");
                 // Part of choice of sub-tasks.
-                Console.Write("\t\t\t▌  Do you want to add sub-tasks? [Y]es or [N]o: ");
-                string choiceInput = Console.ReadLine()?.ToLower();
-                if (choiceInput != null && choiceInput.Contains('y'))
-                {
-                    SubTaskManagement sb = new SubTaskManagement(task);
-                    sb.Show();
-                }
+                Console.WriteLine("\t\t\t▌  If you want to add sub-task, go View -> Select ID");
                 return task;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
             return null;
         }
 
@@ -160,7 +153,7 @@ namespace ManagerLib.Managements
                 Console.WriteLine("\t\t\t▌  Records:");
                 RecordRepository recordRepo = new RecordRepository();
                 List<Record> records = recordRepo.GetAll(task.Id);
-                if (comments.Count > 0)
+                if (records.Count > 0)
                 {
                     foreach (Record record in records)
                     {

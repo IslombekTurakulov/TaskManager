@@ -61,7 +61,7 @@
   <data name="deleteButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAACvSURBVFhHzY1bCsQwDANz/0vvNssWUlBsyY/QAZOPSJrx
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAACvSURBVFhHzY1bCsQwDANz/0vvNssWUlBsyY/QAZOPSJrx
         Nj7/t5OtY37c18XWsX7AQAGuww0koLfpoIC8KRcMwlvh4kJ6IzOQ6T6IDEU6JsqgkpVghplMCktg/ZWC
         ROhaQcL1joDE846B5POOgMTrtYKE6FqwRNZfCYyAyYRQhpUsRWQw0oFkhjLdH+mBi/BGuAiQt+QCAb1J
         BwO4226gANex/SjEdXTKb044WMb4AjFVBwidxApOAAAAAElFTkSuQmCC
@@ -70,7 +70,7 @@
   <data name="projectsButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAB0SURBVFhH7Y5RCsAwCEN7/0tvX5URYtWJg0Ee5EeS9q0/
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB0SURBVFhH7Y5RCsAwCEN7/0tvX5URYtWJg0Ee5EeS9q0/
         c0E+BT8dkdiPekFY55k0bMyCsA5LCCvhI53OkdPwTRDvbkTDahDvbkTDahDvbkTDahDvboSFJhKQgAQk
         IAEJSEACEki9Py0Qsi2nkoaNOyGsdQPqefkHRao+0QAAAABJRU5ErkJggg==
 </value>

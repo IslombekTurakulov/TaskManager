@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
+using ManagerLib.User;
 
 namespace ManagerLib.Managements
 {
@@ -10,7 +11,6 @@ namespace ManagerLib.Managements
     {
         // Fields.
         public Task Task;
-
         public SubTaskManagement(Task task) => Task = task;
 
         /// <summary>
@@ -218,18 +218,14 @@ namespace ManagerLib.Managements
                 // Getting info about the max-tasks.
                 Console.WriteLine("\t\t\t▌  How many sub-tasks do you want to create: ");
                 Task.CountTask = IntegerValidation();
-
-                int currentId = Task.Id;
+                SubTaskRepository commentRepo = new SubTaskRepository();
                 // Doing n-current tasks to add to repo.
                 for (int i = 0; i < Task.CountTask; i++)
                 {
                     // Creating new classes of repository.
-                    SubTaskRepository commentRepo = new SubTaskRepository();
                     SubTask subTask = new SubTask
                     {
-                        Id = currentId,
-                        Description = Task.Description,
-                        WorkingHours = Task.WorkingHours,
+                        IDCreator = Task.Id
                     };
 
                     UserRepository userRepository = new UserRepository();
@@ -250,7 +246,7 @@ namespace ManagerLib.Managements
                         Console.Write(user.Username + " ");
                     }
 
-                    Console.WriteLine("\n\t\t\t▌  Type here: ");
+                    Console.Write("\n\t\t\t▌  Type here: ");
                     subTask.CreatorId = Console.ReadLine();
                     Console.WriteLine("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();

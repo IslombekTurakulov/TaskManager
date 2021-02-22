@@ -54,9 +54,9 @@ namespace ManagerLib.Managements
             Console.Clear();
 
             // Creating a new class of repository.
-            RecordRepository recordRepo = new RecordRepository();
+            var recordRepo = new RecordRepository();
             // Adding elements to list.
-            List<Record> records = recordRepo.GetAll(Task.Id);
+            var records = recordRepo.GetAll(Task.Id);
             if (records.Count > 0)
             {
                 // Showing information about data records.
@@ -95,10 +95,13 @@ namespace ManagerLib.Managements
         private void Add()
         {
             Console.Clear();
-            int current = Task.Id;
             // Creating new Record object.
             Record record = new Record
-                { TaskId =current, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
+            {
+                TaskId = Task.Id,
+                UserId = LoginValidation.LoggedUser.Id, 
+                CreateDate = DateTime.Now
+            };
 
             // Adding information.
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");

@@ -116,7 +116,6 @@ namespace ManagerLib.Managements
                 {
                     while (true)
                     {
-                        List();
                         int entityId;
 
                         do
@@ -128,6 +127,7 @@ namespace ManagerLib.Managements
                         } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId < 0);
 
                         // Get id of entity.
+
                         T entity = entityRepo.GetById(entityId);
 
                         if (entity != null)
@@ -135,7 +135,7 @@ namespace ManagerLib.Managements
                             // Render entity.
                             RenderEntity(entity);
                             // Introduce variable.
-                            Entity = entity;
+                            this.Entity = entity;
                             break;
                         }
                         Console.WriteLine($"\t\t\t▌  {typeof(T).Name} not found!");

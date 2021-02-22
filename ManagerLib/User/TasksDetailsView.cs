@@ -17,7 +17,6 @@ namespace ManagerLib.User
         {
             while (true)
             {
-                Console.Clear();
                 Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
                 Console.WriteLine("\t\t\t▌  [R]ecords Management");
                 Console.WriteLine("\t\t\t▌  [C]omments Management");

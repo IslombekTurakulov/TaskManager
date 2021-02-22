@@ -53,6 +53,7 @@ namespace ManagerLib.Repositories
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
 
@@ -73,10 +74,7 @@ namespace ManagerLib.Repositories
                 {
                     Record record = GetEntity(sr);
 
-                    if (record.TaskId == taskId)
-                    {
-                        records.Add(record);
-                    }
+                    if (record.TaskId == taskId) records.Add(record);
                 }
 
                 return records;

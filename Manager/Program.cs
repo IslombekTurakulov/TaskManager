@@ -1,4 +1,5 @@
-﻿using ManagerLib.Managements;
+﻿using System;
+using ManagerLib.Managements;
 using ManagerLib.User;
 
 namespace Manager
@@ -7,6 +8,7 @@ namespace Manager
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             // View login with information.
             LoginView login = new LoginView();
             login.Show();
