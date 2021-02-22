@@ -8,11 +8,11 @@ namespace ManagerLib.User
     {
         public Task Task;
 
-        public TasksDetailsView(Task task)
-        {
-            Task = task;
-        }
+        public TasksDetailsView(Task task) => Task = task;
 
+        /// <summary>
+        /// Extra management menu.
+        /// </summary>
         public void Show()
         {
             while (true)
@@ -26,12 +26,14 @@ namespace ManagerLib.User
                 Console.Write("\t\t\t▌  Type here: ");
                 string choice = Console.ReadLine()?.ToUpper();
 
+               
                 if (choice == "R")
                 {
                     RecordsManagement records = new RecordsManagement(Task);
                     records.Show();
                     break;
                 }
+
                 if (choice == "C")
                 {
                     CommentsManagement comments = new CommentsManagement(Task);
@@ -50,6 +52,7 @@ namespace ManagerLib.User
                     tasksManagement.Show();
                     break;
                 }
+
                 Console.WriteLine("\t\t\t▌  Invalid choice!");
                 Console.ReadKey();
             }

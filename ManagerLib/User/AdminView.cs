@@ -5,6 +5,9 @@ namespace ManagerLib.User
     public class AdminView : IAssingable
     {
 
+        /// <summary>
+        /// Shows managements.
+        /// </summary>
         public void Show()
         {
             Console.Clear();
@@ -13,6 +16,10 @@ namespace ManagerLib.User
             Console.WriteLine("\t\t\t▌  [T]asks Management");
         }
 
+        /// <summary>
+        /// Giving choices
+        /// </summary>
+        /// <returns></returns>
         public string Choice()
         {
             string choice;
