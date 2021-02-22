@@ -12,7 +12,7 @@ namespace ManagerWF.Forms
     {
         private List<SubTask> subTasksList = new List<SubTask>();
         public int ID { get; set; }
-        
+
         // Enums.
         public TaskStatusEnum _priorityStatus;
 
@@ -30,11 +30,11 @@ namespace ManagerWF.Forms
                 // Checking the field.
                 _priorityStatus = value switch
                 {
-                    TaskStatusEnum.Epic => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Epic"),
-                    TaskStatusEnum.Task => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Task"),
-                    TaskStatusEnum.Bug => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Bug"),
-                    TaskStatusEnum.Story => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Story"),
-                    _ => (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), "Task")
+                    TaskStatusEnum.Epic => (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Epic"),
+                    TaskStatusEnum.Task => (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task"),
+                    TaskStatusEnum.Bug => (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Bug"),
+                    TaskStatusEnum.Story => (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Story"),
+                    _ => (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task")
                 };
             }
         }
@@ -47,10 +47,10 @@ namespace ManagerWF.Forms
                 // Checking the field.
                 _subTaskStatus = value switch
                 {
-                    SubTaskStatus.InProgress => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "InProgress"),
-                    SubTaskStatus.Finished => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Finished"),
-                    SubTaskStatus.Opened => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened"),
-                    _ => (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened")
+                    SubTaskStatus.InProgress => (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "InProgress"),
+                    SubTaskStatus.Finished => (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Finished"),
+                    SubTaskStatus.Opened => (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened"),
+                    _ => (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened")
                 };
             }
         }
@@ -101,7 +101,7 @@ namespace ManagerWF.Forms
                     if (btns.GetType() == typeof(Button))
                     {
                         // Initializing button to current colors.
-                        Button btn = (Button) btns;
+                        Button btn = (Button)btns;
                         btn.BackColor = ThemeColor.PrimaryColor;
                         btn.ForeColor = Color.White;
                         btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
@@ -156,9 +156,19 @@ namespace ManagerWF.Forms
                 while (sr.Peek() != -1)
                 {
                     // Initializing to array and adding to data grid
-                    string[] arrayData = sr.ReadLine()?.Split(" ");
+                    string[] arrayData = sr.ReadLine().Split(" ");
                     subTaskDataGrid.Rows.Add(count, arrayData?[0], arrayData?[1] + " " + arrayData?[2], arrayData?[3], arrayData?[4], arrayData?[5]);
                     // It helps to count the current tasks.
+                    // Creating Task object
+                    var task = new SubTask()
+                    {
+                        Title = arrayData?[0],
+                        LastEditDate = DateTime.Parse(arrayData?[1] + " " + arrayData?[2]),
+                        Status =(SubTaskStatus)Enum.Parse(typeof(SubTaskStatus),  arrayData?[3]),
+                        ResponsibleId = arrayData?[4],
+                        TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum),  arrayData?[5]),
+                    };
+                    subTasksList.Add(task);
                     count++;
                 }
 
@@ -204,12 +214,11 @@ namespace ManagerWF.Forms
                 if (PriorityStatus == TaskStatusEnum.Epic)
                 {
                     Responsible = "None";
-                    subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible,
-                        PriorityStatus);
+                    subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible, PriorityStatus);
                 }
+                else
+                    subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible, PriorityStatus);
 
-                subTaskDataGrid.Rows.Add(ID++, TitleSubTask, DateTime.Now, SubTaskStatus, Responsible,
-                    PriorityStatus);
                 // Creating new object Sub-Task.
                 SubTask user = new SubTask
                 {
@@ -219,7 +228,6 @@ namespace ManagerWF.Forms
                     ResponsibleId = Responsible,
                     TaskStatus = PriorityStatus,
                 };
-
                 subTasksList.Add(user);
 
                 // Creating Stream function to write data
@@ -227,7 +235,7 @@ namespace ManagerWF.Forms
                 StreamWriter sw = new StreamWriter(fs);
                 foreach (var item in subTasksList)
                 {
-                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
+                    sw.WriteLine($"{item.Title} {item.LastEditDate} {item.Status} {item.ResponsibleId} {item.TaskStatus}");
                 }
 
                 sw.Close();
@@ -236,7 +244,6 @@ namespace ManagerWF.Forms
             {
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            Invalidate();
         }
 
         /// <summary>
@@ -245,7 +252,7 @@ namespace ManagerWF.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void statusCombo_SelectedIndexChanged(object sender, EventArgs e) =>
-            SubTaskStatus = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), statusCombo.Text);
+            SubTaskStatus = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), statusCombo.Text);
 
         /// <summary>
         /// Choose Priority Status.
@@ -256,7 +263,7 @@ namespace ManagerWF.Forms
         {
             try
             {
-                PriorityStatus = (TaskStatusEnum) Enum.Parse(typeof(TaskStatusEnum), priorityCombo.Text);
+                PriorityStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), priorityCombo.Text);
                 if (PriorityStatus == TaskStatusEnum.Epic)
                 {
                     responsibleLabel.Visible = false;

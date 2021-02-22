@@ -8,13 +8,14 @@ namespace ManagerLib.Managements
 {
     public class SubTaskManagement
     {
+        // Fields.
         public Task Task;
 
-        public SubTaskManagement(Task task)
-        {
-            Task = task;
-        }
+        public SubTaskManagement(Task task) => Task = task;
 
+        /// <summary>
+        /// Show SubTask menu.
+        /// </summary>
         public void Show()
         {
             while (true)
@@ -46,6 +47,7 @@ namespace ManagerLib.Managements
                 }
                 if (choice == "B")
                 {
+                    // Goes back to task menu.
                     TasksManagement ts = new TasksManagement();
                     ts.Show();
                     break;
@@ -54,14 +56,20 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Shows the list of subtasks.
+        /// </summary>
         public void List()
         {
             try
             {
+                // Creating new class of Comment repository.
                 SubTaskRepository commentRepo = new SubTaskRepository();
+                // Adding to list.
                 List<SubTask> comments = commentRepo.GetAll(Task.Id);
                 if (comments.Count > 0)
                 {
+                    // Showing information about sub-tasks.
                     Console.WriteLine($"\t\t\t▌  Task Id: {Task.Id}");
                     foreach (SubTask comment in comments)
                     {
@@ -88,14 +96,20 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Editing the subtask field.
+        /// </summary>
         protected void EditEntity()
         {
             try
             {
-                SubTaskRepository newRepository = new SubTaskRepository();
-                List<SubTask> newSubTasks = newRepository.GetAll(Task.Id);
+                // Creating new class of Comment repository.
+                SubTaskRepository subTaskRepository = new SubTaskRepository();
+                // Adding to list.
+                List<SubTask> listSubTask = subTaskRepository.GetAll(Task.Id);
+                // Showing information about Sub-tasks.
                 Console.WriteLine($"\t\t\t▌  Project Id contains: {Task.Id}");
-                foreach (SubTask comment in newSubTasks)
+                foreach (SubTask comment in listSubTask)
                 {
                     Console.WriteLine($"\t\t\t▌  ID: {comment.Id}");
                     Console.WriteLine($"\t\t\t▌  Responsible: {comment.ResponsibleId}");
@@ -106,9 +120,10 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌  Last Edit Date: {comment.LastEditDate}");
                     Console.WriteLine($"\t\t\t▌  Status: {comment.Status}");
                 }
+                // Part of editing.
                 Console.WriteLine("\t\t\t▌  Which sub-task id do you want to edit?: ");
                 int inputId = IntegerValidation();
-                List<SubTask> comments = newRepository.GetAll(inputId);
+                List<SubTask> comments = subTaskRepository.GetAll(inputId);
                 foreach (var task in comments)
                 {
                     Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
@@ -128,7 +143,7 @@ namespace ManagerLib.Managements
                     }
 
                     Console.WriteLine("\n\t\t\t▌  If you want add several users, type with a space");
-                    Console.WriteLine("\t\t\t▌  Type here:");
+                    Console.Write("\t\t\t▌  Type here:");
                     string userInput = Console.ReadLine();
                     foreach (var user in users.Where(user => userInput != null && userInput.Contains(user.Username)))
                     {
@@ -142,9 +157,9 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌  Current Priority: {task.TaskStatus}");
                     Console.WriteLine("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
                     string statusTask = Console.ReadLine() ?? string.Empty;
-                   
-
+                    
                     Console.WriteLine($"\t\t\t▌  Current Status: {task.Status}");
+                    // Checking status.
                     Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
                     string input = Console.ReadLine() ?? string.Empty;
                     switch (input)
@@ -166,7 +181,7 @@ namespace ManagerLib.Managements
 
                     Console.WriteLine("\t\t\t▌  Sub-task changed!");
                     Console.ReadKey();
-                    newRepository.Add(task);
+                    subTaskRepository.Add(task);
                 }
 
             }
@@ -176,6 +191,10 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Validating integer.
+        /// </summary>
+        /// <returns></returns>
         private static int IntegerValidation()
         {
             int entityId;
@@ -187,14 +206,15 @@ namespace ManagerLib.Managements
             return entityId;
         }
 
+        /// <summary>
+        /// Add sub-task element.
+        /// </summary>
         private void Add()
         {
             Console.Clear();
 
             try
             {
-                SubTaskRepository newRepository = new SubTaskRepository();
-                List<SubTask> newSubTasks = newRepository.GetAll(Task.Id);
                 Console.WriteLine("\t\t\t▌  How many sub-tasks do you want to create: ");
                 Task.CountTask = IntegerValidation();
                 int currentId = Task.Id;

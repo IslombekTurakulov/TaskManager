@@ -10,13 +10,14 @@ namespace ManagerLib.Managements
 {
     public class CommentsManagement
     {
+        // Fields.
         public Task Task;
 
-        public CommentsManagement(Task task)
-        {
-            Task = task;
-        }
+        public CommentsManagement(Task task) => Task = task;
 
+        /// <summary>
+        /// Menu Comment.
+        /// </summary>
         public void Show()
         {
             while (true)
@@ -48,6 +49,7 @@ namespace ManagerLib.Managements
                 }
                 if (choice == "B")
                 {
+                    // Back to last menu.
                     AdminView adminView = new AdminView();
                     adminView.Show();
                     adminView.Choice();
@@ -57,14 +59,21 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Edit comment entity.
+        /// </summary>
         protected void EditEntity()
         {
+            // Creating new class of repo.
             CommentRepository commentRepo = new CommentRepository();
+            // Taking comments.
             List<Comment> comments = commentRepo.GetAll(Task.Id);
+
             if (comments.Count > 0)
             {
                 foreach (var comment in comments)
                 {
+                    // Write the data of comment.
                     Console.WriteLine($"\t\t\t▌  Text: {comment.Text}");
                     Console.Write("\t\t\t▌  New Text: ");
                     comment.Text = Console.ReadLine() ?? Empty;
@@ -80,15 +89,21 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Show list of comments.
+        /// </summary>
         public void List()
         {
             try
             {
+                // Creating new class of comment.
                 CommentRepository commentRepo = new CommentRepository();
+                // Getting the list of comments.
                 List<Comment> comments = commentRepo.GetAll(Task.Id);
                 if (comments.Count > 0)
                 {
                     Console.WriteLine($"\t\t\t▌  Task Id: {Task.Id}");
+                    // Show the info about the comment.
                     foreach (Comment comment in comments)
                     {
                         Console.WriteLine($"\t\t\t▌  Text: {comment.Text}");
@@ -108,17 +123,23 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Add.
+        /// </summary>
         private void Add()
         {
             Console.Clear();
 
             try
             {
+                // Creating new object class.
                 Comment comment = new Comment
                 { TaskId = Task.Id, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
 
                 Console.Write("\t\t\t▌  Text: ");
                 comment.Text = Console.ReadLine();
+
+                // Creating new class of comment repository.
                 CommentRepository commentRepo = new CommentRepository();
                 commentRepo.Add(comment);
 

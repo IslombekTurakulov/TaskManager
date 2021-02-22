@@ -8,13 +8,14 @@ namespace ManagerLib.Managements
 {
     public class RecordsManagement
     {
+        // Fields.
         public Task Task;
 
-        public RecordsManagement(Task task)
-        {
-            Task = task;
-        }
+        public RecordsManagement(Task task) => Task = task;
 
+        /// <summary>
+        /// Show menu Records.
+        /// </summary>
         public void Show()
         {
             while (true)
@@ -39,6 +40,7 @@ namespace ManagerLib.Managements
                 }
                 if (choice == "B")
                 {
+                    // Back to last menu.
                     AdminView adminView = new AdminView();
                     adminView.Show();
                     break;
@@ -51,13 +53,15 @@ namespace ManagerLib.Managements
         {
             Console.Clear();
 
+            // Creating a new class of repository.
             RecordRepository recordRepo = new RecordRepository();
+            // Adding elements to list.
             List<Record> records = recordRepo.GetAll(Task.Id);
             if (records.Count > 0)
             {
+                // Showing information about data records.
                 foreach (Record record in records)
                 {
-
                     Console.WriteLine($"\t\t\t▌  Working Hours: {record.WorkingHours}");
                     Console.WriteLine($"\t\t\t▌  Created Date: {record.CreateDate}");
                 }
@@ -71,6 +75,10 @@ namespace ManagerLib.Managements
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Validating integer.
+        /// </summary>
+        /// <returns></returns>
         private static int IntegerValidation()
         {
             int entityId;
@@ -81,13 +89,18 @@ namespace ManagerLib.Managements
             return entityId;
         }
 
+        /// <summary>
+        /// Adding variable.
+        /// </summary>
         private void Add()
         {
             Console.Clear();
             int current = Task.Id;
+            // Creating new Record object.
             Record record = new Record
                 { TaskId =current, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
 
+            // Adding information.
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             Console.Write("\t\t\t▌  Working Hours: ");
             record.WorkingHours = IntegerValidation();

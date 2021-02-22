@@ -17,8 +17,10 @@ namespace Manager
                 Console.WriteLine("\t\t\t▌ If you are testing please type \"tester\"▌");
                 Console.Write("\t\t\t▌ Username: ");
                 string username = Console.ReadLine();
+                // Validating username.
                 LoginValidation.Login(username);
 
+                // Checking is user not null.
                 if (LoginValidation.LoggedUser != null)
                 {
                     Console.WriteLine($"\t\t\t▌ Welcome {LoginValidation.LoggedUser.Username}");

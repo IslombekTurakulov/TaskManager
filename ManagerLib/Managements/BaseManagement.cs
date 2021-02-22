@@ -10,8 +10,14 @@ namespace ManagerLib.Managements
 
     public abstract class BaseManagement<T> where T : BaseEntity, new()
     {
+        /// <summary>
+        /// Entity.
+        /// </summary>
         public virtual T Entity { get; set; }
 
+        /// <summary>
+        /// Show menu.
+        /// </summary>
         public void Show()
         {
             while (true)
@@ -60,21 +66,25 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// List T object.
+        /// </summary>
         protected void List()
         {
             Console.Clear();
 
             try
             {
-             
+                // Getting repository from T object.
                 BaseRepository<T> entityRepo = GetRepo();
-
+                // Intializing entities.
                 List<T> entities = entityRepo.GetAll();
 
                 if (entities.Count > 0)
                 {
                     foreach (T entity in entities)
                     {
+                        // Rendering.
                         RenderEntity(entity);
                     }
                 }
@@ -91,11 +101,16 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// View menu.
+        /// </summary>
         protected virtual void View()
         {
             try
             {
+                // Getting repository from T object.
                 BaseRepository<T> entityRepo = GetRepo();
+                // Intializing entities.
                 List<T> list = entityRepo.GetAll();
                 if (list.Count > 0)
                 {
@@ -112,11 +127,14 @@ namespace ManagerLib.Managements
                             Console.Write($"\t\t\t▌  {typeof(T).Name} ID: ");
                         } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId < 0);
 
+                        // Get id of entity.
                         T entity = entityRepo.GetById(entityId);
 
                         if (entity != null)
                         {
+                            // Render entity.
                             RenderEntity(entity);
+                            // Introduce variable.
                             Entity = entity;
                             break;
                         }
@@ -135,28 +153,36 @@ namespace ManagerLib.Managements
                 Console.WriteLine(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Add.
+        /// </summary>
         protected void Add()
         {
             Console.Clear();
-
+            // Intoducing new variable.
             T entity = new T();
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             Console.WriteLine($"\t\t\t▌  Add new {typeof(T).Name}");
 
+            // Getting entity of object.
             entity = GetEntity(entity);
 
             BaseRepository<T> entityRepo = GetRepo();
+            // Save entity.
             entityRepo.Save(entity);
 
             Console.WriteLine($"\t\t\t▌  {typeof(T).Name} successfully added!");
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Edit.
+        /// </summary>
         protected void Edit()
         {
             try
             {
+                // Get repo from T object.
                 BaseRepository<T> entityRepo = GetRepo();
                 List<T> list = entityRepo.GetAll();
                 if (list.Count > 0)
@@ -171,6 +197,7 @@ namespace ManagerLib.Managements
                             Console.Write($"\t\t\t▌  {typeof(T).Name} ID: ");
                         } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId < 0);
 
+                        // Getting id of entity.
                         T entity = entityRepo.GetById(entityId);
 
                         if (entity == null)
@@ -180,6 +207,7 @@ namespace ManagerLib.Managements
 
                         else
                         {
+                            // Edit object and save.
                             entity = EditEntity(entity);
                             entityRepo.Save(entity);
                             Console.WriteLine($"\t\t\t▌  {typeof(T).Name} successfully edited!");
@@ -200,13 +228,18 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Delete.
+        /// </summary>
         protected void Delete()
         {
             Console.Clear();
             try
             {
+                // Get repository.
                 BaseRepository<T> entityRepo = GetRepo();
                 int entityId;
+                // Introduce list.
                 List<T> list = entityRepo.GetAll();
                 if (list.Count > 0)
                 {
@@ -217,6 +250,7 @@ namespace ManagerLib.Managements
                         Console.Write($"\t\t\t▌ Delete {typeof(T).Name} ID: ");
                     } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId < 0);
 
+                    // Get id.
                     T entity = entityRepo.GetById(entityId);
 
                     switch (entity)
@@ -243,6 +277,10 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Render menu.
+        /// </summary>
+        /// <returns></returns>
         public AdminMenu RenderMenu()
         {
             while (true)
@@ -283,6 +321,8 @@ namespace ManagerLib.Managements
                 Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             }
         }
+
+        // Abstract methods.
 
         protected abstract BaseRepository<T> GetRepo();
 
