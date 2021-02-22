@@ -8,14 +8,13 @@ namespace ManagerLib.Repositories
 {
     public class TaskRepository : BaseRepository<Task>
     {
-        public override string FilePath
-        {
-            get
-            {
-                return base.FilePath = "tasks.txt";
-            }
-        }
+        public override string FilePath => base.FilePath = "tasks.txt";
 
+        /// <summary>
+        /// Getting data from FilePath.
+        /// </summary>
+        /// <param name="sr">Requires StreamReader</param>
+        /// <returns>Task</returns>
         protected override Task GetEntity(StreamReader sr)
         {
             try
@@ -42,6 +41,11 @@ namespace ManagerLib.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Saving entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="sw"></param>
         protected override void SaveEntity(Task entity, StreamWriter sw)
         {
             sw.WriteLine(entity.Id);
@@ -55,6 +59,11 @@ namespace ManagerLib.Repositories
             sw.WriteLine(entity.Status);
         }
 
+        /// <summary>
+        /// GetAll data from FilePath
+        /// </summary>
+        /// <param name="taskId">current object Task.Id</param>
+        /// <returns></returns>
         public override List<Task> GetAll()
         {
             List<Task> tasks = new List<Task>();
@@ -74,6 +83,11 @@ namespace ManagerLib.Repositories
             return tasks;
         }
 
+        /// <summary>
+        /// GetById data from FilePath
+        /// </summary>
+        /// <param name="id">current object ID</param>
+        /// <returns></returns>
         public override Task GetById(int id)
         {
             using FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate);

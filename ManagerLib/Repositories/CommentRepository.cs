@@ -9,11 +9,16 @@ namespace ManagerLib.Repositories
     {
         public override string FilePath => base.FilePath = "comments.txt";
 
-       
+       /// <summary>
+       /// Getting data from FilePath.
+       /// </summary>
+       /// <param name="sr">Requires StreamReader</param>
+       /// <returns>Comment</returns>
         protected override Comment GetEntity(StreamReader sr)
         {
             try
             {
+                // Creating new object to return.
                 var comment = new Comment
                 {
                     Id = int.Parse(sr.ReadLine() ?? string.Empty),
@@ -32,6 +37,11 @@ namespace ManagerLib.Repositories
             return null;
         }
 
+       /// <summary>
+       /// Saving entity.
+       /// </summary>
+       /// <param name="entity"></param>
+       /// <param name="sw"></param>
         protected override void SaveEntity(Comment entity, StreamWriter sw)
         {
             sw.WriteLine(entity.Id);
@@ -41,16 +51,22 @@ namespace ManagerLib.Repositories
             sw.WriteLine(entity.CreateDate);
         }
 
+       /// <summary>
+       /// GetAll data from FilePath
+       /// </summary>
+       /// <param name="taskId">current object Task.Id</param>
+       /// <returns></returns>
         public List<Comment> GetAll(int taskId)
         {
             try
             {
                 List<Comment> comments = new List<Comment>();
-
+                // Initialzing Stream to open file.
                 using FileStream fs = new FileStream(FilePath, FileMode.OpenOrCreate);
                 using StreamReader sr = new StreamReader(fs);
                 while (!sr.EndOfStream)
                 {
+                    // Introducing variable to check the equality.
                     Comment comment = GetEntity(sr);
 
                     if (comment.TaskId.Equals(taskId))

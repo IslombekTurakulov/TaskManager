@@ -9,14 +9,13 @@ namespace ManagerLib.Repositories
 {
     internal class RecordRepository : BaseRepository<Record>
     {
-        public override string FilePath
-        {
-            get
-            {
-                return base.FilePath = "records.txt";
-            }
-        }
+        public override string FilePath => base.FilePath = "records.txt";
 
+        /// <summary>
+        /// Getting data from FilePath.
+        /// </summary>
+        /// <param name="sr">Requires StreamReader</param>
+        /// <returns>Record</returns>
         protected override Record GetEntity(StreamReader sr)
         {
             try
@@ -37,6 +36,11 @@ namespace ManagerLib.Repositories
             }
         }
 
+        /// <summary>
+        /// Saving entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="sw"></param>
         protected override void SaveEntity(Record entity, StreamWriter sw)
         {
             try
@@ -52,6 +56,11 @@ namespace ManagerLib.Repositories
             }
         }
 
+        /// <summary>
+        /// GetAll data from FilePath
+        /// </summary>
+        /// <param name="taskId">current object Task.Id</param>
+        /// <returns></returns>
         public List<Record> GetAll(int taskId)
         {
             try

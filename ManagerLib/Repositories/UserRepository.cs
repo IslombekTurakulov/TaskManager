@@ -7,6 +7,12 @@ namespace ManagerLib.Repositories
     {
         public override string FilePath => base.FilePath = "users.txt";
 
+
+        /// <summary>
+        /// Getting data from FilePath.
+        /// </summary>
+        /// <param name="sr">Requires StreamReader</param>
+        /// <returns>User</returns>
         protected override Entities.User GetEntity(StreamReader sr)
         {
             try
@@ -28,6 +34,11 @@ namespace ManagerLib.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Saving entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="sw"></param>
         protected override void SaveEntity(Entities.User user, StreamWriter sw)
         {
             sw.WriteLine(user.Id);
@@ -35,6 +46,11 @@ namespace ManagerLib.Repositories
             sw.WriteLine(user.IsAdmin);
         }
 
+        /// <summary>
+        /// GetByUsername data from FilePath
+        /// </summary>
+        /// <param name="username">current object username</param>
+        /// <returns></returns>
         public Entities.User GetByUsername(string username)
         {
             try

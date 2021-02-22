@@ -11,7 +11,11 @@ namespace ManagerLib.Repositories
     {
         public override string FilePath => base.FilePath = "subTasks.txt";
 
-
+        /// <summary>
+        /// Getting data from FilePath.
+        /// </summary>
+        /// <param name="sr">Requires StreamReader</param>
+        /// <returns>SubTask</returns>
         protected override SubTask GetEntity(StreamReader sr)
         {
             try
@@ -35,6 +39,11 @@ namespace ManagerLib.Repositories
             return null;
         }
 
+        /// <summary>
+        /// Saving entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="sw"></param>
         protected override void SaveEntity(SubTask entity, StreamWriter sw)
         {
             sw.WriteLine(entity.Id);
