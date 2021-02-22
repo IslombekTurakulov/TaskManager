@@ -10,13 +10,20 @@ namespace ManagerLib.Managements
     {
         public override Task Entity { get; set; }
 
+        /// <summary>
+        /// Getting repository of class Task.
+        /// </summary>
+        /// <returns></returns>
         protected override BaseRepository<Task> GetRepo()
         {
             TaskRepository taskRepo = new TaskRepository();
             return taskRepo;
         }
 
-
+        /// <summary>
+        /// Validating integer.
+        /// </summary>
+        /// <returns></returns>
         private static int IntegerValidation()
         {
             int entityId;
@@ -29,10 +36,16 @@ namespace ManagerLib.Managements
             return entityId;
         }
 
+        /// <summary>
+        /// Getting entity of Task.
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
         protected override Task GetEntity(Task task)
         {
             try
             {
+                // Creating new repository of user.
                 UserRepository userRepository = new UserRepository();
                 Console.Write("\t\t\t▌  Title: ");
                 task.Title = Console.ReadLine();
@@ -41,6 +54,7 @@ namespace ManagerLib.Managements
                 Console.Write("\t\t\t▌  Working Hours: ");
                 task.WorkingHours = IntegerValidation();
                 task.CreatorId = LoginValidation.LoggedUser.Id;
+
                 Console.WriteLine("\t\t\t▌  Choose Responsible Name: ");
                 List<Entities.User> users = userRepository.GetAll();
                 Console.Write("\t\t\t▌  ");
@@ -48,10 +62,12 @@ namespace ManagerLib.Managements
                 {
                     Console.Write(user.Username + " ");
                 }
+
                 Console.Write("\n\t\t\t▌  Type here: ");
                 task.ResponsibleId = Console.ReadLine();
                 task.CreateDate = DateTime.Now;
                 task.LastEditDate = DateTime.Now;
+                // Status task.
                 Console.Write("\t\t\t▌  Status task = InProgress - [1] or Finished - [2] or Opened [3]: ");
                 string input = Console.ReadLine() ?? string.Empty;
                 switch (input)
@@ -70,7 +86,9 @@ namespace ManagerLib.Managements
                         task.Status = (StatusEnum) Enum.Parse(typeof(StatusEnum), "Opened");
                         break;
                 }
+                // End of adding.
                 Console.WriteLine("\t\t\t▌  Project created!");
+                // Part of choice of sub-tasks.
                 Console.Write("\t\t\t▌  Do you want to add sub-tasks? [Y]es or [N]o: ");
                 string choiceInput = Console.ReadLine()?.ToLower();
                 if (choiceInput != null && choiceInput.Contains('y'))
@@ -88,6 +106,10 @@ namespace ManagerLib.Managements
             return null;
         }
 
+        /// <summary>
+        /// Rendering (Showing information)
+        /// </summary>
+        /// <param name="task"></param>
         protected override void RenderEntity(Task task)
         {
             try
@@ -103,10 +125,13 @@ namespace ManagerLib.Managements
                 Console.WriteLine($"\t\t\t▌  Last Edit Date: {task.LastEditDate}");
                 Console.WriteLine($"\t\t\t▌  Status: {task.Status}");
                 Console.WriteLine("\t\t\t▌  Sub-Tasks:");
+                // Creating new repository class.
                 SubTaskRepository subTaskRepository = new SubTaskRepository();
+                // Adding to list of SubTasks.
                 List<SubTask> subTasks = subTaskRepository.GetAll(task.Id);
                 if (subTasks.Count > 0)
                 {
+                    // Showing info.
                     foreach (SubTask subTask in subTasks)
                     {
                         Console.WriteLine($"\t\t\t\t▌  ID: {subTask.Id}");
@@ -119,7 +144,7 @@ namespace ManagerLib.Managements
                         Console.WriteLine($"\t\t\t\t▌  Status: {subTask.Status}");
                     }
                 }
-
+                // Showing info about comments.
                 Console.WriteLine("\t\t\t▌  Comments:");
                 CommentRepository commentRepo = new CommentRepository();
                 List<Comment> comments = commentRepo.GetAll(task.Id);
@@ -131,6 +156,7 @@ namespace ManagerLib.Managements
                         Console.WriteLine($"\t\t\t▌  Created Date: {comment.CreateDate}");
                     }
                 }
+                // Showing info about records.
                 Console.WriteLine("\t\t\t▌  Records:");
                 RecordRepository recordRepo = new RecordRepository();
                 List<Record> records = recordRepo.GetAll(task.Id);
@@ -150,8 +176,14 @@ namespace ManagerLib.Managements
             }
         }
 
+        /// <summary>
+        /// Editing Task entity.
+        /// </summary>
+        /// <param name="task">object Task</param>
+        /// <returns></returns>
         protected override Task EditEntity(Task task)
         {
+            // Part of showing previous tasks and editing to new one.
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
             Console.Write("\t\t\t▌  New Title: ");
@@ -166,6 +198,7 @@ namespace ManagerLib.Managements
             task.LastEditDate = DateTime.Now;
 
             Console.WriteLine($"\t\t\t▌  Status: {task.Status}");
+            // Status task.
             Console.Write("\t\t\t▌  Status task = InProgress - [1] or Finished - [2] or Opened [3]: ");
             string input = Console.ReadLine() ?? string.Empty;
             switch (input)
@@ -188,6 +221,9 @@ namespace ManagerLib.Managements
             return task;
         }
 
+        /// <summary>
+        /// View the task.
+        /// </summary>
         protected override void View()
         {
             base.View();

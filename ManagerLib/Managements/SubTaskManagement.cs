@@ -215,11 +215,15 @@ namespace ManagerLib.Managements
 
             try
             {
+                // Getting info about the max-tasks.
                 Console.WriteLine("\t\t\t▌  How many sub-tasks do you want to create: ");
                 Task.CountTask = IntegerValidation();
+
                 int currentId = Task.Id;
+                // Doing n-current tasks to add to repo.
                 for (int i = 0; i < Task.CountTask; i++)
                 {
+                    // Creating new classes of repository.
                     SubTaskRepository commentRepo = new SubTaskRepository();
                     SubTask subTask = new SubTask
                     {
@@ -228,6 +232,10 @@ namespace ManagerLib.Managements
                         WorkingHours = Task.WorkingHours,
                     };
 
+                    UserRepository userRepository = new UserRepository();
+                    List<Entities.User> users = userRepository.GetAll();
+
+                    // Function of adding
                     int temp = i;
                     Console.WriteLine($"\t\t\t▌   {++temp} Task");
                     Console.Write("\t\t\t▌  Title: ");
@@ -235,18 +243,19 @@ namespace ManagerLib.Managements
                     Console.Write("\t\t\t▌  Description: ");
                     subTask.Description = Console.ReadLine();
                     Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
-                    UserRepository userRepository = new UserRepository();
-                    List<Entities.User> users = userRepository.GetAll();
+                  
                     Console.Write("\t\t\t▌  ");
                     foreach (var user in users)
                     {
                         Console.Write(user.Username + " ");
                     }
+
                     Console.WriteLine("\n\t\t\t▌  Type here: ");
                     subTask.CreatorId = Console.ReadLine();
                     Console.WriteLine("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
                     subTask.LastEditDate = DateTime.Now;
+                    // Validating task priority status.
                     Console.WriteLine("\t\t\t▌  Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
                     int statusTask = IntegerValidation();
                     switch (statusTask)
@@ -268,8 +277,8 @@ namespace ManagerLib.Managements
                             subTask.TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task");
                             break;
                     }
-
-                    Console.WriteLine("\t\t\t▌  Status Project = InProgress - [1] or Finished - [2] or Opened [3]: ");
+                    // Validating status.
+                    Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
                     int input = IntegerValidation();
                     switch (input)
                     {
