@@ -17,8 +17,7 @@ namespace ManagerLib.Managements
 
         public void Show()
         {
-            bool isNotEnd = true;
-            while (isNotEnd)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
@@ -47,7 +46,8 @@ namespace ManagerLib.Managements
                 }
                 if (choice == "B")
                 {
-                    isNotEnd = false;
+                    TasksManagement ts = new TasksManagement();
+                    ts.Show();
                     break;
                 }
                 Console.WriteLine("\t\t\t▌  Invalid choice!");
@@ -126,7 +126,9 @@ namespace ManagerLib.Managements
                     {
                         Console.Write(user.Username + " ");
                     }
-                    Console.WriteLine("\n\t\t\t▌  Type here:");
+
+                    Console.WriteLine("\n\t\t\t▌  If you want add several users, type with a space");
+                    Console.WriteLine("\t\t\t▌  Type here:");
                     string userInput = Console.ReadLine();
                     foreach (var user in users.Where(user => userInput != null && userInput.Contains(user.Username)))
                     {
@@ -195,15 +197,17 @@ namespace ManagerLib.Managements
                 List<SubTask> newSubTasks = newRepository.GetAll(Task.Id);
                 Console.WriteLine("\t\t\t▌  How many sub-tasks do you want to create: ");
                 Task.CountTask = IntegerValidation();
+                int currentId = Task.Id;
                 for (int i = 0; i < Task.CountTask; i++)
                 {
                     SubTaskRepository commentRepo = new SubTaskRepository();
                     SubTask subTask = new SubTask
                     {
-                        SubTaskId = Task.Id,
+                        Id = currentId,
                         Description = Task.Description,
                         WorkingHours = Task.WorkingHours,
                     };
+
                     int temp = i;
                     Console.WriteLine($"\t\t\t▌   {++temp} Task");
                     Console.Write("\t\t\t▌  Title: ");
@@ -220,7 +224,7 @@ namespace ManagerLib.Managements
                     }
                     Console.WriteLine("\n\t\t\t▌  Type here: ");
                     subTask.CreatorId = Console.ReadLine();
-                    Console.Write("\t\t\t▌  Working Hours: ");
+                    Console.WriteLine("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
                     subTask.LastEditDate = DateTime.Now;
                     Console.WriteLine("\t\t\t▌  Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");

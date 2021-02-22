@@ -34,7 +34,6 @@ namespace ManagerWF.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainManagerInfo));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.manageTasks = new System.Windows.Forms.Button();
             this.projectsButton = new System.Windows.Forms.Button();
             this.managePanel = new System.Windows.Forms.Panel();
@@ -44,7 +43,6 @@ namespace ManagerWF.Forms
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.panelMenu.Controls.Add(this.button1);
             this.panelMenu.Controls.Add(this.manageTasks);
             this.panelMenu.Controls.Add(this.projectsButton);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -52,24 +50,6 @@ namespace ManagerWF.Forms
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(145, 450);
             this.panelMenu.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 390);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(145, 60);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "  Info";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // manageTasks
             // 
@@ -117,14 +97,14 @@ namespace ManagerWF.Forms
             this.managePanel.Size = new System.Drawing.Size(655, 450);
             this.managePanel.TabIndex = 3;
             // 
-            // Project
+            // MainManagerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.managePanel);
             this.Controls.Add(this.panelMenu);
-            this.Name = "Project";
+            this.Name = "MainManagerInfo";
             this.Text = "Project";
             this.Load += new System.EventHandler(this.Project_Load);
             this.panelMenu.ResumeLayout(false);
@@ -137,7 +117,6 @@ namespace ManagerWF.Forms
         private Panel panelMenu;
         private Button manageTasks;
         private Button projectsButton;
-        private Button button1;
         private Panel managePanel;
     }
 }

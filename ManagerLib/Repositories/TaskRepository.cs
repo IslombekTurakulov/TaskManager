@@ -82,7 +82,7 @@ namespace ManagerLib.Repositories
             {
                 Task task = GetEntity(sr);
 
-                if (task.Id.Equals(id) || task.ResponsibleId.Equals(LoginValidation.LoggedUser.Id))
+                if (task.Id.Equals(id))
                     return task;
             }
 

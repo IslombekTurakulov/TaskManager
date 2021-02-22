@@ -157,6 +157,7 @@ namespace ManagerWF
             this.panelLogo.Name = "panelLogo";
             this.panelLogo.Size = new System.Drawing.Size(165, 60);
             this.panelLogo.TabIndex = 0;
+            this.panelLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelLogo_MouseDown);
             // 
             // label1
             // 
@@ -168,6 +169,7 @@ namespace ManagerWF
             this.label1.Size = new System.Drawing.Size(147, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manager Peergrade";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             // 
             // panelTitleBar
             // 
@@ -177,7 +179,7 @@ namespace ManagerWF
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(165, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(635, 60);
+            this.panelTitleBar.Size = new System.Drawing.Size(1050, 60);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -201,11 +203,12 @@ namespace ManagerWF
             this.labelTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelTitle.ForeColor = System.Drawing.Color.White;
-            this.labelTitle.Location = new System.Drawing.Point(301, 11);
+            this.labelTitle.Location = new System.Drawing.Point(509, 11);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(73, 30);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Home";
+            this.labelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelTitle_MouseDown);
             // 
             // panelDesktop
             // 
@@ -213,14 +216,14 @@ namespace ManagerWF
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(165, 60);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(635, 390);
+            this.panelDesktop.Size = new System.Drawing.Size(1050, 390);
             this.panelDesktop.TabIndex = 2;
             // 
             // logoPicture
             // 
             this.logoPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoPicture.Image = ((System.Drawing.Image)(resources.GetObject("logoPicture.Image")));
-            this.logoPicture.Location = new System.Drawing.Point(-9, 0);
+            this.logoPicture.Location = new System.Drawing.Point(199, 0);
             this.logoPicture.Name = "logoPicture";
             this.logoPicture.Size = new System.Drawing.Size(700, 400);
             this.logoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -231,7 +234,7 @@ namespace ManagerWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1215, 450);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);

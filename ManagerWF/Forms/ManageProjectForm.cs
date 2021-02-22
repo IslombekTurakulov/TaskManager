@@ -140,15 +140,14 @@ namespace ManagerWF.Forms
                 };
 
                 tasksList.Add(task);
-                Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Write);
+
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
                 StreamWriter sw = new StreamWriter(fs);
                 foreach (var item in tasksList)
                 {
                     sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
                                  " " + item.SubTasks);
                 }
-
-                sw.Close();
                 fs.Close();
 
                 MessageBox.Show(@"Project successfully created!");
@@ -162,7 +161,6 @@ namespace ManagerWF.Forms
 
         private void projectsButton_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
 
         }
 
@@ -186,7 +184,8 @@ namespace ManagerWF.Forms
             try
             {
                 LoadTheme();
-                Stream fs = new FileStream("ProjectTasks.txt", FileMode.Open, FileAccess.Read);
+
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader sr = new StreamReader(fs);
                 int count = 1;
 
@@ -208,7 +207,7 @@ namespace ManagerWF.Forms
                     count++;
                 }
 
-                Stream subTaskStream = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Read);
+                Stream subTaskStream = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader subTaskReader = new StreamReader(subTaskStream);
 
                 while (subTaskReader.Peek() != -1)
@@ -217,7 +216,7 @@ namespace ManagerWF.Forms
                     addSubTaskCombo.Items.Add(s?[0] ?? string.Empty);
                 }
 
-                Stream userFileStream = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
+                Stream userFileStream = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader userStreamReader = new StreamReader(userFileStream);
 
                 while (userStreamReader.Peek() != -1)
@@ -227,17 +226,73 @@ namespace ManagerWF.Forms
                 }
 
                 ID = count;
+
                 fs.Close();
-                sr.Close();
                 subTaskStream.Close();
-                subTaskReader.Close();
                 userFileStream.Close();
-                userStreamReader.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (projectDataGrid.RowCount > 0)
+                {
+                    foreach (DataGridViewRow row in projectDataGrid.SelectedRows)
+                    {
+                        projectDataGrid.Rows.Remove(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ManageProject_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in tasksList)
+                {
+                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
+                                 " " + item.SubTasks);
+                }
+
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ManageProject_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Stream fs = new FileStream("ProjectTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in tasksList)
+                {
+                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
+                                 " " + item.SubTasks);
+                }
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

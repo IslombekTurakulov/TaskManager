@@ -55,6 +55,7 @@ namespace ManagerWF.Forms
             this.nameTxtBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.projectsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.subTaskDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -79,7 +80,7 @@ namespace ManagerWF.Forms
             this.subTaskDataGrid.Location = new System.Drawing.Point(0, 0);
             this.subTaskDataGrid.Name = "subTaskDataGrid";
             this.subTaskDataGrid.RowTemplate.Height = 25;
-            this.subTaskDataGrid.Size = new System.Drawing.Size(642, 393);
+            this.subTaskDataGrid.Size = new System.Drawing.Size(800, 385);
             this.subTaskDataGrid.TabIndex = 2;
             // 
             // IDColumn
@@ -120,7 +121,7 @@ namespace ManagerWF.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(782, 393);
+            this.panel1.Size = new System.Drawing.Size(940, 385);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -138,16 +139,16 @@ namespace ManagerWF.Forms
             this.panel2.Controls.Add(this.statusCombo);
             this.panel2.Controls.Add(this.nameTxtBox);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(140, 275);
+            this.panel2.Location = new System.Drawing.Point(140, 267);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(642, 118);
+            this.panel2.Size = new System.Drawing.Size(800, 118);
             this.panel2.TabIndex = 4;
             // 
             // responsibleLabel
             // 
             this.responsibleLabel.AutoSize = true;
             this.responsibleLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.responsibleLabel.Location = new System.Drawing.Point(436, 37);
+            this.responsibleLabel.Location = new System.Drawing.Point(540, 39);
             this.responsibleLabel.Name = "responsibleLabel";
             this.responsibleLabel.Size = new System.Drawing.Size(106, 21);
             this.responsibleLabel.TabIndex = 10;
@@ -156,7 +157,7 @@ namespace ManagerWF.Forms
             // responsibleComboBox
             // 
             this.responsibleComboBox.FormattingEnabled = true;
-            this.responsibleComboBox.Location = new System.Drawing.Point(449, 68);
+            this.responsibleComboBox.Location = new System.Drawing.Point(553, 70);
             this.responsibleComboBox.Name = "responsibleComboBox";
             this.responsibleComboBox.Size = new System.Drawing.Size(87, 23);
             this.responsibleComboBox.TabIndex = 9;
@@ -171,7 +172,7 @@ namespace ManagerWF.Forms
             this.CreateTaskButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CreateTaskButton.Image = ((System.Drawing.Image)(resources.GetObject("CreateTaskButton.Image")));
             this.CreateTaskButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateTaskButton.Location = new System.Drawing.Point(543, 0);
+            this.CreateTaskButton.Location = new System.Drawing.Point(701, 0);
             this.CreateTaskButton.Name = "CreateTaskButton";
             this.CreateTaskButton.Size = new System.Drawing.Size(99, 118);
             this.CreateTaskButton.TabIndex = 8;
@@ -184,7 +185,7 @@ namespace ManagerWF.Forms
             // 
             this.priorityTask.AutoSize = true;
             this.priorityTask.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.priorityTask.Location = new System.Drawing.Point(248, 23);
+            this.priorityTask.Location = new System.Drawing.Point(327, 25);
             this.priorityTask.Name = "priorityTask";
             this.priorityTask.Size = new System.Drawing.Size(71, 21);
             this.priorityTask.TabIndex = 7;
@@ -194,7 +195,7 @@ namespace ManagerWF.Forms
             // 
             this.MaxTasksLabel.AutoSize = true;
             this.MaxTasksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.MaxTasksLabel.Location = new System.Drawing.Point(230, 70);
+            this.MaxTasksLabel.Location = new System.Drawing.Point(309, 72);
             this.MaxTasksLabel.Name = "MaxTasksLabel";
             this.MaxTasksLabel.Size = new System.Drawing.Size(89, 21);
             this.MaxTasksLabel.TabIndex = 6;
@@ -215,7 +216,7 @@ namespace ManagerWF.Forms
             "Bug",
             "Task",
             "Story"});
-            this.priorityCombo.Location = new System.Drawing.Point(325, 23);
+            this.priorityCombo.Location = new System.Drawing.Point(404, 25);
             this.priorityCombo.Name = "priorityCombo";
             this.priorityCombo.Size = new System.Drawing.Size(100, 23);
             this.priorityCombo.TabIndex = 5;
@@ -223,7 +224,7 @@ namespace ManagerWF.Forms
             // 
             // maxTasksTxtbox
             // 
-            this.maxTasksTxtbox.Location = new System.Drawing.Point(325, 70);
+            this.maxTasksTxtbox.Location = new System.Drawing.Point(404, 72);
             this.maxTasksTxtbox.Name = "maxTasksTxtbox";
             this.maxTasksTxtbox.PlaceholderText = "For example: 2";
             this.maxTasksTxtbox.Size = new System.Drawing.Size(100, 23);
@@ -234,7 +235,7 @@ namespace ManagerWF.Forms
             // 
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusLabel.Location = new System.Drawing.Point(3, 23);
+            this.StatusLabel.Location = new System.Drawing.Point(46, 23);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(124, 21);
             this.StatusLabel.TabIndex = 3;
@@ -244,7 +245,7 @@ namespace ManagerWF.Forms
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(3, 70);
+            this.NameLabel.Location = new System.Drawing.Point(46, 70);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(94, 21);
             this.NameLabel.TabIndex = 2;
@@ -257,7 +258,7 @@ namespace ManagerWF.Forms
             "InProgress",
             "Finished",
             "Opened"});
-            this.statusCombo.Location = new System.Drawing.Point(142, 20);
+            this.statusCombo.Location = new System.Drawing.Point(185, 20);
             this.statusCombo.Name = "statusCombo";
             this.statusCombo.Size = new System.Drawing.Size(100, 23);
             this.statusCombo.TabIndex = 1;
@@ -265,7 +266,7 @@ namespace ManagerWF.Forms
             // 
             // nameTxtBox
             // 
-            this.nameTxtBox.Location = new System.Drawing.Point(118, 70);
+            this.nameTxtBox.Location = new System.Drawing.Point(161, 70);
             this.nameTxtBox.Name = "nameTxtBox";
             this.nameTxtBox.PlaceholderText = "Type your task";
             this.nameTxtBox.Size = new System.Drawing.Size(100, 23);
@@ -278,18 +279,39 @@ namespace ManagerWF.Forms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(140, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(642, 393);
+            this.panel3.Size = new System.Drawing.Size(800, 385);
             this.panel3.TabIndex = 6;
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.deleteButton);
             this.panelMenu.Controls.Add(this.projectsButton);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(140, 393);
+            this.panelMenu.Size = new System.Drawing.Size(140, 385);
             this.panelMenu.TabIndex = 5;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.deleteButton.FlatAppearance.BorderSize = 0;
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deleteButton.ForeColor = System.Drawing.Color.White;
+            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+            this.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteButton.Location = new System.Drawing.Point(0, 60);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.deleteButton.Size = new System.Drawing.Size(140, 60);
+            this.deleteButton.TabIndex = 4;
+            this.deleteButton.Text = "  Delete Sub-Task";
+            this.deleteButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // projectsButton
             // 
@@ -314,10 +336,12 @@ namespace ManagerWF.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 393);
+            this.ClientSize = new System.Drawing.Size(940, 385);
             this.Controls.Add(this.panel1);
             this.Name = "ManageSubTasksForm";
             this.Text = "ManageSubTasks";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageSubTasksForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageSubTasksForm_FormClosed);
             this.Load += new System.EventHandler(this.ManageSubTasks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subTaskDataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -354,5 +378,6 @@ namespace ManagerWF.Forms
         private Panel panel3;
         private Panel panelMenu;
         private Button projectsButton;
+        private Button deleteButton;
     }
 }

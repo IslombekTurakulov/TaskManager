@@ -34,6 +34,7 @@ namespace ManagerWF.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.projectsButton = new System.Windows.Forms.Button();
             this.manageUserPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,12 +58,33 @@ namespace ManagerWF.Forms
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.deleteButton);
             this.panelMenu.Controls.Add(this.projectsButton);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(149, 450);
+            this.panelMenu.Size = new System.Drawing.Size(149, 424);
             this.panelMenu.TabIndex = 1;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.deleteButton.FlatAppearance.BorderSize = 0;
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deleteButton.ForeColor = System.Drawing.Color.White;
+            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+            this.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteButton.Location = new System.Drawing.Point(0, 60);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.deleteButton.Size = new System.Drawing.Size(149, 60);
+            this.deleteButton.TabIndex = 5;
+            this.deleteButton.Text = "  Delete User";
+            this.deleteButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // projectsButton
             // 
@@ -88,7 +110,7 @@ namespace ManagerWF.Forms
             this.manageUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manageUserPanel.Location = new System.Drawing.Point(149, 0);
             this.manageUserPanel.Name = "manageUserPanel";
-            this.manageUserPanel.Size = new System.Drawing.Size(651, 450);
+            this.manageUserPanel.Size = new System.Drawing.Size(791, 424);
             this.manageUserPanel.TabIndex = 2;
             // 
             // panel1
@@ -97,7 +119,7 @@ namespace ManagerWF.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(651, 450);
+            this.panel1.Size = new System.Drawing.Size(791, 424);
             this.panel1.TabIndex = 3;
             // 
             // panel3
@@ -107,7 +129,7 @@ namespace ManagerWF.Forms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(651, 450);
+            this.panel3.Size = new System.Drawing.Size(791, 424);
             this.panel3.TabIndex = 5;
             // 
             // userDataGrid
@@ -123,7 +145,7 @@ namespace ManagerWF.Forms
             this.userDataGrid.Location = new System.Drawing.Point(0, 0);
             this.userDataGrid.Name = "userDataGrid";
             this.userDataGrid.RowTemplate.Height = 25;
-            this.userDataGrid.Size = new System.Drawing.Size(651, 355);
+            this.userDataGrid.Size = new System.Drawing.Size(791, 329);
             this.userDataGrid.TabIndex = 2;
             // 
             // IDColumn
@@ -148,9 +170,9 @@ namespace ManagerWF.Forms
             this.panelUserInput.Controls.Add(this.nameTextBox);
             this.panelUserInput.Controls.Add(this.userLabel);
             this.panelUserInput.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelUserInput.Location = new System.Drawing.Point(0, 355);
+            this.panelUserInput.Location = new System.Drawing.Point(0, 329);
             this.panelUserInput.Name = "panelUserInput";
-            this.panelUserInput.Size = new System.Drawing.Size(651, 95);
+            this.panelUserInput.Size = new System.Drawing.Size(791, 95);
             this.panelUserInput.TabIndex = 3;
             // 
             // CreateTaskButton
@@ -162,7 +184,7 @@ namespace ManagerWF.Forms
             this.CreateTaskButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.CreateTaskButton.Image = ((System.Drawing.Image)(resources.GetObject("CreateTaskButton.Image")));
             this.CreateTaskButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CreateTaskButton.Location = new System.Drawing.Point(539, 0);
+            this.CreateTaskButton.Location = new System.Drawing.Point(679, 0);
             this.CreateTaskButton.Name = "CreateTaskButton";
             this.CreateTaskButton.Size = new System.Drawing.Size(112, 95);
             this.CreateTaskButton.TabIndex = 9;
@@ -194,11 +216,13 @@ namespace ManagerWF.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(940, 424);
             this.Controls.Add(this.manageUserPanel);
             this.Controls.Add(this.panelMenu);
             this.Name = "ManageUserForm";
             this.Text = "AddUser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageUserForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageUserForm_FormClosed);
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.panelMenu.ResumeLayout(false);
             this.manageUserPanel.ResumeLayout(false);
@@ -226,5 +250,6 @@ namespace ManagerWF.Forms
         private DataGridViewTextBoxColumn nameColumn;
         private DataGridViewTextBoxColumn creationDate;
         private Button CreateTaskButton;
+        private Button deleteButton;
     }
 }

@@ -135,30 +135,28 @@ namespace ManagerWF.Forms
             try
             {
                 LoadTheme();
-                Stream fs = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Read);
+                Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader sr = new StreamReader(fs);
                 int count = 1;
 
                 while (sr.Peek() != -1)
                 {
                     string[] s = sr.ReadLine()?.Split(" ");
-                    subTaskDataGrid.Rows.Add(count, s?[0], s?[1] + " " + s?[2], s?[3], s?[4], s[5]);
+                    if (s != null) subTaskDataGrid.Rows.Add(count, s?[0], s?[1] + " " + s?[2], s?[3], s?[4], s?[5]);
                     count++;
                 }
-
-                Stream userFileStream = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
+                fs.Close();
+                Stream userFileStream = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader userStreamReader = new StreamReader(userFileStream);
 
                 while (userStreamReader.Peek() != -1)
                 {
                     string[] s = userStreamReader.ReadLine()?.Split(" ");
-                    responsibleComboBox.Items.Add(s?[0]);
+                    responsibleComboBox.Items.Add(s?[0] ?? string.Empty);
                 }
 
-                fs.Close();
-                sr.Close();
+                ID = count;
                 userFileStream.Close();
-                userStreamReader.Close();
             }
             catch (Exception ex)
             {
@@ -184,14 +182,13 @@ namespace ManagerWF.Forms
             };
 
             subTasksList.Add(user);
-            Stream fs = new FileStream("SubTasks.txt", FileMode.Open, FileAccess.Write);
+            Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             foreach (var item in subTasksList)
             {
                 sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
             }
 
-            sw.Close();
             fs.Close();
         }
 
@@ -232,5 +229,47 @@ namespace ManagerWF.Forms
             Responsible = responsibleComboBox.Text;
         }
 
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (subTaskDataGrid.RowCount > 0)
+            {
+                foreach (DataGridViewRow row in subTaskDataGrid.SelectedRows)
+                {
+                    subTaskDataGrid.Rows.Remove(row);
+                }
+            }
+        }
+
+        private void ManageSubTasksForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+            foreach (var item in subTasksList)
+            {
+                sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId + " " + item.TaskStatus);
+            }
+
+            sw.Close();
+        }
+
+        private void ManageSubTasksForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Stream fs = new FileStream("SubTasks.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in subTasksList)
+                {
+                    sw.WriteLine(item.Title + " " + item.LastEditDate + " " + item.Status + " " + item.ResponsibleId +
+                                 " " + item.TaskStatus);
+                }
+
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

@@ -34,6 +34,9 @@ namespace ManagerWF.Forms
         private void AddUser_Load(object sender, EventArgs e)
         {
             LoadTheme();
+            if (!File.Exists("UserData.txt"))
+                File.Create("UserData.txt");
+
             Stream fs = new FileStream("UserData.txt", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
             int count = 1;
@@ -41,11 +44,11 @@ namespace ManagerWF.Forms
             while (sr.Peek() != -1)
             {
                 string[] s = sr.ReadLine()?.Split(" ");
-                userDataGrid.Rows.Add(count, s?[0], s?[1] + " " +  s?[2]);
+                userDataGrid.Rows.Add(count, s?[0], s?[1] + " " + s?[2]);
                 User user = new User
                 {
                     Username = s[0],
-                    CreateDate = DateTime.Parse(s?[1] + " " +  s?[2])
+                    CreateDate = DateTime.Parse(s?[1] + " " + s?[2])
                 };
                 count++;
                 list.Add(user);
@@ -96,7 +99,7 @@ namespace ManagerWF.Forms
             };
 
             list.Add(user);
-            Stream fs = new FileStream("UserData.txt", FileMode.Open, FileAccess.Write);
+            Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             foreach (var item in list)
             {
@@ -104,6 +107,23 @@ namespace ManagerWF.Forms
             }
 
             sw.Close();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (userDataGrid.RowCount > 0)
+            {
+                foreach (DataGridViewRow row in userDataGrid.SelectedRows)
+                {
+                    userDataGrid.Rows.Remove(row);
+                }
+                Stream fs = new FileStream("UserData.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs);
+                foreach (var item in userDataGrid.SelectedRows)
+                {
+                   list.Add();
+                }
+            }
         }
     }
 }

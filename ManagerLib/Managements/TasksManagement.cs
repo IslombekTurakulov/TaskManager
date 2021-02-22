@@ -133,6 +133,7 @@ namespace ManagerLib.Managements
                 }
 
                 Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -175,6 +176,8 @@ namespace ManagerLib.Managements
                     break;
             }
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+            Console.WriteLine("\t\t\t Successfully edited!");
+            Console.ReadKey();
             return task;
         }
 

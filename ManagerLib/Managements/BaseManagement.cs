@@ -14,8 +14,7 @@ namespace ManagerLib.Managements
 
         public void Show()
         {
-            bool isExit = true;
-            while (isExit)
+            while (true)
             {
                 AdminMenu choice = RenderMenu();
 
@@ -23,7 +22,6 @@ namespace ManagerLib.Managements
                 {
                     case AdminMenu.List:
                         List();
-                        Console.ReadKey();
                         break;
                     case AdminMenu.View:
                         View();
@@ -38,7 +36,9 @@ namespace ManagerLib.Managements
                         Delete();
                         break;
                     case AdminMenu.Back:
-                        isExit = false;
+                        AdminView adminView = new AdminView();
+                        adminView.Show();
+                        adminView.Choice();
                         break;
                     case AdminMenu.Exit:
                         return;

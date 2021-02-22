@@ -57,13 +57,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="panelMenu.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="projectsButton.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="deleteButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAACvSURBVFhHzY1bCsQwDANz/0vvNssWUlBsyY/QAZOPSJrx
+        Nj7/t5OtY37c18XWsX7AQAGuww0koLfpoIC8KRcMwlvh4kJ6IzOQ6T6IDEU6JsqgkpVghplMCktg/ZWC
+        ROhaQcL1joDE846B5POOgMTrtYKE6FqwRNZfCYyAyYRQhpUsRWQw0oFkhjLdH+mBi/BGuAiQt+QCAb1J
+        BwO4226gANex/SjEdXTKb044WMb4AjFVBwidxApOAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="projectsButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -72,9 +75,6 @@
         IAEJSEACEki9Py0Qsi2nkoaNOyGsdQPqefkHRao+0QAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="projectDataGrid.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
   <metadata name="IDColumn.UserAddedColumn" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>True</value>
   </metadata>
@@ -93,36 +93,6 @@
   <metadata name="SubTask.UserAddedColumn" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>True</value>
   </metadata>
-  <metadata name="panel2.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="responsibleName.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="responsibleComboBox.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="label1.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="addSubTaskCombo.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="StatusLabel.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="titleLabel.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="statusCombo.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="nameTxtBox.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
-  <metadata name="CreateTaskButton.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
   <data name="CreateTaskButton.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -132,7 +102,4 @@
         IRpmRbTJStH4jUr0wWRb6MOJHqEDnY7QoZPa6OhO4+gn1Fes9QfOkmmzXMv1GwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="$this.Locked" type="System.Boolean, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
-    <value>True</value>
-  </metadata>
 </root>

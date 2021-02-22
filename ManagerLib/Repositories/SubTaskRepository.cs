@@ -19,7 +19,6 @@ namespace ManagerLib.Repositories
                 SubTask task = new SubTask
                 {
                     Id = int.Parse(sr.ReadLine() ?? string.Empty),
-                    SubTaskId = int.Parse(sr.ReadLine() ?? string.Empty),
                     Title = sr.ReadLine(),
                     Description = sr.ReadLine(),
                     WorkingHours = int.Parse(sr.ReadLine() ?? string.Empty),
@@ -39,7 +38,6 @@ namespace ManagerLib.Repositories
         protected override void SaveEntity(SubTask entity, StreamWriter sw)
         {
             sw.WriteLine(entity.Id);
-            sw.WriteLine(entity.SubTaskId);
             sw.WriteLine(entity.Title);
             sw.WriteLine(entity.Description);
             sw.WriteLine(entity.WorkingHours);
@@ -61,7 +59,7 @@ namespace ManagerLib.Repositories
                 {
                     SubTask task = GetEntity(sr);
 
-                    if (task.SubTaskId == taskId)
+                    if (task.Id == taskId)
                     {
                         tasks.Add(task);
                     }

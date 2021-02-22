@@ -84,9 +84,9 @@ namespace ManagerLib.Managements
         private void Add()
         {
             Console.Clear();
-
+            int current = Task.Id;
             Record record = new Record
-                { TaskId = Task.Id, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
+                { TaskId =current, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
 
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             Console.Write("\t\t\t▌  Working Hours: ");

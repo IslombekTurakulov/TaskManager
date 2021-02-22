@@ -46,8 +46,8 @@ namespace ManagerLib.User
                 }
                 if (choice == "B")
                 {
-                    
-                    
+                    TasksManagement tasksManagement = new TasksManagement();
+                    tasksManagement.Show();
                     break;
                 }
                 Console.WriteLine("\t\t\t▌  Invalid choice!");
