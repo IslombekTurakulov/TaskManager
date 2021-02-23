@@ -94,7 +94,7 @@ namespace ManagerWF
             // 
             // aboutButton
             // 
-            this.aboutButton.BackColor = System.Drawing.Color.Linen;
+            this.aboutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.aboutButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.aboutButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this.aboutButton.FlatAppearance.BorderSize = 0;
@@ -114,7 +114,7 @@ namespace ManagerWF
             // 
             // addUserButton
             // 
-            this.addUserButton.BackColor = System.Drawing.Color.Linen;
+            this.addUserButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.addUserButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.addUserButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this.addUserButton.FlatAppearance.BorderSize = 0;
@@ -134,7 +134,7 @@ namespace ManagerWF
             // 
             // projectsButton
             // 
-            this.projectsButton.BackColor = System.Drawing.Color.Linen;
+            this.projectsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.projectsButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.projectsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this.projectsButton.FlatAppearance.BorderSize = 0;

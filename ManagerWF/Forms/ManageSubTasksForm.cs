@@ -269,10 +269,22 @@ namespace ManagerWF.Forms
                     responsibleLabel.Visible = false;
                     responsibleComboBox.Visible = false;
                 }
+                else if (PriorityStatus == TaskStatusEnum.Task)
+                {
+                    maxTasksTxtbox.Visible = false;
+                    MaxTasksLabel.Visible = false;
+                }
+                else if (PriorityStatus == TaskStatusEnum.Bug)
+                {
+                    maxTasksTxtbox.Visible = false;
+                    MaxTasksLabel.Visible = false;
+                }
                 else
                 {
                     responsibleLabel.Visible = true;
                     responsibleComboBox.Visible = true;
+                    maxTasksTxtbox.Visible = true;
+                    MaxTasksLabel.Visible = true;
                 }
             }
             catch (Exception ex)
