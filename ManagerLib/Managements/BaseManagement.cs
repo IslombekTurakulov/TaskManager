@@ -59,7 +59,8 @@ namespace ManagerLib.Managements
                         }
                         break;
                     case AdminMenu.Exit:
-                        return;
+                        Environment.Exit(0);
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
 using ManagerLib.User;
@@ -238,10 +237,10 @@ namespace ManagerLib.Managements
             // Part of showing previous tasks and editing to new one.
             Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
-            Console.Write("\t\t\t▌  New Title: ");
+            Console.WriteLine("\t\t\t▌  New Title: ");
             task.Title = WordValidator();
             Console.WriteLine($"\t\t\t▌  Description: {task.Description}");
-            Console.Write("\t\t\t▌  New Description: ");
+            Console.WriteLine("\t\t\t▌  New Description: ");
             task.Description = WordValidator();
             Console.WriteLine($"\t\t\t▌  Working Hours: {task.WorkingHours}");
             Console.Write("\t\t\t▌  New Working Hours: ");

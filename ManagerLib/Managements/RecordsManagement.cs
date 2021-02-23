@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
 using ManagerLib.User;

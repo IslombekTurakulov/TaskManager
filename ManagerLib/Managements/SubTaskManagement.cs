@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
-using ManagerLib.User;
 
 namespace ManagerLib.Managements
 {
@@ -119,8 +118,8 @@ namespace ManagerLib.Managements
                 }
                 else
                 {
-                    Console.WriteLine("You currently don't have any sub-tasks..");
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("\t\t\t▌  You currently don't have any sub-tasks..");
+                    Console.WriteLine("\t\t\t▌  Press any key to continue...");
                 }
                 Console.ReadKey();
             }
@@ -142,80 +141,92 @@ namespace ManagerLib.Managements
                 // Adding to list.
                 List<SubTask> listSubTask = subTaskRepository.GetAll(Task.Id);
                 // Showing information about Sub-tasks.
-                Console.WriteLine($"\t\t\t▌  Project Id contains: {Task.Id}");
-                foreach (SubTask comment in listSubTask)
+                if (listSubTask.Count > 0)
                 {
-                    Console.WriteLine($"\t\t\t▌  ID: {comment.Id}");
-                    Console.WriteLine($"\t\t\t▌  Responsible: {comment.ResponsibleId}");
-                    Console.WriteLine($"\t\t\t▌  Title: {comment.Title}");
-                    Console.WriteLine($"\t\t\t▌  Task Priority: {comment.TaskStatus}");
-                    Console.WriteLine($"\t\t\t▌  Description: {comment.Description}");
-                    Console.WriteLine($"\t\t\t▌  Working Hours: {comment.WorkingHours}");
-                    Console.WriteLine($"\t\t\t▌  Last Edit Date: {comment.LastEditDate}");
-                    Console.WriteLine($"\t\t\t▌  Status: {comment.Status}");
+                    Console.WriteLine($"\t\t\t▌  Project Id contains: {Task.Id}");
+                    foreach (SubTask comment in listSubTask)
+                    {
+                        Console.WriteLine($"\t\t\t▌  ID: {comment.Id}");
+                        Console.WriteLine($"\t\t\t▌  Responsible: {comment.ResponsibleId}");
+                        Console.WriteLine($"\t\t\t▌  Title: {comment.Title}");
+                        Console.WriteLine($"\t\t\t▌  Task Priority: {comment.TaskStatus}");
+                        Console.WriteLine($"\t\t\t▌  Description: {comment.Description}");
+                        Console.WriteLine($"\t\t\t▌  Working Hours: {comment.WorkingHours}");
+                        Console.WriteLine($"\t\t\t▌  Last Edit Date: {comment.LastEditDate}");
+                        Console.WriteLine($"\t\t\t▌  Status: {comment.Status}");
+                    }
+
+                    // Part of editing.
+                    Console.WriteLine("\t\t\t▌  Which sub-task id do you want to edit?: ");
+                    int inputId = IntegerValidation();
+                    List<SubTask> comments = subTaskRepository.GetAll(inputId);
+                    foreach (var task in comments)
+                    {
+                        Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
+                        Console.WriteLine("\t\t\t▌  New Title");
+                        task.Title = WordValidator();
+                        Console.WriteLine($"\t\t\t▌  Description: {task.Description}");
+                        Console.WriteLine("\t\t\t▌  New Description ");
+                        task.Description = WordValidator();
+                        Console.WriteLine($"\t\t\t▌  Responsible: {task.ResponsibleId}");
+                        Console.WriteLine("\t\t\t▌  New Responsible:");
+                        UserRepository userRepository = new UserRepository();
+                        List<Entities.User> users = userRepository.GetAll();
+                        Console.Write("\t\t\t▌  ");
+                        foreach (var user in users)
+                        {
+                            Console.Write(user.Username + " ");
+                        }
+
+                        Console.Write("\n");
+                        string userInput = WordValidator();
+                        foreach (var user in users.Where(user =>
+                            userInput != null && userInput.Contains(user.Username)))
+                        {
+                            task.ResponsibleId = user.Username;
+                        }
+
+                        Console.WriteLine($"\t\t\t▌  Working Hours: {task.WorkingHours}");
+                        Console.WriteLine("\t\t\t▌  New Working Hours: ");
+                        task.WorkingHours = IntegerValidation();
+                        task.LastEditDate = DateTime.Now;
+                        Console.WriteLine($"\t\t\t▌  Current Priority: {task.TaskStatus}");
+                        Console.WriteLine("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
+                        string statusTask = Console.ReadLine() ?? string.Empty;
+
+                        Console.WriteLine($"\t\t\t▌  Current Status: {task.Status}");
+                        // Checking status.
+                        Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
+                        string input = Console.ReadLine() ?? string.Empty;
+                        switch (input)
+                        {
+                            case "1":
+                                task.Status = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "InProgress");
+                                break;
+                            case "2":
+                                task.Status = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Finished");
+                                break;
+                            case "3":
+                                task.Status = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened");
+                                break;
+                            default:
+                                Console.WriteLine("\t\t\t▌  Auto-Selected Default");
+                                task.Status = (SubTaskStatus) Enum.Parse(typeof(SubTaskStatus), "Opened");
+                                break;
+                        }
+
+                        Console.WriteLine("\t\t\t▌  Sub-task changed!");
+                        Console.ReadKey();
+                        subTaskRepository.Add(task);
+
+                    }
                 }
-                // Part of editing.
-                Console.WriteLine("\t\t\t▌  Which sub-task id do you want to edit?: ");
-                int inputId = IntegerValidation();
-                List<SubTask> comments = subTaskRepository.GetAll(inputId);
-                foreach (var task in comments)
+                else
                 {
-                    Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
-                    Console.WriteLine("\t\t\t▌  New Title");
-                    task.Title = WordValidator();
-                    Console.WriteLine($"\t\t\t▌  Description: {task.Description}");
-                    Console.WriteLine("\t\t\t▌  New Description ");
-                    task.Description = WordValidator();
-                    Console.WriteLine($"\t\t\t▌  Responsible: {task.ResponsibleId}");
-                    Console.WriteLine("\t\t\t▌  New Responsible:");
-                    UserRepository userRepository = new UserRepository();
-                    List<Entities.User> users = userRepository.GetAll();
-                    Console.Write("\t\t\t▌  ");
-                    foreach (var user in users)
-                    {
-                        Console.Write(user.Username + " ");
-                    }
-                    Console.Write("\n");
-                    string userInput = WordValidator();
-                    foreach (var user in users.Where(user => userInput != null && userInput.Contains(user.Username)))
-                    {
-                        task.ResponsibleId = user.Username;
-                    }
-
-                    Console.WriteLine($"\t\t\t▌  Working Hours: {task.WorkingHours}");
-                    Console.WriteLine("\t\t\t▌  New Working Hours: ");
-                    task.WorkingHours = IntegerValidation();
-                    task.LastEditDate = DateTime.Now;
-                    Console.WriteLine($"\t\t\t▌  Current Priority: {task.TaskStatus}");
-                    Console.WriteLine("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
-                    string statusTask = Console.ReadLine() ?? string.Empty;
-
-                    Console.WriteLine($"\t\t\t▌  Current Status: {task.Status}");
-                    // Checking status.
-                    Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
-                    string input = Console.ReadLine() ?? string.Empty;
-                    switch (input)
-                    {
-                        case "1":
-                            task.Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "InProgress");
-                            break;
-                        case "2":
-                            task.Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Finished");
-                            break;
-                        case "3":
-                            task.Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened");
-                            break;
-                        default:
-                            Console.WriteLine("\t\t\t▌  Auto-Selected Default");
-                            task.Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), "Opened");
-                            break;
-                    }
-
-                    Console.WriteLine("\t\t\t▌  Sub-task changed!");
+                    Console.WriteLine("\t\t\t▌  You currently don't have any sub-tasks..");
+                    Console.WriteLine("\t\t\t▌  Press any key to continue...");
                     Console.ReadKey();
-                    subTaskRepository.Add(task);
                 }
-
             }
             catch (Exception ex)
             {
