@@ -113,6 +113,7 @@ namespace ManagerWF.Forms
             // 
             // userDataGrid
             // 
+            this.userDataGrid.AllowUserToAddRows = false;
             this.userDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.userDataGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.userDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -123,7 +124,9 @@ namespace ManagerWF.Forms
             this.userDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userDataGrid.Location = new System.Drawing.Point(0, 0);
             this.userDataGrid.Name = "userDataGrid";
+            this.userDataGrid.ReadOnly = true;
             this.userDataGrid.RowTemplate.Height = 25;
+            this.userDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userDataGrid.Size = new System.Drawing.Size(791, 329);
             this.userDataGrid.TabIndex = 2;
             // 
@@ -131,16 +134,19 @@ namespace ManagerWF.Forms
             // 
             this.IDColumn.HeaderText = "ID";
             this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
             // 
             // nameColumn
             // 
             this.nameColumn.HeaderText = "NameProject";
             this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
             // 
             // creationDate
             // 
             this.creationDate.HeaderText = "Creation Date";
             this.creationDate.Name = "creationDate";
+            this.creationDate.ReadOnly = true;
             // 
             // panelUserInput
             // 

@@ -225,7 +225,7 @@ namespace ManagerLib.Managements
                     // Creating new classes of repository.
                     SubTask subTask = new SubTask
                     {
-                        IDCreator = Task.Id
+                        IdCreator = Task.Id
                     };
 
                     UserRepository userRepository = new UserRepository();

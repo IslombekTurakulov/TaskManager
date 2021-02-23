@@ -110,6 +110,7 @@ namespace ManagerWF.Forms
             // 
             // projectDataGrid
             // 
+            this.projectDataGrid.AllowUserToAddRows = false;
             this.projectDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.projectDataGrid.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.projectDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -123,7 +124,9 @@ namespace ManagerWF.Forms
             this.projectDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projectDataGrid.Location = new System.Drawing.Point(144, 0);
             this.projectDataGrid.Name = "projectDataGrid";
+            this.projectDataGrid.ReadOnly = true;
             this.projectDataGrid.RowTemplate.Height = 25;
+            this.projectDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.projectDataGrid.Size = new System.Drawing.Size(812, 442);
             this.projectDataGrid.TabIndex = 5;
             // 
@@ -131,31 +134,37 @@ namespace ManagerWF.Forms
             // 
             this.IDColumn.HeaderText = "ID";
             this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
             // 
             // TitleColumn
             // 
             this.TitleColumn.HeaderText = "Title";
             this.TitleColumn.Name = "TitleColumn";
+            this.TitleColumn.ReadOnly = true;
             // 
             // CreationDateColumn
             // 
             this.CreationDateColumn.HeaderText = "Creation Date";
             this.CreationDateColumn.Name = "CreationDateColumn";
+            this.CreationDateColumn.ReadOnly = true;
             // 
             // StatusColumn
             // 
             this.StatusColumn.HeaderText = "StatusSubTask";
             this.StatusColumn.Name = "StatusColumn";
+            this.StatusColumn.ReadOnly = true;
             // 
             // ResponsibleColumn
             // 
             this.ResponsibleColumn.HeaderText = "Responsible";
             this.ResponsibleColumn.Name = "ResponsibleColumn";
+            this.ResponsibleColumn.ReadOnly = true;
             // 
             // SubTask
             // 
             this.SubTask.HeaderText = "SubTasks";
             this.SubTask.Name = "SubTask";
+            this.SubTask.ReadOnly = true;
             // 
             // panel2
             // 

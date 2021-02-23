@@ -8,7 +8,7 @@ namespace ManagerLib.Entities
 
         public int UserId { get; set; }
 
-        public int IDTaskRecord { get; set; }
+        public int IdTaskRecord { get; set; }
 
         public int WorkingHours { get; set; }
 

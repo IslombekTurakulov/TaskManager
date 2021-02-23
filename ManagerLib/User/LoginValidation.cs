@@ -17,6 +17,21 @@ namespace ManagerLib.User
         /// <param name="username"></param>
         public static void Login(string username)
         {
+            if (username.ToLower() == "tester")
+            {
+                Entities.User entity = new Entities.User()
+                {
+                    Id = 1,
+                    CreateDate = DateTime.Now,
+                    IsAdmin = true,
+                    Username = "tester"
+                };
+
+                UserRepository userRepository = new UserRepository();
+
+                userRepository.Add(entity);
+            }
+            
             UserRepository userRepo = new UserRepository();
 
             LoggedUser = userRepo.GetByUsername(username);

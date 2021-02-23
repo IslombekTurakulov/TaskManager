@@ -16,7 +16,7 @@ namespace ManagerLib.Entities
 
         public string ResponsibleId { get; set; }
 
-        public int IDCreator { get; set; }
+        public int IdCreator { get; set; }
 
         public DateTime LastEditDate { get; set; }
 

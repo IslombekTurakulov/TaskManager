@@ -27,7 +27,7 @@ namespace ManagerLib.Repositories
                     Description = sr.ReadLine(),
                     WorkingHours = int.Parse(sr.ReadLine() ?? string.Empty),
                     CreatorId = sr.ReadLine() ?? string.Empty,
-                    IDCreator = int.Parse(sr.ReadLine() ?? string.Empty),
+                    IdCreator = int.Parse(sr.ReadLine() ?? string.Empty),
                     LastEditDate = DateTime.Parse(sr.ReadLine() ?? string.Empty),
                     Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), sr.ReadLine() ?? string.Empty),
                     TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), sr.ReadLine() ?? string.Empty),
@@ -53,7 +53,7 @@ namespace ManagerLib.Repositories
             sw.WriteLine(entity.Description);
             sw.WriteLine(entity.WorkingHours);
             sw.WriteLine(entity.CreatorId);
-            sw.WriteLine(entity.IDCreator);
+            sw.WriteLine(entity.IdCreator);
             sw.WriteLine(entity.LastEditDate);
             sw.WriteLine(entity.Status);
             sw.WriteLine(entity.TaskStatus);
@@ -71,7 +71,7 @@ namespace ManagerLib.Repositories
                 {
                     SubTask task = GetEntity(sr);
 
-                    if (task.IDCreator == taskId)
+                    if (task.IdCreator == taskId)
                     {
                         tasks.Add(task);
                     }
