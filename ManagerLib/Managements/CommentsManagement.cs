@@ -60,6 +60,29 @@ namespace ManagerLib.Managements
         }
 
         /// <summary>
+        /// Word validating
+        /// </summary>
+        /// <returns></returns>
+        private static string WordValidator()
+        {
+            while (true)
+            {
+                Console.Write("\t\t\t▌  Type here: ");
+                string input = Console.ReadLine()?.Trim();
+                if (input.Length <= 3)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("\t\t\t▌  The length should be greater than 3!");
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                    return input;
+            }
+        }
+
+        /// <summary>
         /// Edit comment entity.
         /// </summary>
         protected void EditEntity()
@@ -75,8 +98,8 @@ namespace ManagerLib.Managements
                 {
                     // Write the data of comment.
                     Console.WriteLine($"\t\t\t▌  Text: {comment.Text}");
-                    Console.Write("\t\t\t▌  New Text: ");
-                    comment.Text = Console.ReadLine() ?? Empty;
+                    Console.WriteLine("\t\t\t▌  New Text: ");
+                    comment.Text = WordValidator() ?? Empty;
                     comment.CreateDate = DateTime.Now;
                     commentRepo.Add(comment);
                 }
@@ -136,8 +159,8 @@ namespace ManagerLib.Managements
                 Comment comment = new Comment
                 { TaskId = Task.Id, UserId = LoginValidation.LoggedUser.Id, CreateDate = DateTime.Now };
 
-                Console.Write("\t\t\t▌  Text: ");
-                comment.Text = Console.ReadLine();
+                Console.WriteLine("\t\t\t▌  Text: ");
+                comment.Text = WordValidator();
 
                 // Creating new class of comment repository.
                 CommentRepository commentRepo = new CommentRepository();

@@ -68,6 +68,29 @@ namespace ManagerLib.Managements
         }
 
         /// <summary>
+        /// Word validating
+        /// </summary>
+        /// <returns></returns>
+        private static string WordValidator()
+        {
+            while (true)
+            {
+                Console.Write("\t\t\t▌  Type here: ");
+                string input = Console.ReadLine()?.Trim();
+                if (input.Length <= 3)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("\t\t\t▌  The length should be greater than 3!");
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                    return input;
+            }
+        }
+
+        /// <summary>
         /// Shows the list of subtasks.
         /// </summary>
         public void List()
@@ -138,11 +161,11 @@ namespace ManagerLib.Managements
                 foreach (var task in comments)
                 {
                     Console.WriteLine($"\t\t\t▌  Title: {task.Title}");
-                    Console.Write("\t\t\t▌  New Title: ");
-                    task.Title = Console.ReadLine();
+                    Console.WriteLine("\t\t\t▌  New Title");
+                    task.Title = WordValidator();
                     Console.WriteLine($"\t\t\t▌  Description: {task.Description}");
-                    Console.Write("\t\t\t▌  New Description: ");
-                    task.Description = Console.ReadLine();
+                    Console.WriteLine("\t\t\t▌  New Description ");
+                    task.Description = WordValidator();
                     Console.WriteLine($"\t\t\t▌  Responsible: {task.ResponsibleId}");
                     Console.WriteLine("\t\t\t▌  New Responsible:");
                     UserRepository userRepository = new UserRepository();
@@ -152,10 +175,8 @@ namespace ManagerLib.Managements
                     {
                         Console.Write(user.Username + " ");
                     }
-
-                    Console.WriteLine("\n\t\t\t▌  If you want add several users, type with a space");
-                    Console.Write("\t\t\t▌  Type here:");
-                    string userInput = Console.ReadLine();
+                    Console.Write("\n");
+                    string userInput = WordValidator();
                     foreach (var user in users.Where(user => userInput != null && userInput.Contains(user.Username)))
                     {
                         task.ResponsibleId = user.Username;
@@ -245,10 +266,10 @@ namespace ManagerLib.Managements
                     // Function of adding
                     int temp = i;
                     Console.WriteLine($"\t\t\t▌   {++temp} Task");
-                    Console.Write("\t\t\t▌  Title: ");
-                    subTask.Title = Console.ReadLine();
-                    Console.Write("\t\t\t▌  Description: ");
-                    subTask.Description = Console.ReadLine();
+                    Console.WriteLine("\t\t\t▌  Title");
+                    subTask.Title = WordValidator();
+                    Console.Write("\t\t\t▌  Description");
+                    subTask.Description = WordValidator();
                     bool correct = false;
                     do
                     {
@@ -259,8 +280,8 @@ namespace ManagerLib.Managements
                             Console.Write(user.Username + " ");
                         }
 
-                        Console.Write("\n\t\t\t▌  Type here: ");
-                        subTask.CreatorId = Console.ReadLine();
+                        Console.Write("\n");
+                        subTask.CreatorId = WordValidator();
                         string[] names = subTask.CreatorId?.Split(' ');
                         foreach (var user in users)
                         {
@@ -355,10 +376,10 @@ namespace ManagerLib.Managements
                     // Function of adding
                     int temp = i;
                     Console.WriteLine($"\t\t\t▌   {++temp} Task");
-                    Console.Write("\t\t\t▌  Title: ");
-                    epicTask.Title = Console.ReadLine();
-                    Console.Write("\t\t\t▌  Description: ");
-                    epicTask.Description = Console.ReadLine();
+                    Console.WriteLine("\t\t\t▌  Title");
+                    epicTask.Title = WordValidator();
+                    Console.WriteLine("\t\t\t▌  Description: ");
+                    epicTask.Description = WordValidator();
                     bool correct = false;
                     do
                     {
@@ -369,8 +390,8 @@ namespace ManagerLib.Managements
                             Console.Write(user.Username + " ");
                         }
 
-                        Console.Write("\n\t\t\t▌  Type here: ");
-                        epicTask.CreatorId = Console.ReadLine();
+                        Console.Write("\n");
+                        epicTask.CreatorId = WordValidator();
                         string[] names = epicTask.CreatorId?.Split(' ');
                         foreach (var user in users)
                         {
