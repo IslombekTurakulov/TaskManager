@@ -238,16 +238,32 @@ namespace ManagerLib.Managements
                     subTask.Title = Console.ReadLine();
                     Console.Write("\t\t\t▌  Description: ");
                     subTask.Description = Console.ReadLine();
-                    Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
-                  
-                    Console.Write("\t\t\t▌  ");
-                    foreach (var user in users)
+                    bool correct = true;
+                    do
                     {
-                        Console.Write(user.Username + " ");
-                    }
+                        Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
+                        Console.Write("\t\t\t▌  ");
+                        foreach (var user in users)
+                        {
+                            Console.Write(user.Username + " ");
+                        }
 
-                    Console.Write("\n\t\t\t▌  Type here: ");
-                    subTask.CreatorId = Console.ReadLine();
+                        Console.Write("\n\t\t\t▌  Type here: ");
+                        subTask.CreatorId = Console.ReadLine();
+                        string[] names = subTask.CreatorId?.Split(' ');
+                        foreach (var user in users)
+                        {
+                            for (int j = 0; j < names.Length; j++)
+                            {
+                                if (names[j].Contains(user.Username))
+                                {
+                                    correct = false;
+                                    break;
+                                }
+                            }
+                        }
+                    } while (correct);
+
                     Console.WriteLine("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
                     subTask.LastEditDate = DateTime.Now;

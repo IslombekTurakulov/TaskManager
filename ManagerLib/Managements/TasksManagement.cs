@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
 using ManagerLib.User;
@@ -54,17 +55,22 @@ namespace ManagerLib.Managements
                 Console.Write("\t\t\t▌  Working Hours: ");
                 task.WorkingHours = IntegerValidation();
                 task.CreatorId = LoginValidation.LoggedUser.Id;
-
-                Console.WriteLine("\t\t\t▌  Choose Responsible Name: ");
                 List<Entities.User> users = userRepository.GetAll();
-                Console.Write("\t\t\t▌  ");
-                foreach (var user in users)
+                bool correct = true;
+                do
                 {
-                    Console.Write(user.Username + " ");
-                }
-
-                Console.Write("\n\t\t\t▌  Type here: ");
-                task.ResponsibleId = Console.ReadLine();
+                    Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
+                    Console.Write("\t\t\t▌  ");
+                    foreach (var user in users)
+                        Console.Write(user.Username + " ");
+                    
+                    Console.WriteLine("\n\t\t\t▌  Type here: ");
+                    task.ResponsibleId = Console.ReadLine();
+                    string[] names = task.ResponsibleId?.Split(' ');
+                    foreach (var user in users)
+                        if ((names ?? Array.Empty<string>()).Any(t => t.Contains(user.Username)))
+                            correct = false;
+                } while (correct);
                 task.CreateDate = DateTime.Now;
                 task.LastEditDate = DateTime.Now;
                 // Status task.
