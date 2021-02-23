@@ -56,7 +56,7 @@ namespace ManagerLib.Managements
                 task.WorkingHours = IntegerValidation();
                 task.CreatorId = LoginValidation.LoggedUser.Id;
                 List<Entities.User> users = userRepository.GetAll();
-                bool correct = true;
+                bool correct = false;
                 do
                 {
                     Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
@@ -64,13 +64,20 @@ namespace ManagerLib.Managements
                     foreach (var user in users)
                         Console.Write(user.Username + " ");
                     
-                    Console.WriteLine("\n\t\t\t▌  Type here: ");
+                    Console.Write("\n\t\t\t▌  Type here: ");
                     task.ResponsibleId = Console.ReadLine();
                     string[] names = task.ResponsibleId?.Split(' ');
                     foreach (var user in users)
-                        if ((names ?? Array.Empty<string>()).Any(t => t.Contains(user.Username)))
-                            correct = false;
-                } while (correct);
+                    {
+                        foreach (var t in names)
+                        {
+                            if (t.Contains(user.Username))
+                                correct = true;
+                            break;
+                        }
+                    }
+                } while (!correct);
+
                 task.CreateDate = DateTime.Now;
                 task.LastEditDate = DateTime.Now;
                 // Status task.
@@ -143,6 +150,29 @@ namespace ManagerLib.Managements
                         Console.WriteLine($"\t\t\t\t▌  Status: {subTask.Status}");
                     }
                 }
+
+                Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+                Console.WriteLine("\t\t\t▌  Epic Sub-Tasks:");
+                // Creating new repository class.
+                EpicRepository epicRepository = new EpicRepository();
+                // Adding to list of SubTasks.
+                List<EpicTask> epicTasks = epicRepository.GetAll(task.Id);
+                if (epicTasks.Count > 0)
+                {
+                    // Showing info.
+                    foreach (EpicTask epicTask in epicTasks)
+                    {
+                        Console.WriteLine($"\t\t\t\t▌  ID: {epicTask.Id}");
+                        Console.WriteLine($"\t\t\t\t▌  Title: {epicTask.Title}");
+                        Console.WriteLine($"\t\t\t\t▌  Task Priority: {epicTask.Priority}");
+                        Console.WriteLine($"\t\t\t\t▌  Description: {epicTask.Description}");
+                        Console.WriteLine($"\t\t\t\t▌  Working Hours: {epicTask.WorkingHours}");
+                        Console.WriteLine($"\t\t\t\t▌  Creator ID: {epicTask.CreatorId}");
+                        Console.WriteLine($"\t\t\t\t▌  Last Edit Date: {epicTask.LastEditDate}");
+                        Console.WriteLine($"\t\t\t\t▌  Status: {epicTask.Status}");
+                    }
+                }
+                Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
                 // Showing info about comments.
                 Console.WriteLine("\t\t\t▌  Comments:");
                 CommentRepository commentRepo = new CommentRepository();

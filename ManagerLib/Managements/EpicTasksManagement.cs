@@ -3,69 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using ManagerLib.Entities;
 using ManagerLib.Repositories;
-using ManagerLib.User;
 
 namespace ManagerLib.Managements
 {
-    public class SubTaskManagement
+    public class EpicTasksManagement
     {
         // Fields.
         public Task Task;
-        public SubTaskManagement(Task task) => Task = task;
-
-        /// <summary>
-        /// Show SubTask menu.
-        /// </summary>
-        public void Show()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-                Console.WriteLine("\t\t\t▌     Sub-Task");
-                Console.WriteLine("\t\t\t▌  [L]ist sub-tasks:");
-                Console.WriteLine("\t\t\t▌  [A]dd sub-task:");
-                Console.WriteLine("\t\t\t▌  [E]dit:");
-                Console.WriteLine("\t\t\t▌  [B]ack");
-                Console.Write("\t\t\t▌  Type here:");
-                string choice = Console.ReadLine()?.ToUpper();
-                if (choice == "L")
-                {
-                    List();
-                    break;
-                }
-
-                if (choice == "A")
-                {
-                    Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-                    Console.WriteLine("\t\t\t▌  Add [E]pic task");
-                    Console.WriteLine("\t\t\t▌  Add [S]ub task");
-                    string taskChoice = Console.ReadLine()?.ToUpper();
-                    if (taskChoice == "S")
-                    {
-                        Add();
-                    }
-                    else if (taskChoice == "E")
-                    {
-                        EpicAdd();
-                    }
-                    break;
-                }
-                if (choice == "E")
-                {
-                    EditEntity();
-                    break;
-                }
-                if (choice == "B")
-                {
-                    // Goes back to task menu.
-                    TasksManagement ts = new TasksManagement();
-                    ts.Show();
-                    break;
-                }
-                Console.WriteLine("\t\t\t▌  Invalid choice!");
-            }
-        }
+        public EpicTasksManagement(Task task) => Task = task;
 
         /// <summary>
         /// Shows the list of subtasks.
@@ -75,19 +20,21 @@ namespace ManagerLib.Managements
             try
             {
                 // Creating new class of Comment repository.
-                SubTaskRepository commentRepo = new SubTaskRepository();
+                EpicRepository commentRepo = new EpicRepository();
                 // Adding to list.
-                List<SubTask> comments = commentRepo.GetAll(Task.Id);
+                List<EpicTask> comments = commentRepo.GetAll(Task.Id);
                 if (comments.Count > 0)
                 {
                     // Showing information about sub-tasks.
+                    Console.WriteLine("\t\t\t▌  Epic tasks:");
                     Console.WriteLine($"\t\t\t▌  Task Id: {Task.Id}");
-                    foreach (SubTask comment in comments)
+                    foreach (EpicTask comment in comments)
                     {
+
                         Console.WriteLine($"\t\t\t▌  ID: {comment.Id}");
                         Console.WriteLine($"\t\t\t▌  Task id: {comment.SubTaskId}");
                         Console.WriteLine($"\t\t\t▌  Title: {comment.Title}");
-                        Console.WriteLine($"\t\t\t▌  Task Priority: {comment.TaskStatus}");
+                        Console.WriteLine($"\t\t\t▌  Task Priority: {comment.Priority}");
                         Console.WriteLine($"\t\t\t▌  Description: {comment.Description}");
                         Console.WriteLine($"\t\t\t▌  Working Hours: {comment.WorkingHours}");
                         Console.WriteLine($"\t\t\t▌  Last Edit Date: {comment.LastEditDate}");
@@ -168,7 +115,7 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌  Current Priority: {task.TaskStatus}");
                     Console.WriteLine("\t\t\t▌  New Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
                     string statusTask = Console.ReadLine() ?? string.Empty;
-
+                    
                     Console.WriteLine($"\t\t\t▌  Current Status: {task.Status}");
                     // Checking status.
                     Console.WriteLine("\t\t\t▌  Status InProgress - [1] or Finished - [2] or Opened [3]: ");
@@ -211,7 +158,7 @@ namespace ManagerLib.Managements
             int entityId;
             do
             {
-                Console.Write("\t\t\t▌  Type here:");
+                Console.Write("\t\t\t▌  Type here:"); 
             } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId <= 0);
 
             return entityId;
@@ -330,111 +277,5 @@ namespace ManagerLib.Managements
             }
         }
 
-        /// <summary>
-        /// Add sub-task element.
-        /// </summary>
-        private void EpicAdd()
-        {
-            Console.Clear();
-
-            try
-            {
-                // Getting info about the max-tasks.
-                Console.WriteLine("\t\t\t▌  How many sub-tasks for epic do you want to create: ");
-                Task.CountTask = IntegerValidation();
-                EpicRepository epicRepository = new EpicRepository();
-                // Doing n-current tasks to add to repo.
-                for (int i = 0; i < Task.CountTask; i++)
-                {
-                    // Creating new classes of repository.
-                    EpicTask epicTask = new EpicTask
-                    {
-                        IdCreator = Task.Id
-                    };
-
-                    UserRepository userRepository = new UserRepository();
-                    List<Entities.User> users = userRepository.GetAll();
-
-                    // Function of adding
-                    int temp = i;
-                    Console.WriteLine($"\t\t\t▌   {++temp} Task");
-                    Console.Write("\t\t\t▌  Title: ");
-                    epicTask.Title = Console.ReadLine();
-                    Console.Write("\t\t\t▌  Description: ");
-                    epicTask.Description = Console.ReadLine();
-                    bool correct = true;
-                    do
-                    {
-                        Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
-                        Console.Write("\t\t\t▌  ");
-                        foreach (var user in users)
-                        {
-                            Console.Write(user.Username + " ");
-                        }
-
-                        Console.Write("\n\t\t\t▌  Type here: ");
-                        epicTask.CreatorId = Console.ReadLine();
-                        string[] names = epicTask.CreatorId?.Split(' ');
-                        foreach (var user in users)
-                        {
-                            for (int j = 0; j < names.Length; j++)
-                            {
-                                if (names[j].Contains(user.Username))
-                                {
-                                    correct = false;
-                                    break;
-                                }
-                            }
-                        }
-                    } while (correct);
-
-                    Console.WriteLine("\t\t\t▌  Working Hours: ");
-                    epicTask.WorkingHours = IntegerValidation();
-                    epicTask.LastEditDate = DateTime.Now;
-                    // Validating task priority status.
-                    Console.WriteLine("\t\t\t▌  Task Priority [1]Task, [2]Story: ");
-                    int statusTask = IntegerValidation();
-                    switch (statusTask)
-                    {
-                        case 1:
-                            epicTask.Priority = (EpicTaskPriority)Enum.Parse(typeof(EpicTaskPriority), "Task");
-                            break;
-                        case 2:
-                            epicTask.Priority = (EpicTaskPriority)Enum.Parse(typeof(EpicTaskPriority), "Story");
-                            break;
-                        default:
-                            Console.WriteLine("\t\t\t▌  Auto-Selected Default");
-                            epicTask.Priority = (EpicTaskPriority)Enum.Parse(typeof(EpicTaskPriority), "Task");
-                            break;
-                    }
-                    // Validating status.
-                    Console.WriteLine("\t\t\t▌  Status InProgress - [1], Finished - [2], Opened [3]: ");
-                    int input = IntegerValidation();
-                    switch (input)
-                    {
-                        case 1:
-                            epicTask.Status = (EpicTaskStatus)Enum.Parse(typeof(EpicTaskStatus), "InProgress");
-                            break;
-                        case 2:
-                            epicTask.Status = (EpicTaskStatus)Enum.Parse(typeof(EpicTaskStatus), "Finished");
-                            break;
-                        case 3:
-                            epicTask.Status = (EpicTaskStatus)Enum.Parse(typeof(EpicTaskStatus), "Opened");
-                            break;
-                        default:
-                            Console.WriteLine("\t\t\t▌  Auto-Selected Default");
-                            epicTask.Status = (EpicTaskStatus)Enum.Parse(typeof(EpicTaskStatus), "Opened");
-                            break;
-                    }
-                    Console.WriteLine("\t\t\t▌  Epic Sub-task created!");
-                    Console.ReadKey();
-                    epicRepository.Add(epicTask);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }

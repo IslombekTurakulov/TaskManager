@@ -2,8 +2,8 @@
 
 namespace ManagerLib.Entities
 {
-    public class SubTask : BaseEntity
-    { 
+    public class EpicTask : BaseEntity
+    {
         public int SubTaskId { get; set; }
 
         public string Title { get; set; }
@@ -20,17 +20,21 @@ namespace ManagerLib.Entities
 
         public DateTime LastEditDate { get; set; }
 
-        public SubTaskStatus Status { get; set; }
+        public EpicTaskStatus Status { get; set; }
 
-        public TaskStatusEnum TaskStatus { get; set; }
+        public EpicTaskPriority Priority { get; set; }
+
     }
-
-    public enum SubTaskStatus
+    public enum EpicTaskStatus
     {
         Opened,
         InProgress,
         Finished
     }
 
-
+    public enum EpicTaskPriority
+    {
+        Task,
+        Story
+    }
 }
