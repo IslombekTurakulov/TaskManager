@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ManagerLib.Repositories;
 
 #pragma warning disable
@@ -17,6 +18,49 @@ namespace ManagerLib.Managements
             return userRepo;
         }
 
+
+        /// <summary>
+        /// Validating name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private static bool NameValidator(string name)
+        {
+            try
+            {
+                return name.All(letter =>
+                    letter > 'A' - 1 && letter < 'Z' + 1
+                    || letter > 'a' - 1 && letter < 'z' + 1
+                    ||  char.IsWhiteSpace(letter)
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+
+        private static string WordValidator()
+        {
+            while (true)
+            {
+                Console.Write("\t\t\t▌  Type here: ");
+                string input = Console.ReadLine();
+                if (!NameValidator(input) || 3 >= input.Length)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine();
+                    Console.WriteLine("\t\t\t▌  The name must contain only Latin letters and spaces!");
+                    Console.WriteLine("\t\t\t▌  The length should be greater than 3!");
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                    return input;
+            }
+        }
+
         /// <summary>
         /// Editing the User entity.
         /// </summary>
@@ -29,8 +73,8 @@ namespace ManagerLib.Managements
             Console.WriteLine($"\t\t\t▌  ID: {user.Id}");
 
             Console.WriteLine($"\t\t\t▌  Username: {user.Username}");
-            Console.Write("\t\t\t▌  New Username: ");
-            user.Username = Console.ReadLine();
+            Console.WriteLine("\t\t\t▌  New Username");
+            user.Username = WordValidator();
             Console.WriteLine($"\t\t\t▌  Is admin: {user.IsAdmin}");
             Console.Write("\t\t\t▌  New Is admin (True - [1] , False - [2]): ");
             string isAdmin = Console.ReadLine()?.ToLower();
@@ -59,8 +103,8 @@ namespace ManagerLib.Managements
         /// <returns>User</returns>
         protected override Entities.User GetEntity(Entities.User user)
         {
-            Console.Write("\t\t\t▌  Username: ");
-            user.Username = Console.ReadLine();
+            Console.WriteLine("\t\t\t▌  Username: ");
+            user.Username = WordValidator();
             Console.Write("\t\t\t▌  New Is admin (True - [1] , False - [2]): ");
             string isAdmin = Console.ReadLine()?.ToLower();
             // Checking through switch.

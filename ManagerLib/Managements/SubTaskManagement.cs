@@ -249,7 +249,7 @@ namespace ManagerLib.Managements
                     subTask.Title = Console.ReadLine();
                     Console.Write("\t\t\t▌  Description: ");
                     subTask.Description = Console.ReadLine();
-                    bool correct = true;
+                    bool correct = false;
                     do
                     {
                         Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
@@ -268,31 +268,28 @@ namespace ManagerLib.Managements
                             {
                                 if (names[j].Contains(user.Username))
                                 {
-                                    correct = false;
+                                    correct = true;
                                     break;
                                 }
                             }
                         }
-                    } while (correct);
+                    } while (!correct);
 
                     Console.WriteLine("\t\t\t▌  Working Hours: ");
                     subTask.WorkingHours = IntegerValidation();
                     subTask.LastEditDate = DateTime.Now;
                     // Validating task priority status.
-                    Console.WriteLine("\t\t\t▌  Task Priority [1]Epic, [2]Task, [3]Bug, [4]Story: ");
+                    Console.WriteLine("\t\t\t▌  Task Priority [1]Task, [2]Bug, [3]Story: ");
                     int statusTask = IntegerValidation();
                     switch (statusTask)
                     {
                         case 1:
-                            subTask.TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Epic");
-                            break;
-                        case 2:
                             subTask.TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Task");
                             break;
-                        case 3:
+                        case 2:
                             subTask.TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Bug");
                             break;
-                        case 4:
+                        case 3:
                             subTask.TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), "Story");
                             break;
                         default:
@@ -362,7 +359,7 @@ namespace ManagerLib.Managements
                     epicTask.Title = Console.ReadLine();
                     Console.Write("\t\t\t▌  Description: ");
                     epicTask.Description = Console.ReadLine();
-                    bool correct = true;
+                    bool correct = false;
                     do
                     {
                         Console.WriteLine("\t\t\t▌  Choose Responsible Username: ");
@@ -381,12 +378,12 @@ namespace ManagerLib.Managements
                             {
                                 if (names[j].Contains(user.Username))
                                 {
-                                    correct = false;
+                                    correct = true;
                                     break;
                                 }
                             }
                         }
-                    } while (correct);
+                    } while (!correct);
 
                     Console.WriteLine("\t\t\t▌  Working Hours: ");
                     epicTask.WorkingHours = IntegerValidation();

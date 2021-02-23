@@ -127,11 +127,11 @@ namespace ManagerLib.Managements
                         } while (!int.TryParse(Console.ReadLine(), out entityId) || entityId < 0);
 
                         // Get id of entity.
-
                         T entity = entityRepo.GetById(entityId);
 
                         if (entity != null)
                         {
+                            Console.Clear();
                             // Render entity.
                             RenderEntity(entity);
                             // Introduce variable.
