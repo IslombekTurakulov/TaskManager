@@ -252,5 +252,23 @@ namespace ManagerWF.Forms
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ManageProject_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FileStream fs = new FileStream("ProjectTasks.txt", FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fs);
+
+            for (int j = 0; j < projectDataGrid.Rows.Count; j++)
+            {
+                for (int i = 1; i < projectDataGrid.Rows[j].Cells.Count; i++)
+                {
+                    streamWriter.Write(projectDataGrid.Rows[j].Cells[i].Value + " ");
+                }
+                streamWriter.WriteLine();
+            }
+
+            streamWriter.Close();
+            fs.Close();
+        }
     }
 }

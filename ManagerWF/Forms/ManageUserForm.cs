@@ -159,9 +159,41 @@ namespace ManagerWF.Forms
             }
         }
 
-        private void projectsButton_Click(object sender, EventArgs e)
-        {
 
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (userDataGrid.RowCount > 0)
+                {
+                    foreach (DataGridViewRow row in userDataGrid.SelectedRows)
+                    {
+                        userDataGrid.Rows.Remove(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ManageUserForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FileStream fs = new FileStream("UserData.txt", FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fs);
+
+            for (int j = 0; j < userDataGrid.Rows.Count; j++)
+            {
+                for (int i = 1; i < userDataGrid.Rows[j].Cells.Count; i++)
+                {
+                    streamWriter.Write(userDataGrid.Rows[j].Cells[i].Value + " ");
+                }
+                streamWriter.WriteLine();
+            }
+
+            streamWriter.Close();
+            fs.Close();
         }
     }
 }

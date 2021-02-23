@@ -353,6 +353,7 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panel1);
             this.Name = "ManageSubTasksForm";
             this.Text = "ManageSubTasks";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageSubTasksForm_FormClosing);
             this.Load += new System.EventHandler(this.ManageSubTasks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subTaskDataGrid)).EndInit();
             this.panel1.ResumeLayout(false);

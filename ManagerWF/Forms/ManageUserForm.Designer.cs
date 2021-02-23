@@ -34,6 +34,7 @@ namespace ManagerWF.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserForm));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.projectsButton = new System.Windows.Forms.Button();
             this.manageUserPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,12 +58,33 @@ namespace ManagerWF.Forms
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelMenu.Controls.Add(this.deleteButton);
             this.panelMenu.Controls.Add(this.projectsButton);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(149, 424);
             this.panelMenu.TabIndex = 1;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteButton.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.deleteButton.FlatAppearance.BorderSize = 0;
+            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deleteButton.ForeColor = System.Drawing.Color.White;
+            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+            this.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteButton.Location = new System.Drawing.Point(0, 60);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.deleteButton.Size = new System.Drawing.Size(149, 60);
+            this.deleteButton.TabIndex = 5;
+            this.deleteButton.Text = "  Delete User";
+            this.deleteButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // projectsButton
             // 
@@ -81,7 +103,6 @@ namespace ManagerWF.Forms
             this.projectsButton.Text = "  Manage Users";
             this.projectsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.projectsButton.UseVisualStyleBackColor = true;
-            this.projectsButton.Click += new System.EventHandler(this.projectsButton_Click);
             // 
             // manageUserPanel
             // 
@@ -206,6 +227,7 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panelMenu);
             this.Name = "ManageUserForm";
             this.Text = "AddUser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageUserForm_FormClosing);
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.panelMenu.ResumeLayout(false);
             this.manageUserPanel.ResumeLayout(false);
@@ -233,5 +255,6 @@ namespace ManagerWF.Forms
         private DataGridViewTextBoxColumn nameColumn;
         private DataGridViewTextBoxColumn creationDate;
         private Button CreateTaskButton;
+        private Button deleteButton;
     }
 }

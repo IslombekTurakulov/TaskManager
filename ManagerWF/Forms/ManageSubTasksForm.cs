@@ -164,9 +164,9 @@ namespace ManagerWF.Forms
                     {
                         Title = arrayData?[0],
                         LastEditDate = DateTime.Parse(arrayData?[1] + " " + arrayData?[2]),
-                        Status =(SubTaskStatus)Enum.Parse(typeof(SubTaskStatus),  arrayData?[3]),
+                        Status = (SubTaskStatus)Enum.Parse(typeof(SubTaskStatus), arrayData?[3]),
                         ResponsibleId = arrayData?[4],
-                        TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum),  arrayData?[5]),
+                        TaskStatus = (TaskStatusEnum)Enum.Parse(typeof(TaskStatusEnum), arrayData?[5]),
                     };
                     subTasksList.Add(task);
                     count++;
@@ -328,6 +328,24 @@ namespace ManagerWF.Forms
             {
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ManageSubTasksForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FileStream fs = new FileStream("SubTasks.txt", FileMode.Create);
+            StreamWriter streamWriter = new StreamWriter(fs);
+
+            for (int j = 0; j < subTaskDataGrid.Rows.Count; j++)
+            {
+                for (int i = 1; i < subTaskDataGrid.Rows[j].Cells.Count; i++)
+                {
+                    streamWriter.Write(subTaskDataGrid.Rows[j].Cells[i].Value + " ");
+                }
+                streamWriter.WriteLine();
+            }
+
+            streamWriter.Close();
+            fs.Close();
         }
     }
 }

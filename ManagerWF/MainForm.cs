@@ -8,6 +8,10 @@ namespace ManagerWF
 {
     public partial class MainForm : Form
     {
+
+        // Open child form or Modern Design was taken and enhanced from
+        // https://rjcodeadvance.com/iu-moderno-temas-multicolor-aleatorio-resaltar-boton-form-activo-winform-c/
+
         //Fields
         private Button _currentButton;
         private Random _random;
@@ -97,7 +101,7 @@ namespace ManagerWF
             }
         }
         /// <summary>
-        /// /// Open child form in panel <see href="https://rjcodeadvance.com/iu-moderno-temas-multicolor-aleatorio-resaltar-boton-form-activo-winform-c/">Copy from</see>.
+        /// Open child form in panel <see href="https://rjcodeadvance.com/iu-moderno-temas-multicolor-aleatorio-resaltar-boton-form-activo-winform-c/">Copy from</see>.
         /// </summary>
         /// <param name="childForm"></param>
         /// <param name="btnSender"></param>

@@ -309,6 +309,7 @@ namespace ManagerWF.Forms
             this.Controls.Add(this.panelMenu);
             this.Name = "ManageProject";
             this.Text = "ManageProject";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageProject_FormClosing);
             this.Load += new System.EventHandler(this.ManageProject_Load);
             this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectDataGrid)).EndInit();
