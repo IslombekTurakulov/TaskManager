@@ -36,17 +36,25 @@ namespace ManagerLib.Managements
 
                 if (choice == "A")
                 {
-                    Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-                    Console.WriteLine("\t\t\t▌  Add [E]pic task");
-                    Console.WriteLine("\t\t\t▌  Add [S]ub task");
-                    string taskChoice = Console.ReadLine()?.ToUpper();
-                    if (taskChoice == "S")
+                    while (true)
                     {
-                        Add();
-                    }
-                    else if (taskChoice == "E")
-                    {
-                        EpicAdd();
+                        Console.Clear();
+                        Console.WriteLine("\t\t\t▌  Please choose which sub-task do you want to add.");
+                        Console.WriteLine("\t\t\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+                        Console.WriteLine("\t\t\t▌  Add [E]pic task");
+                        Console.WriteLine("\t\t\t▌  Add [S]ub task");
+                        Console.Write("\t\t\t▌  Type here:");
+                        string taskChoice = Console.ReadLine()?.ToUpper();
+                        if (taskChoice == "S")
+                        {
+                            Add();
+                            break;
+                        }
+                        if (taskChoice == "E")
+                        {
+                            EpicAdd();
+                            break;
+                        }
                     }
                     break;
                 }
@@ -279,7 +287,7 @@ namespace ManagerLib.Managements
                     Console.WriteLine($"\t\t\t▌   {++temp} Task");
                     Console.WriteLine("\t\t\t▌  Title");
                     subTask.Title = WordValidator();
-                    Console.Write("\t\t\t▌  Description");
+                    Console.WriteLine("\t\t\t▌  Description");
                     subTask.Description = WordValidator();
                     bool correct = false;
                     do
